@@ -1,0 +1,31 @@
+created: 20180430181932157
+modified: 20180502030147786
+tags: 
+title: ft/templates/tagged-list
+
+\define droppable-tag-actions()
+<$action-listops $tiddler=<<actionTiddler>> $field=tags $subfilter='[title<currentTiddler>]'/>
+\end
+
+Display tag pills which are drop targets. TODO: add 'x' to tag pill to allow them to be removed from the list.
+
+It seems like I could make the tag pill DnD the same as the list version only that each item is displayed as a tag pill? that way I don't need to display the xxx/tagger tag at all.
+
+<$list  filter="[all[current]addsuffix[/tagger]]">
+<$list filter="[all[current]] [tag<currentTiddler>]">
+<$droppable actions=<<droppable-tag-actions>>>
+<$macrocall $name=tag tag=<<currentTiddler>>/>
+</$droppable>
+</$list>
+</$list>
+
+---
+
+<$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="task-title" tag="input" type="text" size="50"/>
+<$button>
+  <$action-listops $tiddler={{$:/temp/newtask!!task-title}} $field=tags $subfilter='[title<currentTiddler>]'/>
+  <$action-setfield $tiddler="$:/temp/newtask" task-title=""/>
+  Add
+</$button>
+
+<$macrocall $name="list-tagged-draggable" tag=<<currentTiddler>> itemTemplate="ft/templates/tagged-list-item"/>
