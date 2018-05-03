@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20180502030147786
+modified: 20180503024049255
 tags: 
 title: ft/templates/tagged-list
 
@@ -7,9 +7,7 @@ title: ft/templates/tagged-list
 <$action-listops $tiddler=<<actionTiddler>> $field=tags $subfilter='[title<currentTiddler>]'/>
 \end
 
-Display tag pills which are drop targets. TODO: add 'x' to tag pill to allow them to be removed from the list.
-
-It seems like I could make the tag pill DnD the same as the list version only that each item is displayed as a tag pill? that way I don't need to display the xxx/tagger tag at all.
+Drag links here to apply the tag
 
 <$list  filter="[all[current]addsuffix[/tagger]]">
 <$list filter="[all[current]] [tag<currentTiddler>]">
@@ -23,7 +21,26 @@ It seems like I could make the tag pill DnD the same as the list version only th
 
 <$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="task-title" tag="input" type="text" size="50"/>
 <$button>
+<!--
   <$action-listops $tiddler={{$:/temp/newtask!!task-title}} $field=tags $subfilter='[title<currentTiddler>]'/>
+-->
+<!-- Save the current ordering of the tiddlers with this tag -->
+<$set name=actionTiddler value={{$:/temp/newtask!!task-title}}>
+<$set name="tag" value=<<currentTiddler>>>
+<$set name="order" filter="[<actionTiddler>] [<tag>tagging[]]">
+<!-- Remove any list-after or list-before fields from the tiddlers with this tag -->
+<$list filter="[<tag>tagging[]]">
+<$action-deletefield $field="list-before"/>
+<$action-deletefield $field="list-after"/>
+</$list>
+<!-- Assign the list field of the tag with the current ordering -->
+<$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
+<!-- Make sure the newly added item has the right tag -->
+<$action-listops $tiddler=<<actionTiddler>> $tags="[<tag>]"/>
+<!-- tag: <<tag>>, actionTiddler: <<actionTiddler>>-->
+</$set>
+</$set>
+</$set>
   <$action-setfield $tiddler="$:/temp/newtask" task-title=""/>
   Add
 </$button>
