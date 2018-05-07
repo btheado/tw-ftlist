@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20180430181711894
+modified: 20180507013020509
 tags: 
 title: ft/templates/tagged-list-item
 
@@ -12,6 +12,14 @@ title: ft/templates/tagged-list-item
      under the icons).
      -->
   <div style="flex-shrink: 0;">
+    <$button
+      tooltip="move to top"
+      aria-label="move to top"
+      class="tc-btn-invisible tc-btn-mini">
+
+      <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>] +[putfirst[]]"/>
+      {{$:/core/images/up-arrow}}
+    </$button>
     <$fieldmangler>
         <$button
           message="tm-add-tag"
