@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181020163824558
+modified: 20181020171649407
 tags: 
 title: ft/templates/tagged-list
 
@@ -7,9 +7,9 @@ title: ft/templates/tagged-list
 <$action-listops $tiddler=<<actionTiddler>> $field=tags $subfilter='[title<currentTiddler>]'/>
 \end
 
-Drag links here to apply the tag
+Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 
-<$list  filter="[all[current]addsuffix[/tagger]]">
+<$list  filter="[all[current]addsuffix[/tagbar]]">
 <$list filter="[all[current]] [tag<currentTiddler>]">
 <$droppable actions=<<droppable-tag-actions>>>
 <$macrocall $name=tag tag=<<currentTiddler>>/>
