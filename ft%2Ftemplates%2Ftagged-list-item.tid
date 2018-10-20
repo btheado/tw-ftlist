@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20180507013020509
+modified: 20181020135237368
 tags: 
 title: ft/templates/tagged-list-item
 
@@ -16,7 +16,6 @@ title: ft/templates/tagged-list-item
       tooltip="move to top"
       aria-label="move to top"
       class="tc-btn-invisible tc-btn-mini">
-
       <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>] +[putfirst[]]"/>
       {{$:/core/images/up-arrow}}
     </$button>
