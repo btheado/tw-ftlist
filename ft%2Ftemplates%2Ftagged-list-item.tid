@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181020163802821
+modified: 20181020181521798
 tags: 
 title: ft/templates/tagged-list-item
 
@@ -29,7 +29,13 @@ title: ft/templates/tagged-list-item
           {{$:/core/images/done-button}}
         </$button>
     </$fieldmangler>
-    {{||$:/core/ui/Buttons/edit}}
+    <$button
+      message="tm-edit-tiddler"
+      tooltip={{$:/language/Buttons/Edit/Hint}}
+      aria-label={{$:/language/Buttons/Edit/Caption}}
+      class="tc-btn-invisible tc-btn-mini">
+      {{$:/core/images/edit-button}}
+     </$button>
   </div>
   <div>
     <$list filter="[all[current]!has[text]]">
