@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20180507012803556
+modified: 20181020163824558
 tags: 
 title: ft/templates/tagged-list
 
@@ -46,5 +46,9 @@ Drag links here to apply the tag
 </$button>
 
 <$set name="currentListTiddler" value=<<currentTiddler>>>
-<$macrocall $name="list-tagged-draggable" tag=<<currentTiddler>> itemTemplate="ft/templates/tagged-list-item"/>
+<$list filter="[<currentTiddler>tagging[]]">
+<$link to={{!!title}}>
+{{||ft/templates/tagged-list-item}}
+</$link>
+</$list>
 </$set>

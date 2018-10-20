@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181020135237368
+modified: 20181020163802821
 tags: 
 title: ft/templates/tagged-list-item
 
@@ -31,7 +31,15 @@ title: ft/templates/tagged-list-item
     </$fieldmangler>
     {{||$:/core/ui/Buttons/edit}}
   </div>
-  <div><$link><<currentTiddler>></$link></div>
+  <div>
+    <$list filter="[all[current]!has[text]]">
+      <$link><<currentTiddler>></$link>
+    </$list>
+    <$list filter="[all[current]has[text]]">
+      <!-- Make tiddlers which have non-empty body text stand out -->
+      <$link><b><<currentTiddler>></b></$link>
+    </$list>
+  </div>
  </div>
 \end
 
