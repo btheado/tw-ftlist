@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181021125733461
+modified: 20181021131736964
 tags: 
 title: ft/templates/tagged-list
 
@@ -36,7 +36,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 <!-- Assign the list field of the tag with the current ordering -->
 <$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
 <!-- Make sure the newly added item has the right tag -->
-<$action-listops $tiddler=<<actionTiddler>> $tags="[<tag>]"/>
+<$action-listops $tiddler=<<actionTiddler>> $tags="-done [<tag>]"/>
 <!-- tag: <<tag>>, actionTiddler: <<actionTiddler>>-->
 </$set>
 </$set>
