@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181021002830296
+modified: 20181021125733461
 tags: 
 title: ft/templates/tagged-list
 
@@ -27,7 +27,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 <!-- Save the current ordering of the tiddlers with this tag -->
 <$set name=actionTiddler value={{$:/temp/newtask!!task-title}}>
 <$set name="tag" value=<<currentTiddler>>>
-<$set name="order" filter="[<actionTiddler>] [<tag>tagging[]]">
+<$set name="order" filter="[<actionTiddler>] [<tag>tagging[]!title<actionTiddler>]">
 <!-- Remove any list-after or list-before fields from the tiddlers with this tag -->
 <$list filter="[<tag>tagging[]]">
 <$action-deletefield $field="list-before"/>
