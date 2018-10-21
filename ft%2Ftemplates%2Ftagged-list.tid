@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181020171649407
+modified: 20181021002830296
 tags: 
 title: ft/templates/tagged-list
 
@@ -47,8 +47,6 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 
 <$set name="currentListTiddler" value=<<currentTiddler>>>
 <$list filter="[<currentTiddler>tagging[]]">
-<$link to={{!!title}}>
 {{||ft/templates/tagged-list-item}}
-</$link>
 </$list>
 </$set>
