@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181020181521798
+modified: 20181022021752858
 tags: 
 title: ft/templates/tagged-list-item
 
@@ -45,6 +45,11 @@ title: ft/templates/tagged-list-item
       <!-- Make tiddlers which have non-empty body text stand out -->
       <$link><b><<currentTiddler>></b></$link>
     </$list>
+    <$reveal type="match" state=<<showItemTags>> text="true">
+      <$list filter="[all[current]tags[]!title<currentListTiddler>]">
+        <$macrocall $name=tag tag=<<currentTiddler>>/>
+      </$list>
+    </$reveal>
   </div>
  </div>
 \end
