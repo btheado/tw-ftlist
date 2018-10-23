@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181022022124540
+modified: 20181023005751937
 tags: 
 title: ft/templates/tagged-list
 
@@ -27,13 +27,13 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 
 ---
 
-<$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="task-title" tag="input" type="text" size="50"/>
+<$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="draft.of" tag="input" type="text" size="50"/>
 <$button>
 <!--
-  <$action-listops $tiddler={{$:/temp/newtask!!task-title}} $field=tags $subfilter='[title<currentTiddler>]'/>
+  <$action-listops $tiddler={{$:/temp/newtask!!draft.of}} $field=tags $subfilter='[title<currentTiddler>]'/>
 -->
 <!-- Save the current ordering of the tiddlers with this tag -->
-<$set name=actionTiddler value={{$:/temp/newtask!!task-title}}>
+<$set name=actionTiddler value={{$:/temp/newtask!!draft.of}}>
 <$set name="tag" value=<<currentTiddler>>>
 <$set name="order" filter="[<actionTiddler>] [<tag>tagging[]!title<actionTiddler>]">
 <!-- Remove any list-after or list-before fields from the tiddlers with this tag -->
@@ -49,7 +49,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 </$set>
 </$set>
 </$set>
-  <$action-setfield $tiddler="$:/temp/newtask" task-title=""/>
+  <$action-setfield $tiddler="$:/temp/newtask" draft.of=""/>
   Add
 </$button>
 <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]"> |
