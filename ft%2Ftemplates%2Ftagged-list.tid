@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181024010439015
+modified: 20181024172228080
 tags: 
 title: ft/templates/tagged-list
 
@@ -31,11 +31,6 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 <$set name=actionTiddler value={{$:/temp/newtask!!draft.of}}>
 <$set name="tag" value=<<currentTiddler>>>
 <$set name="order" filter="[<actionTiddler>] [<tag>tagging[]!title<actionTiddler>]">
-<!-- Remove any list-after or list-before fields from the tiddlers with this tag -->
-<$list filter="[<tag>tagging[]]">
-<$action-deletefield $field="list-before"/>
-<$action-deletefield $field="list-after"/>
-</$list>
 <!-- Assign the list field of the tag with the current ordering -->
 <$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
 <!-- Make sure the newly added item has the right tag -->
