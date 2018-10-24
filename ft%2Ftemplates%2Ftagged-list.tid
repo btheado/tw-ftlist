@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181023005751937
+modified: 20181024010439015
 tags: 
 title: ft/templates/tagged-list
 
@@ -26,12 +26,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 </$list>
 
 ---
-
-<$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="draft.of" tag="input" type="text" size="50"/>
-<$button>
-<!--
-  <$action-listops $tiddler={{$:/temp/newtask!!draft.of}} $field=tags $subfilter='[title<currentTiddler>]'/>
--->
+<$keyboard key=enter actions="""
 <!-- Save the current ordering of the tiddlers with this tag -->
 <$set name=actionTiddler value={{$:/temp/newtask!!draft.of}}>
 <$set name="tag" value=<<currentTiddler>>>
@@ -50,9 +45,10 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 </$set>
 </$set>
   <$action-setfield $tiddler="$:/temp/newtask" draft.of=""/>
-  Add
-</$button>
-<$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]"> |
+""">
+<$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
+</$keyboard>
+<$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
     <$reveal type="match" state=<<showItemTags>> text="true">
       <$button
         set=<<showItemTags>>
