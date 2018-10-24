@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181024172228080
+modified: 20181024220717607
 tags: 
 title: ft/templates/tagged-list
 
@@ -40,6 +40,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 </$set>
 </$set>
   <$action-setfield $tiddler="$:/temp/newtask" draft.of=""/>
+  <$action-sendmessage $message="tm-auto-save-wiki"/>
 """>
 <$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
 </$keyboard>
