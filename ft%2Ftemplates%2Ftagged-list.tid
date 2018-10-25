@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181024220717607
+modified: 20181025170808163
 tags: 
 title: ft/templates/tagged-list
 
@@ -26,9 +26,10 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 </$list>
 
 ---
+<$set name=tempTiddler filter="[all[current]addprefix[$:/temp/]addsuffix[/newitem]]">
 <$keyboard key=enter actions="""
 <!-- Save the current ordering of the tiddlers with this tag -->
-<$set name=actionTiddler value={{$:/temp/newtask!!draft.of}}>
+<$set name=actionTiddler filter="[<tempTiddler>get[draft.of]]">
 <$set name="tag" value=<<currentTiddler>>>
 <$set name="order" filter="[<actionTiddler>] [<tag>tagging[]!title<actionTiddler>]">
 <!-- Assign the list field of the tag with the current ordering -->
@@ -39,11 +40,12 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 </$set>
 </$set>
 </$set>
-  <$action-setfield $tiddler="$:/temp/newtask" draft.of=""/>
+  <$action-setfield $tiddler=<<tempTiddler>> draft.of=""/>
   <$action-sendmessage $message="tm-auto-save-wiki"/>
 """>
-<$edit-text tiddler="$:/temp/newtask" placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
+<$edit-text tiddler=<<tempTiddler>> placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
 </$keyboard>
+</$set>
 <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
     <$reveal type="match" state=<<showItemTags>> text="true">
       <$button
