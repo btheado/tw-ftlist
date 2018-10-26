@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181025170808163
+modified: 20181026205344080
 tags: 
 title: ft/templates/tagged-list
 
@@ -29,17 +29,16 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 <$set name=tempTiddler filter="[all[current]addprefix[$:/temp/]addsuffix[/newitem]]">
 <$keyboard key=enter actions="""
 <!-- Save the current ordering of the tiddlers with this tag -->
-<$set name=actionTiddler filter="[<tempTiddler>get[draft.of]]">
+<$list variable=actionTiddler filter="[<tempTiddler>get[draft.of]]">
 <$set name="tag" value=<<currentTiddler>>>
-<$set name="order" filter="[<actionTiddler>] [<tag>tagging[]!title<actionTiddler>]">
+<$set name="order" filter="[title<actionTiddler>] [<tag>tagging[]!title<actionTiddler>]">
 <!-- Assign the list field of the tag with the current ordering -->
 <$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
 <!-- Make sure the newly added item has the right tag -->
 <$action-listops $tiddler=<<actionTiddler>> $tags="-done [<tag>]"/>
-<!-- tag: <<tag>>, actionTiddler: <<actionTiddler>>-->
 </$set>
 </$set>
-</$set>
+</$list>
   <$action-setfield $tiddler=<<tempTiddler>> draft.of=""/>
   <$action-sendmessage $message="tm-auto-save-wiki"/>
 """>
