@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181022021752858
+modified: 20181028170339473
 tags: 
 title: ft/templates/tagged-list-item
 
@@ -35,6 +35,19 @@ title: ft/templates/tagged-list-item
       aria-label={{$:/language/Buttons/Edit/Caption}}
       class="tc-btn-invisible tc-btn-mini">
       {{$:/core/images/edit-button}}
+     </$button>
+     <$button
+        class="tc-btn-invisible tc-tiddlylink"
+        tooltip="Display this tiddler as an ftlist"
+        aria-label="Display this tiddler as an ftlist"
+      >
+        <$list variable="tempTiddler" filter="[<currentTiddler>addprefix[$:/temp/]]">
+          <$list variable="templateText" filter="""[<currentTiddler>addprefix[<$tiddler tiddler="]addsuffix["><$transclude tiddler="ft/templates/tagged-list" mode=block/></$tiddler>]]""">
+            <$action-setfield $tiddler=<<tempTiddler>> $field="text" $value=<<templateText>>/>
+            <$action-navigate $to=<<tempTiddler>>/>
+          </$list>
+        </$list>
+        {{$:/core/images/right-arrow}}
      </$button>
   </div>
   <div>
