@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20181104200659066
+modified: 20181104200936692
 tags: 
 title: ft/templates/tickler-list
 
@@ -22,7 +22,7 @@ title: ft/templates/tickler-list
   </div>
   <div>
       <<currentTiddler>>
-      <$list filter="[all[current]] -[title<today>]" emptyMessage=" (''today'')"/>
+      <$list filter="[all[current]] -[title<today>]" emptyMessage=" (''today'')"> </$list>
       <$list filter="[field:$(currentListTiddler)$<currentTiddler>]">
       <div><$link><<currentTiddler>></$link></div>
       </$list>
