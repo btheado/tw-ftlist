@@ -1,9 +1,9 @@
 created: 20181104012246100
-modified: 20181106011225999
+modified: 20181106012056013
 tags: 
 title: ft/templates/tickler-list
 
-\define displayListItem()
+\define displayTicklerItem()
   <div>
       <<currentTiddler>>
       <$list filter="[all[current]] -[title<today>]" emptyMessage="""
@@ -11,30 +11,32 @@ title: ft/templates/tickler-list
          <$button
             class="tc-btn-invisible tc-tiddlylink"
           >
-           <$action-setfield $tiddler=<<currentListTiddler>> $field="tickled" $value=<<today>>/>
+           <$action-setfield $tiddler=<<currentTicklerTiddler>> $field="tickled" $value=<<today>>/>
            {{$:/core/images/up-arrow}}
          </$button>)
          """> </$list>
       <div style="margin-left: 15px;">
-        <$list filter="[field:$(currentListTiddler)$<currentTiddler>]">
+        <$list filter="[field:$(currentTicklerTiddler)$<currentTiddler>]">
         <div><$link><<currentTiddler>></$link></div>
         </$list>
       </div>
   </div>
 \end
 
-<$set name=currentListTiddler value=dom>
+<$set name=currentTicklerTiddler value=dom>
 <$set name="today" value=<<now 0DD>>>
 <$set name=tickled value={{!!tickled}} emptyValue="''01''">
-<$set name=value_list filter="[each<currentListTiddler>get<currentListTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
+<$set
+  name=value_list
+  filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
 <$list filter="[enlist<tickled>]">
-<<displayListItem>>
+<<displayTicklerItem>>
 </$list>
 <$list filter="[enlist<value_list>allafter<tickled>]">
-<<displayListItem>>
+<<displayTicklerItem>>
 </$list>
 <$list filter="[enlist<value_list>allbefore<tickled>]">
-<<displayListItem>>
+<<displayTicklerItem>>
 </$list>
 </$set>
 </$set>
@@ -49,10 +51,10 @@ title: ft/templates/tickler-list
 <$set name="today" value=<<now DDD>>>
 <$set name=tickled value={{!!tickled}} emptyValue=Monday>
 <$list filter="[enlist<value_list>allafter:include<tickled>]">
-<<displayListItem>>
+<<displayTicklerItem>>
 </$list>
 <$list filter="[enlist<value_list>allbefore<tickled>]">
-<<displayListItem>>
+<<displayTicklerItem>>
 </$list>
 </$set>
 </$set>
@@ -61,16 +63,16 @@ title: ft/templates/tickler-list
 
 ---
 
-<$set name=currentListTiddler value=dow>
+<$set name=currentTicklerTiddler value=dow>
 <$set name="today" value=<<now DDD>>>
 <$list filter="[all[current]list[]]">
-<<displayListItem>>
+<<displayTicklerItem>>
 </$list>
-<$list filter="[each<currentListTiddler>get<currentListTiddler>] -[all[current]list[]]">
-<<displayListItem>>
+<$list filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>] -[all[current]list[]]">
+<<displayTicklerItem>>
 </$list>
-<$list filter=" [title<today>] -[each<currentListTiddler>get<currentListTiddler>] -[all[current]list[]]">
-<<displayListItem>>
+<$list filter=" [title<today>] -[each<currentTicklerTiddler>get<currentTicklerTiddler>] -[all[current]list[]]">
+<<displayTicklerItem>>
 </$list>
 </$set>
 </$set>
