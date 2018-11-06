@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20181106013546248
+modified: 20181106020513093
 tags: 
 title: ft/templates/tickler-list
 
@@ -35,9 +35,9 @@ title: ft/templates/tickler-list
 </$list>
 \end
 
-<$set name=currentTicklerTiddler value=dom>
-<$set name="today" value=<<now 0DD>>>
-<$set name=tickled value={{!!tickled}} emptyValue="''01''">
+<$set name=currentTicklerTiddler value=doy>
+<$set name="today" value=<<now 0MM/0DD>>>
+<$set name=tickled value={{doy!!tickled}} emptyValue="''01/01''">
 <$set
   name=value_list
   filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
@@ -49,11 +49,12 @@ title: ft/templates/tickler-list
 
 ---
 
-
-<$set name=value_list value="Monday Tuesday Wednesday Thursday Friday Saturday Sunday">
-<$set name=currentTicklerTiddler value=dow>
-<$set name="today" value=<<now DDD>>>
-<$set name=tickled value={{!!tickled}} emptyValue=Monday>
+<$set name=currentTicklerTiddler value=dom>
+<$set name="today" value=<<now 0DD>>>
+<$set name=tickled value={{dom!!tickled}} emptyValue="''01''">
+<$set
+  name=value_list
+  filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
 <<displayTicklerList>>
 </$set>
 </$set>
@@ -62,16 +63,12 @@ title: ft/templates/tickler-list
 
 ---
 
+<$set name=value_list value="Monday Tuesday Wednesday Thursday Friday Saturday Sunday">
 <$set name=currentTicklerTiddler value=dow>
 <$set name="today" value=<<now DDD>>>
-<$list filter="[all[current]list[]]">
-<<displayTicklerItem>>
-</$list>
-<$list filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>] -[all[current]list[]]">
-<<displayTicklerItem>>
-</$list>
-<$list filter=" [title<today>] -[each<currentTicklerTiddler>get<currentTicklerTiddler>] -[all[current]list[]]">
-<<displayTicklerItem>>
-</$list>
+<$set name=tickled value={{!!tickled}} emptyValue=Monday>
+<<displayTicklerList>>
+</$set>
+</$set>
 </$set>
 </$set>
