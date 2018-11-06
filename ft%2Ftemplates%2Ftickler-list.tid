@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20181104200936692
+modified: 20181105211925316
 tags: 
 title: ft/templates/tickler-list
 
@@ -29,6 +29,57 @@ title: ft/templates/tickler-list
   </div>
  </div>
 \end
+
+<$set name=currentListTiddler value=dom>
+<$set name="today" value=<<now 0DD>>>
+<$set name=tickled value={{!!tickled}} emptyValue="''01''">
+     <$button
+        class="tc-btn-invisible tc-tiddlylink"
+      >
+       <$action-setfield $field="tickled" $value=<<today>>/>
+       Move today to top   
+     </$button>
+<$set name=value_list filter="[each<currentListTiddler>get<currentListTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
+<$list filter="[enlist<tickled>]">
+<<displayListItem>>
+</$list>
+<$list filter="[enlist<value_list>allafter<tickled>]">
+<<displayListItem>>
+</$list>
+<$list filter="[enlist<value_list>allbefore<tickled>]">
+<<displayListItem>>
+</$list>
+</$set>
+</$set>
+</$set>
+</$set>
+
+---
+
+
+<$set name=value_list value="Monday Tuesday Wednesday Thursday Friday Saturday Sunday">
+<$set name=currentListTiddler value=dow>
+<$set name="today" value=<<now DDD>>>
+<$set name=tickled value={{!!tickled}} emptyValue=Monday>
+     <$button
+        class="tc-btn-invisible tc-tiddlylink"
+      >
+       <$action-setfield $field="tickled" $value=<<today>>/>
+       Move today to top   
+     </$button>
+
+<$list filter="[enlist<value_list>allafter:include<tickled>]">
+<<displayListItem>>
+</$list>
+<$list filter="[enlist<value_list>allbefore<tickled>]">
+<<displayListItem>>
+</$list>
+</$set>
+</$set>
+</$set>
+</$set>
+
+---
 
 <$set name=currentListTiddler value=dow>
 <$set name="today" value=<<now DDD>>>
