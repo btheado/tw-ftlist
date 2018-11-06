@@ -1,44 +1,31 @@
 created: 20181104012246100
-modified: 20181105211925316
+modified: 20181106011225999
 tags: 
 title: ft/templates/tickler-list
 
 \define displayListItem()
- <div style="margin-left: 15px; white-space: normal; display: flex;">
-  <!-- 
-     Two side-by-side, flex-arranged divs. The one on the left with the icons will grow
-     so there is no wrapping. The one on the right will have wrapping if too long to fit, but
-     the text on the wrapped lines will line up with each other (rather than wrap around
-     under the icons).
-     -->
-  <div style="flex-shrink: 0;">
-    <$button
-      tooltip="move to top"
-      aria-label="move to top"
-      class="tc-btn-invisible tc-btn-mini">
-      <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>] +[putfirst[]]"/>
-      {{$:/core/images/up-arrow}}
-    </$button>
-  </div>
   <div>
       <<currentTiddler>>
-      <$list filter="[all[current]] -[title<today>]" emptyMessage=" (''today'')"> </$list>
-      <$list filter="[field:$(currentListTiddler)$<currentTiddler>]">
-      <div><$link><<currentTiddler>></$link></div>
-      </$list>
+      <$list filter="[all[current]] -[title<today>]" emptyMessage="""
+         (''today''
+         <$button
+            class="tc-btn-invisible tc-tiddlylink"
+          >
+           <$action-setfield $tiddler=<<currentListTiddler>> $field="tickled" $value=<<today>>/>
+           {{$:/core/images/up-arrow}}
+         </$button>)
+         """> </$list>
+      <div style="margin-left: 15px;">
+        <$list filter="[field:$(currentListTiddler)$<currentTiddler>]">
+        <div><$link><<currentTiddler>></$link></div>
+        </$list>
+      </div>
   </div>
- </div>
 \end
 
 <$set name=currentListTiddler value=dom>
 <$set name="today" value=<<now 0DD>>>
 <$set name=tickled value={{!!tickled}} emptyValue="''01''">
-     <$button
-        class="tc-btn-invisible tc-tiddlylink"
-      >
-       <$action-setfield $field="tickled" $value=<<today>>/>
-       Move today to top   
-     </$button>
 <$set name=value_list filter="[each<currentListTiddler>get<currentListTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
 <$list filter="[enlist<tickled>]">
 <<displayListItem>>
@@ -61,13 +48,6 @@ title: ft/templates/tickler-list
 <$set name=currentListTiddler value=dow>
 <$set name="today" value=<<now DDD>>>
 <$set name=tickled value={{!!tickled}} emptyValue=Monday>
-     <$button
-        class="tc-btn-invisible tc-tiddlylink"
-      >
-       <$action-setfield $field="tickled" $value=<<today>>/>
-       Move today to top   
-     </$button>
-
 <$list filter="[enlist<value_list>allafter:include<tickled>]">
 <<displayListItem>>
 </$list>
