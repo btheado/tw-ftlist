@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20181106012056013
+modified: 20181106012924716
 tags: 
 title: ft/templates/tickler-list
 
@@ -47,10 +47,13 @@ title: ft/templates/tickler-list
 
 
 <$set name=value_list value="Monday Tuesday Wednesday Thursday Friday Saturday Sunday">
-<$set name=currentListTiddler value=dow>
+<$set name=currentTicklerTiddler value=dow>
 <$set name="today" value=<<now DDD>>>
 <$set name=tickled value={{!!tickled}} emptyValue=Monday>
-<$list filter="[enlist<value_list>allafter:include<tickled>]">
+<$list filter="[enlist<tickled>]">
+<<displayTicklerItem>>
+</$list>
+<$list filter="[enlist<value_list>allafter<tickled>]">
 <<displayTicklerItem>>
 </$list>
 <$list filter="[enlist<value_list>allbefore<tickled>]">
