@@ -1,73 +1,71 @@
 created: 20181104012246100
-modified: 20181110022011067
+modified: 20181110175754145
 tags: 
 title: ft/templates/tickler-list
 
-\define displayTicklerItem()
+\define displayTicklerItem(period day today)
   <div>
       <<currentTiddler>>
-      <$list filter="[all[current]] -[title<today>]" emptyMessage="""
+      <!-- Equality check was surprisingly tricky to figure out. I want to know if
+            the day-of-week or day-of-month or day-of-year (i.e. current tiddler
+            title is equal the the value of <today> variable. Was able to accomplish
+            it using set subraction with the emptyMessage attribute -->
+      <$list filter="[title[$day$]] -[title[$today$]]" emptyMessage="""
          (''today''
          <$button
             class="tc-btn-invisible tc-tiddlylink"
           >
-           <$action-setfield $tiddler=<<currentTicklerTiddler>> $field="tickled" $value=<<today>>/>
+           <$action-setfield $tiddler=$period$ $field="tickled" $value="$today$"/>
            {{$:/core/images/up-arrow}}
          </$button>)
          """> </$list>
       <div style="margin-left: 15px;">
-        <$list filter="[field:$(currentTicklerTiddler)$<currentTiddler>]">
+        <$list filter="[field:$period$[$day$]]">
         <div><$link><<currentTiddler>></$link></div>
         </$list>
       </div>
   </div>
 \end
 
-\define displayTicklerList()
-<$list filter="[enlist<tickled>]">
-<<displayTicklerItem>>
+\define displayTicklerList(period periodValues today)
+<!-- For doy and dom, using tickled as a parameter didn't work for some reason,
+      so using variable replacement syntax for that one-->
+<$list filter="[enlist[$(tickled)$]]">
+<$macrocall $name=displayTicklerItem period=$period$ day=<<currentTiddler>> today="$today$"/>
 </$list>
-<$list filter="[enlist<value_list>allafter<tickled>]">
-<<displayTicklerItem>>
+<$list filter="[enlist[$periodValues$]allafter[$(tickled)$]]">
+<$macrocall $name=displayTicklerItem period=$period$ day=<<currentTiddler>> today="$today$"/>
 </$list>
-<$list filter="[enlist<value_list>allbefore<tickled>]">
-<<displayTicklerItem>>
+<$list filter="[enlist[$periodValues$]allbefore[$(tickled)$]]">
+<$macrocall $name=displayTicklerItem period=$period$ day=<<currentTiddler>> today="$today$"/>
 </$list>
 \end
 
 <div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
-<$set name=value_list value="Monday Tuesday Wednesday Thursday Friday Saturday Sunday">
-<$set name=currentTicklerTiddler value=dow>
-<$set name="today" value=<<now DDD>>>
 <$set name=tickled value={{!!tickled}} emptyValue=Monday>
-<<displayTicklerList>>
-</$set>
-</$set>
-</$set>
+  <$macrocall $name=displayTicklerList
+     periodValues="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
+     period=dow today=<<now DDD>>/>
 </$set>
 </div>
 <div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
-<$set name=currentTicklerTiddler value=dom>
 <$set name="today" value=<<now 0DD>>>
 <$set name=tickled value={{dom!!tickled}} emptyValue="''01''">
 <$set
   name=value_list
-  filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
-<<displayTicklerList>>
-</$set>
+  filter="[each[dom]get[dom]insertbefore<tickled>insertbefore<today>sort[]]">
+  <$macrocall $name=displayTicklerList periodValues=<<value_list>> period=dom today=<<today>>/>
 </$set>
 </$set>
 </$set>
 </div>
 <div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
-<$set name=currentTicklerTiddler value=doy>
 <$set name="today" value=<<now 0MM/0DD>>>
 <$set name=tickled value={{doy!!tickled}} emptyValue="''01/01''">
 <$set
   name=value_list
-  filter="[each<currentTicklerTiddler>get<currentTicklerTiddler>insertbefore<tickled>insertbefore<today>sort[]]">
-<<displayTicklerList>>
-</$set>
+  filter="[each[doy]get[doy]insertbefore<tickled>insertbefore<today>sort[]]">
+  <$macrocall $name=displayTicklerList periodValues=<<value_list>> period=doy today=<<today>>/>
 </$set>
 </$set>
 </$set>
