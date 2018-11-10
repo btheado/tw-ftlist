@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20181110175754145
+modified: 20181110181038505
 tags: 
 title: ft/templates/tickler-list
 
@@ -15,7 +15,7 @@ title: ft/templates/tickler-list
          <$button
             class="tc-btn-invisible tc-tiddlylink"
           >
-           <$action-setfield $tiddler=$period$ $field="tickled" $value="$today$"/>
+           <$action-setfield $tiddler=<<tickledStateTiddler>> $field="$period$_tickled" $value="$today$"/>
            {{$:/core/images/up-arrow}}
          </$button>)
          """> </$list>
@@ -41,8 +41,9 @@ title: ft/templates/tickler-list
 </$list>
 \end
 
+<$set name="tickledStateTiddler" value=<<currentTiddler>>>
 <div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
-<$set name=tickled value={{!!tickled}} emptyValue=Monday>
+<$set name=tickled value={{!!dow_tickled}} emptyValue=Monday>
   <$macrocall $name=displayTicklerList
      periodValues="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
      period=dow today=<<now DDD>>/>
@@ -50,7 +51,7 @@ title: ft/templates/tickler-list
 </div>
 <div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
 <$set name="today" value=<<now 0DD>>>
-<$set name=tickled value={{dom!!tickled}} emptyValue="''01''">
+<$set name=tickled value={{!!dom_tickled}} emptyValue="''01''">
 <$set
   name=value_list
   filter="[each[dom]get[dom]insertbefore<tickled>insertbefore<today>sort[]]">
@@ -61,7 +62,7 @@ title: ft/templates/tickler-list
 </div>
 <div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
 <$set name="today" value=<<now 0MM/0DD>>>
-<$set name=tickled value={{doy!!tickled}} emptyValue="''01/01''">
+<$set name=tickled value={{!!doy_tickled}} emptyValue="''01/01''">
 <$set
   name=value_list
   filter="[each[doy]get[doy]insertbefore<tickled>insertbefore<today>sort[]]">
@@ -70,3 +71,4 @@ title: ft/templates/tickler-list
 </$set>
 </$set>
 </div>
+</$set>
