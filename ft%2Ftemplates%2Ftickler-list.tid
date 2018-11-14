@@ -1,29 +1,52 @@
 created: 20181104012246100
-modified: 20181110181038505
+modified: 20181114225514767
 tags: 
 title: ft/templates/tickler-list
 
 \define displayTicklerItem(period day today)
   <div>
-      <<currentTiddler>>
       <!-- Equality check was surprisingly tricky to figure out. I want to know if
             the day-of-week or day-of-month or day-of-year (i.e. current tiddler
             title is equal the the value of <today> variable. Was able to accomplish
             it using set subraction with the emptyMessage attribute -->
-      <$list filter="[title[$day$]] -[title[$today$]]" emptyMessage="""
-         (''today''
+      <$list variable=unused filter="[title[$day$]] -[title[$today$]]" emptyMessage="""
+          <<currentTiddler>> - (''today''
          <$button
             class="tc-btn-invisible tc-tiddlylink"
           >
            <$action-setfield $tiddler=<<tickledStateTiddler>> $field="$period$_tickled" $value="$today$"/>
            {{$:/core/images/up-arrow}}
          </$button>)
-         """> </$list>
-      <div style="margin-left: 15px;">
-        <$list filter="[field:$period$[$day$]]">
-        <div><$link><<currentTiddler>></$link></div>
-        </$list>
-      </div>
+         <div style="margin-left: 15px;">
+           <$list filter="[field:$period$[$day$]]">
+             <div><$link><<currentTiddler>></$link></div>
+           </$list>
+          </div>
+         """>
+      <$list filter="[all[current]regexp[^(\d\d/\d\d)|(\d\d)$]]" emptyMessage="""
+        <<currentTiddler>>
+        <div style="margin-left: 15px;">
+          <$list filter="[field:$period$[$day$]]">
+            <div><$link><<currentTiddler>></$link></div>
+          </$list>
+        </div>
+      """>
+          <$list variable=unused filter="[field:$period$[$day$]count[]] -1" emptyMessage="""
+<!-- TODO fix the wraping here to not line up under the date -->
+            <<currentTiddler>> -
+            <$list filter="[field:$period$[$day$]]">
+              <$link><<currentTiddler>></$link>
+            </$list>
+          """>
+          <<currentTiddler>>
+          <div style="margin-left: 15px;">
+            <$list filter="[field:$period$[$day$]]">
+              <div><$link><<currentTiddler>></$link></div>
+            </$list>
+          </div>
+         </$list>
+      </$list>
+    </$list>
   </div>
 \end
 
