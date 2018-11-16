@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181116025056120
+modified: 20181116033810011
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -42,7 +42,7 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
         aria-label="Display this tiddler as an ftlist"
       >
         <$list variable="tempTiddler" filter="[<currentTiddler>addprefix[$:/temp/]]">
-          <$list variable="templateText" filter="""[<currentTiddler>addprefix[<$tiddler tiddler="]addsuffix["><$transclude tiddler="ft/templates/tagged-list" mode=block/></$tiddler>]]""">
+          <$list variable="templateText" filter="""[<currentTiddler>addprefix[<$tiddler tiddler="]addsuffix["><$transclude tiddler="$:/plugins/btheado/ftlist/tagged-list" mode=block/></$tiddler>]]""">
             <$action-setfield $tiddler=<<tempTiddler>> $field="text" $value=<<templateText>>/>
             <$action-navigate $to=<<tempTiddler>>/>
           </$list>
