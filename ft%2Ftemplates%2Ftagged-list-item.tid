@@ -1,7 +1,7 @@
 created: 20180429151224584
-modified: 20181112024835861
+modified: 20181116025056120
 tags: 
-title: ft/templates/tagged-list-item
+title: $:/plugins/btheado/ftlist/tagged-list-item
 
 \define displayListItem()
  <div style="margin-left: 15px; white-space: normal; display: flex;">

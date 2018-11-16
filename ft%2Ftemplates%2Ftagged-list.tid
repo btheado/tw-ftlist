@@ -1,7 +1,7 @@
 created: 20180430181932157
-modified: 20181110201747391
+modified: 20181116025425341
 tags: 
-title: ft/templates/tagged-list
+title: $:/plugins/btheado/ftlist/tagged-list
 
 \define droppable-tag-actions()
 <$action-listops $tiddler=<<actionTiddler>> $field=tags $subfilter='[title<currentTiddler>]'/>
@@ -72,7 +72,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 
 <$set name="currentListTiddler" value=<<currentTiddler>>>
 <$list filter="[<currentTiddler>tagging[]reverse[]]">
-{{||ft/templates/tagged-list-item}}
+{{||$:/plugins/btheado/ftlist/tagged-list-item}}
 </$list>
 </$set>
 </$set>
