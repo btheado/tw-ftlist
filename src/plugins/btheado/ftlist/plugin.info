@@ -1,0 +1,8 @@
+{
+  "title": "$:/plugins/btheado/ftlist",
+  "description": "Easy tiddler creation and tagging",
+  "author": "Brian Theado",
+  "core-version": ">=5.1.16",
+  "list": "readme",
+  "version": "0.1.0"
+}

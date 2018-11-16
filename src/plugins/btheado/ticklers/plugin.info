@@ -1,0 +1,8 @@
+{
+  "title": "$:/plugins/btheado/ticklers",
+  "description": "Weekly, monthly, and yearly ticklers (reminders)",
+  "author": "Brian Theado",
+  "core-version": ">=5.1.16",
+  "list": "readme",
+  "version": "0.1.0"
+}

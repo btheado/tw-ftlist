@@ -1,0 +1,32 @@
+{
+  "name": "tw-ftlist",
+  "version": "0.1.0",
+  "author": "Brian Theado <brian.theado@gmail.com>",
+  "description": "",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "keywords": [
+    "tiddlywiki",
+    "tw5",
+    "wiki",
+    "browser"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "cross-env": "^4.0.0",
+    "tiddlywiki": "^5.1.*"
+  },
+  "scripts": {
+    "build:index": "npm run tw -- --build index",
+    "tw": "cross-env TIDDLYWIKI_PLUGIN_PATH=./src/plugins tiddlywiki ./wiki --verbose",
+    "tw_start": "npm run tw -- --server 8087 $:/core/save/all text/plain text/html '' '' 0.0.0.0"
+  }
+}
