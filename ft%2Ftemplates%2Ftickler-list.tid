@@ -1,7 +1,7 @@
 created: 20181104012246100
-modified: 20181114225514767
+modified: 20181116030734646
 tags: 
-title: ft/templates/tickler-list
+title: $:/plugins/btheado/ticklers/tickler-list
 
 \define displayTicklerItem(period day today)
   <div>
