@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181117160118441
+modified: 20181117195710809
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -75,6 +75,6 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
  </div>
 \end
 
-<$list filter="[all[current]!has[draft.of]!tag[done]]">
+<$list filter="[all[current]!has[draft.of]]">
   <<displayListItem>>
 </$list>

@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181116025425341
+modified: 20181117200154189
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
@@ -35,7 +35,7 @@ Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
 <!-- Assign the list field of the tag with the current ordering -->
 <$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
 <!-- Make sure the newly added item has the right tag -->
-<$action-listops $tiddler=<<actionTiddler>> $tags="-done [<tag>]"/>
+<$action-listops $tiddler=<<actionTiddler>> $tags="[<tag>]"/>
 </$set>
 </$set>
 </$list>
