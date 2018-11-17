@@ -1,8 +1,19 @@
 created: 20180429151224584
-modified: 20181116033810011
+modified: 20181117160118441
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
+\define markDoneActions()
+    <!-- Using this approach as found in the "new journal" button code. It allows for the
+          timestamp to be calculated at the time the button is pressed rather than the time
+          the button is rendered -->
+    <$wikify name=timestamp text="""<$macrocall $name="now" format="[UTC]YYYY0MM0DD0hh0mm0ssXXX"/>""">
+        <!-- Remove from list, remove the tag, and add a timestamp to ftlist_done field -->
+        <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="-[<currentTiddler>]"/>
+        <$action-listops $tiddler=<<currentTiddler>>  $tags="-[<currentListTiddler>]"/>
+        <$action-listops $tiddler=<<currentTiddler>>  $field=ftlist_done $subfilter="[<timestamp>]"/>
+     </$wikify>
+\end
 \define displayListItem()
  <div style="margin-left: 15px; white-space: normal; display: flex;">
   <!-- 
@@ -19,16 +30,13 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
       <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>]"/>
       {{$:/core/images/up-arrow}}
     </$button>
-    <$fieldmangler>
-        <$button
-          message="tm-add-tag"
-          param="done"
-          tooltip="mark done" 
-          aria-label="mark done"
-          class="tc-btn-invisible tc-btn-mini">
-          {{$:/core/images/done-button}}
-        </$button>
-    </$fieldmangler>
+    <$button
+        tooltip="mark done and remove from list"
+        aria-label="mark done and remove from list"
+        class="tc-btn-invisible tc-btn-mini"
+        actions=<<markDoneActions>>>
+        {{$:/core/images/done-button}}
+    </$button>
     <$button
       message="tm-edit-tiddler"
       tooltip={{$:/language/Buttons/Edit/Hint}}
