@@ -37,3 +37,5 @@ Then start creating and organizing your list!
 *the items in a given list are those which are tagged with the tiddler containing the list
 *the order of the items is determined by the [[standard Tiddlywiki ordering for tags|https://tiddlywiki.com/#Order%20of%20Tagged%20Tiddlers]], except that the reverse of that order is used.
 *this means that tags applied through normal tiddlywiki tagging mechanism can also be used to add items to the list.
+*when items are marked 'done', the tag which keeps it in the list is removed and a timestamp is appended to a field named `ftlist_done`.
+*as a future feature enhancement, this ftlist_done field can be used for a per-day timeline of done items similar to the standard ~TiddlyWiki timeline
