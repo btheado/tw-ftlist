@@ -1,0 +1,9 @@
+created: 20181120023730421
+creator: 0.0.0.0
+list: [[reclaim treasure from the dragon Smaug]]
+modified: 20181120023731534
+modifier: 0.0.0.0
+title: ftlist/example/1
+type: text/vnd.tiddlywiki
+
+{{||$:/plugins/btheado/ftlist/tagged-list}}

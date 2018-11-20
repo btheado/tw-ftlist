@@ -1,0 +1,91 @@
+created: 20181120023123129
+creator: 0.0.0.0
+modified: 20181120024014947
+modifier: 0.0.0.0
+tags: ftlist/example/9
+title: ftlist demo
+type: text/vnd.tiddlywiki
+
+!Empty list
+An ftlist consists of 3 sections: a tagbar, a keyin field for item entry, and a list of previously entered items. This example shows how it looks at first when there are no items on the list. Since the list is empty, only the tagbar and the keyin field are displayed
+
+<<<
+{{ftlist/example/0}}
+<<<
+
+
+!Manipulating the list
+After typing 'reclaim treasure from the dragon Smaug' and pressing the 'enter' key, one item is on the list:
+
+<<<
+{{ftlist/example/1}}
+<<<
+
+
+Add another item to the list. New items are added at the top of the list:
+
+<<<
+{{ftlist/example/2}}
+<<<
+
+
+Two more items are added:
+
+<<<
+{{ftlist/example/3}}
+<<<
+
+
+Clicking the up arrow button ({{$:/core/images/up-arrow}}) moves the corresponding item to the top of the list. Here's what it looks like after clicking the up arrow next to the 'convince the dwarves...' item
+
+<<<
+{{ftlist/example/4}}
+<<<
+
+
+To remove an item from the list, click on the checkmark ({{$:/core/images/done-button}}). Bilbo has already been recruited, so that can be clicked done and here is the result:
+
+<<<
+{{ftlist/example/5}}
+<<<
+
+
+!Using the tagbar
+Often, many of the list items will be related. In these cases it is useful to group them together with tags. The tagbar provides and easy way to do this. Drag any link to the 'tagbar' tag pill and it will appear in the tagbar as a tag pill. Here the 'reclaim treasure...' link is dragged onto the 'tagbar' pill. After that links will receive the 'reclaim treasure..' tag when they are dropped onto this tag pill
+
+<<<
+{{ftlist/example/6}}
+<<<
+
+
+If you click on the 'show tags' link, all the tags for each item will be displayed. The test tasks in these demo's have one tag for every example list, so it looks very messy. The show tags functionality is much more useful during normal use
+
+<<<
+{{ftlist/example/7}}
+<<<
+
+
+The X next to a tagbar tag can be clicked to remove it from the tagbar again:
+
+<<<
+{{ftlist/example/8}}
+<<<
+
+
+!Other features
+The items in the list are displayed as links to tiddlers. Clicking on the link will open that tiddler in view mode. If a tiddler has body text, then the link will be displayed with a bold font. This will give a hint on whether it is worthwhile to click through to the tiddler or not. The 'ftlist demo' link below shows an example of the bold link display.
+
+Clicking on the edit button ({{$:/core/images/edit-button}}) will open the tiddler directly in edit mode.
+
+Clicking on the right arrow button ({{$:/core/images/right-arrow}}) will 'drill down' and display a 'sublist'
+
+<<<
+{{ftlist/example/9}}
+<<<
+
+
+
+Also:
+
+*entering titles of existing tiddlers will cause them to be added to the list and the existing tiddler fields will remain untouched
+*entering a title of a tiddler already on the list will move that item to the top of the list

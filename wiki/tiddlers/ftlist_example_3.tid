@@ -1,0 +1,9 @@
+created: 20181120023730423
+creator: 0.0.0.0
+list: [[reclaim treasure from the dragon Smaug]] [[recruit the burglar Bilbo Baggins]] [[convince the dwarves Bilbo is a worthy companion]] [[escape from the trolls]]
+modified: 20181120023731521
+modifier: 0.0.0.0
+title: ftlist/example/3
+type: text/vnd.tiddlywiki
+
+{{||$:/plugins/btheado/ftlist/tagged-list}}
