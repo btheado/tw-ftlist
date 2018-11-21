@@ -1,29 +1,9 @@
 created: 20180430181932157
-modified: 20181117200154189
+modified: 20181121001222225
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
-\define droppable-tag-actions()
-<$action-listops $tiddler=<<actionTiddler>> $field=tags $subfilter='[title<currentTiddler>]'/>
-\end
-
-Drag links here to apply the tag. Tag with "tagbar" to add new tags to the bar.
-
-<$list filter="[all[current]addsuffix[/tagbar]]" variable=tagbar>
-<$tiddler tiddler=<<tagbar>>>
-<$droppable actions=<<droppable-tag-actions>>>
-<$macrocall $name=tag tag=<<currentTiddler>>/>
-</$droppable>
-</$tiddler>
-<$list filter="[tag<tagbar>]">
-<$droppable actions=<<droppable-tag-actions>>>
-<$fieldmangler>
-<$button message="tm-remove-tag" param=<<tagbar>> class="tc-btn-invisible tc-btn-mini">&times;</$button>
-</$fieldmangler>
-<$macrocall $name=tag tag=<<currentTiddler>>/>
-</$droppable>
-</$list>
-</$list>
+{{||$:/plugins/btheado/ftlist/tagbar}}
 
 ---
 <$set name=tempTiddler filter="[all[current]addprefix[$:/temp/]addsuffix[/newitem]]">
