@@ -1,32 +1,13 @@
 created: 20180430181932157
-modified: 20181121001222225
+modified: 20181121004233193
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
 {{||$:/plugins/btheado/ftlist/tagbar}}
 
 ---
-<$set name=tempTiddler filter="[all[current]addprefix[$:/temp/]addsuffix[/newitem]]">
-<$keyboard key=enter actions="""
-<!-- Save the current ordering of the tiddlers with this tag -->
-<$list variable=actionTiddler filter="[<tempTiddler>get[draft.of]]">
-<$set name="tag" value=<<currentTiddler>>>
-<$set name="order" filter="[<tag>tagging[]!title<actionTiddler>] [title<actionTiddler>]">
-<!-- Assign the list field of the tag with the current ordering -->
-<$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
-<!-- Make sure the newly added item has the right tag -->
-<$action-listops $tiddler=<<actionTiddler>> $tags="[<tag>]"/>
-</$set>
-</$set>
-</$list>
-  <$action-setfield $tiddler=<<tempTiddler>> draft.of=""/>
-  <$action-sendmessage $message="tm-auto-save-wiki"/>
-""">
-<!-- Using field=draft.of is crucial here. Without it there will be lag while typing -->
-<$edit-text tiddler=<<tempTiddler>> placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
-</$keyboard>
-</$set>
-<$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
+
+{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
     <$reveal type="match" state=<<showItemTags>> text="true">
       <$button
         set=<<showItemTags>>

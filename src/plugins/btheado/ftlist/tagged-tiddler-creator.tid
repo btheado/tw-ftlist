@@ -1,0 +1,25 @@
+created: 20181121003752734
+modified: 20181121004033021
+tags: 
+title: $:/plugins/btheado/ftlist/tagged-tiddler-creator
+
+<$set name=tempTiddler filter="[all[current]addprefix[$:/temp/]addsuffix[/newitem]]">
+  <$keyboard key=enter actions="""
+    <!-- Save the current ordering of the tiddlers with this tag -->
+    <$list variable=actionTiddler filter="[<tempTiddler>get[draft.of]]">
+      <$set name="tag" value=<<currentTiddler>>>
+        <$set name="order" filter="[<tag>tagging[]!title<actionTiddler>] [title<actionTiddler>]">
+          <!-- Assign the list field of the tag with the current ordering -->
+          <$action-setfield $tiddler=<<tag>> $field="list" $value=<<order>>/>
+          <!-- Make sure the newly added item has the right tag -->
+          <$action-listops $tiddler=<<actionTiddler>> $tags="[<tag>]"/>
+        </$set>
+      </$set>
+    </$list>
+    <$action-setfield $tiddler=<<tempTiddler>> draft.of=""/>
+    <$action-sendmessage $message="tm-auto-save-wiki"/>
+  """>
+    <!-- Using field=draft.of is crucial here. Without it there will be lag while typing -->
+    <$edit-text tiddler=<<tempTiddler>> placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
+  </$keyboard>
+</$set>
