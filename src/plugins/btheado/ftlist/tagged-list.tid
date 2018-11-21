@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181121004233193
+modified: 20181121005132069
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
@@ -31,9 +31,9 @@ title: $:/plugins/btheado/ftlist/tagged-list
       </$button>
     </$reveal>
 
-<$set name="currentListTiddler" value=<<currentTiddler>>>
-<$list filter="[<currentTiddler>tagging[]reverse[]]">
-{{||$:/plugins/btheado/ftlist/tagged-list-item}}
-</$list>
-</$set>
+    <$set name="currentListTiddler" value=<<currentTiddler>>>
+      <$list filter="[<currentTiddler>tagging[]reverse[]]">
+        {{||$:/plugins/btheado/ftlist/tagged-list-item}}
+      </$list>
+    </$set>
 </$set>
