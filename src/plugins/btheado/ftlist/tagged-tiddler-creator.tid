@@ -1,5 +1,5 @@
 created: 20181121003752734
-modified: 20181121004033021
+modified: 20181121185739954
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-tiddler-creator
 
@@ -20,6 +20,6 @@ title: $:/plugins/btheado/ftlist/tagged-tiddler-creator
     <$action-sendmessage $message="tm-auto-save-wiki"/>
   """>
     <!-- Using field=draft.of is crucial here. Without it there will be lag while typing -->
-    <$edit-text tiddler=<<tempTiddler>> placeholder="task title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
+    <$edit-text tiddler=<<tempTiddler>> placeholder="new list item title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
   </$keyboard>
 </$set>

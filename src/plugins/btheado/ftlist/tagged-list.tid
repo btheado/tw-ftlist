@@ -1,5 +1,5 @@
 created: 20180430181932157
-modified: 20181121183724914
+modified: 20181121190549808
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
@@ -28,7 +28,7 @@ title: $:/plugins/btheado/ftlist/tagged-list
     </$reveal>
 
     <$set name="currentListTiddler" value=<<currentTiddler>>>
-      <$list filter="[<currentTiddler>tagging[]reverse[]]">
+      <$list filter="[<currentTiddler>tagging[]reverse[]]" emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
         {{||$:/plugins/btheado/ftlist/tagged-list-item}}
       </$list>
     </$set>
