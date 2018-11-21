@@ -1,11 +1,7 @@
 created: 20180430181932157
-modified: 20181121005132069
+modified: 20181121183724914
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
-
-{{||$:/plugins/btheado/ftlist/tagbar}}
-
----
 
 {{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
     <$reveal type="match" state=<<showItemTags>> text="true">

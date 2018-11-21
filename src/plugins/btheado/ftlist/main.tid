@@ -1,0 +1,10 @@
+created: 20181121183433937
+modified: 20181121183748645
+tags: 
+title: $:/plugins/btheado/ftlist/main
+
+{{||$:/plugins/btheado/ftlist/tagbar}}
+
+---
+
+{{||$:/plugins/btheado/ftlist/tagged-list}}
