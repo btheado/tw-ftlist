@@ -26,10 +26,22 @@ Multiple lists are supported. The list functionality is implemented as a ~Tiddly
 Install the plugin by draggin this [[ftlist plugin|$:/plugins/btheado/ftlist]] link into your own tiddlywiki instance. Then create a tiddler in which you want to have your list (). Add this text somewhere in the body of the tiddler:
 
 ```
-{{||$:/plugins/btheado/ftlist/tagged-list}}
+{{||$:/plugins/btheado/ftlist/main}}
 ```
 
 Then start creating and organizing your list!
+
+The list functionality can be used without the tagbar like this:
+
+```
+{{||$:/plugins/btheado/ftlist/tagged-list}}
+```
+
+The tagbar can be used independent of the list like this:
+
+```
+{{||$:/plugins/btheado/ftlist/tagbar}}
+```
 
 !Under the covers
 

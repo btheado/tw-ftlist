@@ -1,6 +1,6 @@
 created: 20181120004009252
 creator: 0.0.0.0
-modified: 20181120024604926
+modified: 20181121204653249
 modifier: 0.0.0.0
 title: ftlist
 type: text/vnd.tiddlywiki
@@ -10,7 +10,7 @@ type: text/vnd.tiddlywiki
 See the [[ftlist demo]] for live examples which illustrate most of the functionality. Or play with this list right here:
 
 <<<
-{{||$:/plugins/btheado/ftlist/tagged-list}}
+{{||$:/plugins/btheado/ftlist/main}}
 <<<
 
 {{$:/plugins/btheado/ftlist/readme}}
