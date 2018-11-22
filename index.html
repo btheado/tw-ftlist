@@ -185,6 +185,10 @@ Error message and password prompt
 
 <li>recruit the burglar Bilbo Baggins</li>
 
+<li>reverse ftlist</li>
+
+<li>reverse ftlist demo</li>
+
 </ul>
 </p>
 
@@ -8736,7 +8740,7 @@ Error message and password prompt
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div author="Brian Theado" core-version="&gt;=5.1.16" dependents="" description="Easy tiddler creation and tagging" list="readme" plugin-type="plugin" title="$:/plugins/btheado/ftlist" type="application/json" version="0.1.0">
+<div author="Brian Theado" core-version="&gt;=5.1.16" dependents="" description="Easy tiddler creation and tagging" list="readme" plugin-type="plugin" title="$:/plugins/btheado/ftlist" type="application/json" version="0.2.0">
 <pre>{
     &quot;tiddlers&quot;: {
         &quot;$:/plugins/btheado/ftlist/main&quot;: {
@@ -8772,9 +8776,9 @@ Error message and password prompt
         &quot;$:/plugins/btheado/ftlist/tagged-list&quot;: {
             &quot;title&quot;: &quot;$:/plugins/btheado/ftlist/tagged-list&quot;,
             &quot;created&quot;: &quot;20180430181932157&quot;,
-            &quot;modified&quot;: &quot;20181121190549808&quot;,
+            &quot;modified&quot;: &quot;20181122022423015&quot;,
             &quot;tags&quot;: &quot;&quot;,
-            &quot;text&quot;: &quot;{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} &lt;$set name=\&quot;showItemTags\&quot; filter=\&quot;[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]\&quot;&gt;\n    &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;showItemTags&gt;&gt; text=\&quot;true\&quot;&gt;\n      &lt;$button\n        set=&lt;&lt;showItemTags&gt;&gt;\n        setTo=\&quot;false\&quot;\n        class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n        tooltip=\&quot;Hide tags for each item in the list\&quot;\n        aria-label=\&quot;Hide tags for each item in the list\&quot;\n      &gt;\n      hide tags\n      &lt;/$button&gt;\n    &lt;/$reveal&gt;\n    &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;showItemTags&gt;&gt; text=\&quot;true\&quot;&gt;\n      &lt;$button\n        set=&lt;&lt;showItemTags&gt;&gt;\n        setTo=\&quot;true\&quot;\n        class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n        tooltip=\&quot;Show tags for each item in the list\&quot;\n        aria-label=\&quot;Show tags for each item in the list\&quot;\n      &gt;\n      show tags\n      &lt;/$button&gt;\n    &lt;/$reveal&gt;\n\n    &lt;$set name=\&quot;currentListTiddler\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n      &lt;$list filter=\&quot;[&lt;currentTiddler&gt;tagging[]reverse[]]\&quot; emptyMessage=\&quot;&lt;div&gt;No items in the list. New items entered above will be displayed here.&lt;/div&gt;\&quot;&gt;\n        {{||$:/plugins/btheado/ftlist/tagged-list-item}}\n      &lt;/$list&gt;\n    &lt;/$set&gt;\n&lt;/$set&gt;\n&quot;
+            &quot;text&quot;: &quot;&lt;$set name=\&quot;showItemTags\&quot; filter=\&quot;[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]\&quot;&gt;\n  {{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}\n\n  &lt;$set name=\&quot;currentListTiddler\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n      &lt;$list filter=\&quot;[&lt;currentTiddler&gt;tagging[]reverse[]]\&quot; emptyMessage=\&quot;&lt;div&gt;No items in the list. New items entered above will be displayed here.&lt;/div&gt;\&quot;&gt;\n        {{||$:/plugins/btheado/ftlist/tagged-list-item}}\n      &lt;/$list&gt;\n  &lt;/$set&gt;\n&lt;/$set&gt;\n&quot;
         },
         &quot;$:/plugins/btheado/ftlist/tagged-tiddler-creator&quot;: {
             &quot;title&quot;: &quot;$:/plugins/btheado/ftlist/tagged-tiddler-creator&quot;,
@@ -8782,6 +8786,13 @@ Error message and password prompt
             &quot;modified&quot;: &quot;20181121185739954&quot;,
             &quot;tags&quot;: &quot;&quot;,
             &quot;text&quot;: &quot;&lt;$set name=tempTiddler filter=\&quot;[all[current]addprefix[$:/temp/]addsuffix[/newitem]]\&quot;&gt;\n  &lt;$keyboard key=enter actions=\&quot;\&quot;\&quot;\n    &lt;!-- Save the current ordering of the tiddlers with this tag --&gt;\n    &lt;$list variable=actionTiddler filter=\&quot;[&lt;tempTiddler&gt;get[draft.of]]\&quot;&gt;\n      &lt;$set name=\&quot;tag\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n        &lt;$set name=\&quot;order\&quot; filter=\&quot;[&lt;tag&gt;tagging[]!title&lt;actionTiddler&gt;] [title&lt;actionTiddler&gt;]\&quot;&gt;\n          &lt;!-- Assign the list field of the tag with the current ordering --&gt;\n          &lt;$action-setfield $tiddler=&lt;&lt;tag&gt;&gt; $field=\&quot;list\&quot; $value=&lt;&lt;order&gt;&gt;/&gt;\n          &lt;!-- Make sure the newly added item has the right tag --&gt;\n          &lt;$action-listops $tiddler=&lt;&lt;actionTiddler&gt;&gt; $tags=\&quot;[&lt;tag&gt;]\&quot;/&gt;\n        &lt;/$set&gt;\n      &lt;/$set&gt;\n    &lt;/$list&gt;\n    &lt;$action-setfield $tiddler=&lt;&lt;tempTiddler&gt;&gt; draft.of=\&quot;\&quot;/&gt;\n    &lt;$action-sendmessage $message=\&quot;tm-auto-save-wiki\&quot;/&gt;\n  \&quot;\&quot;\&quot;&gt;\n    &lt;!-- Using field=draft.of is crucial here. Without it there will be lag while typing --&gt;\n    &lt;$edit-text tiddler=&lt;&lt;tempTiddler&gt;&gt; placeholder=\&quot;new list item title\&quot; field=\&quot;draft.of\&quot; tag=\&quot;input\&quot; type=\&quot;text\&quot; size=\&quot;50\&quot; focus=\&quot;true\&quot;/&gt;\n  &lt;/$keyboard&gt;\n&lt;/$set&gt;&quot;
+        },
+        &quot;$:/plugins/btheado/ftlist/toggle-tag-display&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/btheado/ftlist/toggle-tag-display&quot;,
+            &quot;created&quot;: &quot;20181122021958782&quot;,
+            &quot;modified&quot;: &quot;20181122022134701&quot;,
+            &quot;tags&quot;: &quot;&quot;,
+            &quot;text&quot;: &quot;&lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;showItemTags&gt;&gt; text=\&quot;true\&quot;&gt;\n  &lt;$button\n    set=&lt;&lt;showItemTags&gt;&gt;\n    setTo=\&quot;false\&quot;\n    class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n    tooltip=\&quot;Hide tags for each item in the list\&quot;\n    aria-label=\&quot;Hide tags for each item in the list\&quot;\n  &gt;\n  hide tags\n  &lt;/$button&gt;\n&lt;/$reveal&gt;\n&lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;showItemTags&gt;&gt; text=\&quot;true\&quot;&gt;\n  &lt;$button\n    set=&lt;&lt;showItemTags&gt;&gt;\n    setTo=\&quot;true\&quot;\n    class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n    tooltip=\&quot;Show tags for each item in the list\&quot;\n     aria-label=\&quot;Show tags for each item in the list\&quot;\n  &gt;\n  show tags\n  &lt;/$button&gt;\n&lt;/$reveal&gt;&quot;
         }
     }
 }</pre>
@@ -9077,6 +9088,28 @@ Also:
 </div>
 <div created="20181120023730423" creator="0.0.0.0" modified="20181120023731526" modifier="0.0.0.0" tags="ftlist/example/2 ftlist/example/3 ftlist/example/4 ftlist/example/6 ftlist/example/7 ftlist/example/8 ftlist/example/9 [[reclaim treasure from the dragon Smaug]]" title="recruit the burglar Bilbo Baggins" type="text/vnd.tiddlywiki">
 <pre></pre>
+</div>
+<div created="20181122032456102" creator="0.0.0.0" modified="20181122032539815" modifier="0.0.0.0" tags="" title="reverse ftlist" type="text/vnd.tiddlywiki">
+<pre>{{||$:/plugins/btheado/ftlist/tagbar}}
+
+---
+
+&lt;$set name=&quot;showItemTags&quot; filter=&quot;[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]&quot;&gt;
+  {{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
+
+  &lt;$set name=&quot;currentListTiddler&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;
+      &lt;$list filter=&quot;[&lt;currentTiddler&gt;tagging[]]&quot; emptyMessage=&quot;&lt;div&gt;No items in the list. New items entered above will be displayed here.&lt;/div&gt;&quot;&gt;
+        {{||$:/plugins/btheado/ftlist/tagged-list-item}}
+      &lt;/$list&gt;
+  &lt;/$set&gt;
+&lt;/$set&gt;</pre>
+</div>
+<div created="20181122032622030" creator="0.0.0.0" modified="20181122033412860" modifier="0.0.0.0" tags="" title="reverse ftlist demo" type="text/vnd.tiddlywiki">
+<pre>Modification of the ftlist functionality so new items are displayed at the bottom rather than at the top of the list. The modified code in [[reverse ftlist]] is transcluded here instead of [[$:/plugins/btheado/ftlist/main]]. Written in response to email discussion at https://groups.google.com/d/msg/tiddlywiki/MRDxtQFrkfw/xPU7cdCICQAJ.
+
+---
+
+{{||reverse ftlist}}</pre>
 </div>
 
 </div>
