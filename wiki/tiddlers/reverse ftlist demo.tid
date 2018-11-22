@@ -1,0 +1,13 @@
+created: 20181122032622030
+creator: 0.0.0.0
+modified: 20181122033412860
+modifier: 0.0.0.0
+tags: 
+title: reverse ftlist demo
+type: text/vnd.tiddlywiki
+
+Modification of the ftlist functionality so new items are displayed at the bottom rather than at the top of the list. The modified code in [[reverse ftlist]] is transcluded here instead of [[$:/plugins/btheado/ftlist/main]]. Written in response to email discussion at https://groups.google.com/d/msg/tiddlywiki/MRDxtQFrkfw/xPU7cdCICQAJ.
+
+---
+
+{{||reverse ftlist}}
