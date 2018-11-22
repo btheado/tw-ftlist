@@ -1,35 +1,14 @@
 created: 20180430181932157
-modified: 20181121190549808
+modified: 20181122022423015
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
-{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
-    <$reveal type="match" state=<<showItemTags>> text="true">
-      <$button
-        set=<<showItemTags>>
-        setTo="false"
-        class="tc-btn-invisible tc-tiddlylink"
-        tooltip="Hide tags for each item in the list"
-        aria-label="Hide tags for each item in the list"
-      >
-      hide tags
-      </$button>
-    </$reveal>
-    <$reveal type="nomatch" state=<<showItemTags>> text="true">
-      <$button
-        set=<<showItemTags>>
-        setTo="true"
-        class="tc-btn-invisible tc-tiddlylink"
-        tooltip="Show tags for each item in the list"
-        aria-label="Show tags for each item in the list"
-      >
-      show tags
-      </$button>
-    </$reveal>
+<$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
+  {{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
 
-    <$set name="currentListTiddler" value=<<currentTiddler>>>
+  <$set name="currentListTiddler" value=<<currentTiddler>>>
       <$list filter="[<currentTiddler>tagging[]reverse[]]" emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
         {{||$:/plugins/btheado/ftlist/tagged-list-item}}
       </$list>
-    </$set>
+  </$set>
 </$set>

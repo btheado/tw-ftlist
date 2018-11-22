@@ -1,0 +1,27 @@
+created: 20181122021958782
+modified: 20181122022134701
+tags: 
+title: $:/plugins/btheado/ftlist/toggle-tag-display
+
+<$reveal type="match" state=<<showItemTags>> text="true">
+  <$button
+    set=<<showItemTags>>
+    setTo="false"
+    class="tc-btn-invisible tc-tiddlylink"
+    tooltip="Hide tags for each item in the list"
+    aria-label="Hide tags for each item in the list"
+  >
+  hide tags
+  </$button>
+</$reveal>
+<$reveal type="nomatch" state=<<showItemTags>> text="true">
+  <$button
+    set=<<showItemTags>>
+    setTo="true"
+    class="tc-btn-invisible tc-tiddlylink"
+    tooltip="Show tags for each item in the list"
+     aria-label="Show tags for each item in the list"
+  >
+  show tags
+  </$button>
+</$reveal>
