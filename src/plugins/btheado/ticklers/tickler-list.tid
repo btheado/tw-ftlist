@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20181116030734646
+modified: 20181122180940240
 tags: 
 title: $:/plugins/btheado/ticklers/tickler-list
 
@@ -18,29 +18,33 @@ title: $:/plugins/btheado/ticklers/tickler-list
            {{$:/core/images/up-arrow}}
          </$button>)
          <div style="margin-left: 15px;">
-           <$list filter="[field:$period$[$day$]]">
+           <$list filter="[[$day$]listed[$period$]]">
              <div><$link><<currentTiddler>></$link></div>
            </$list>
           </div>
          """>
       <$list filter="[all[current]regexp[^(\d\d/\d\d)|(\d\d)$]]" emptyMessage="""
+        <!-- doesn't match doy or dom format so must be dow which are longer
+               so keep them on their own lines -->
         <<currentTiddler>>
         <div style="margin-left: 15px;">
-          <$list filter="[field:$period$[$day$]]">
+          <$list filter="[[$day$]listed[$period$]]">
             <div><$link><<currentTiddler>></$link></div>
           </$list>
         </div>
       """>
-          <$list variable=unused filter="[field:$period$[$day$]count[]] -1" emptyMessage="""
+          <$list variable=unused filter="[[$day$]listed[$period$]count[]] -1" emptyMessage="""
 <!-- TODO fix the wraping here to not line up under the date -->
+            <!-- There is just one item for this day, so display them on the same line as the day -->
             <<currentTiddler>> -
-            <$list filter="[field:$period$[$day$]]">
+            <$list filter="[[$day$]listed[$period$]]">
               <$link><<currentTiddler>></$link>
             </$list>
           """>
+          <!-- There are multiple items for this day, so keep the day by itself on its own line -->
           <<currentTiddler>>
           <div style="margin-left: 15px;">
-            <$list filter="[field:$period$[$day$]]">
+            <$list filter="[[$day$]listed[$period$]]">
               <div><$link><<currentTiddler>></$link></div>
             </$list>
           </div>
@@ -77,7 +81,7 @@ title: $:/plugins/btheado/ticklers/tickler-list
 <$set name=tickled value={{!!dom_tickled}} emptyValue="''01''">
 <$set
   name=value_list
-  filter="[each[dom]get[dom]insertbefore<tickled>insertbefore<today>sort[]]">
+  filter="[each:list-item[dom]insertbefore<tickled>insertbefore<today>sort[]]">
   <$macrocall $name=displayTicklerList periodValues=<<value_list>> period=dom today=<<today>>/>
 </$set>
 </$set>
@@ -88,7 +92,7 @@ title: $:/plugins/btheado/ticklers/tickler-list
 <$set name=tickled value={{!!doy_tickled}} emptyValue="''01/01''">
 <$set
   name=value_list
-  filter="[each[doy]get[doy]insertbefore<tickled>insertbefore<today>sort[]]">
+  filter="[each:list-item[doy]insertbefore<tickled>insertbefore<today>sort[]]">
   <$macrocall $name=displayTicklerList periodValues=<<value_list>> period=doy today=<<today>>/>
 </$set>
 </$set>
