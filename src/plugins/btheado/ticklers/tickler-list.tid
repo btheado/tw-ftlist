@@ -1,57 +1,49 @@
 created: 20181104012246100
-modified: 20181122180940240
+modified: 20181123170950355
 tags: 
 title: $:/plugins/btheado/ticklers/tickler-list
 
-\define displayTicklerItem(period day today)
-  <div>
-      <!-- Equality check was surprisingly tricky to figure out. I want to know if
-            the day-of-week or day-of-month or day-of-year (i.e. current tiddler
-            title is equal the the value of <today> variable. Was able to accomplish
-            it using set subraction with the emptyMessage attribute -->
-      <$list variable=unused filter="[title[$day$]] -[title[$today$]]" emptyMessage="""
-          <<currentTiddler>> - (''today''
+\define todayIndicator(period day today)
+  <!-- The regexp operator is the only one I found which could check input title for a particular value -->
+  <$list filter="[title[$day$]regexp[^$today$$]]">
+          (''today''
          <$button
             class="tc-btn-invisible tc-tiddlylink"
           >
            <$action-setfield $tiddler=<<tickledStateTiddler>> $field="$period$_tickled" $value="$today$"/>
            {{$:/core/images/up-arrow}}
          </$button>)
-         <div style="margin-left: 15px;">
-           <$list filter="[[$day$]listed[$period$]]">
-             <div><$link><<currentTiddler>></$link></div>
-           </$list>
-          </div>
-         """>
-      <$list filter="[all[current]regexp[^(\d\d/\d\d)|(\d\d)$]]" emptyMessage="""
-        <!-- doesn't match doy or dom format so must be dow which are longer
-               so keep them on their own lines -->
-        <<currentTiddler>>
-        <div style="margin-left: 15px;">
-          <$list filter="[[$day$]listed[$period$]]">
-            <div><$link><<currentTiddler>></$link></div>
-          </$list>
-        </div>
-      """>
-          <$list variable=unused filter="[[$day$]listed[$period$]count[]] -1" emptyMessage="""
-<!-- TODO fix the wraping here to not line up under the date -->
-            <!-- There is just one item for this day, so display them on the same line as the day -->
-            <<currentTiddler>> -
-            <$list filter="[[$day$]listed[$period$]]">
-              <$link><<currentTiddler>></$link>
-            </$list>
-          """>
-          <!-- There are multiple items for this day, so keep the day by itself on its own line -->
-          <<currentTiddler>>
-          <div style="margin-left: 15px;">
-            <$list filter="[[$day$]listed[$period$]]">
-              <div><$link><<currentTiddler>></$link></div>
-            </$list>
-          </div>
+  </$list>
+\end
+
+\define displayTicklerItemFlex(period day today)
+  <div  style="display: flex;">
+    <div style="flex-shrink: 0; margin-right: 2px;">$day$ - </div>
+    <div>
+      <div><<todayIndicator $period$ $day$ $today$>></div>
+       <div>
+         <$list filter="[[$day$]listed[$period$]]">
+           <div><$link><<currentTiddler>></$link></div>
          </$list>
-      </$list>
+       </div>
+  </div>
+\end
+
+\define displayTicklerItemNoFlex(period day today)
+  <div>
+    $day$ <<todayIndicator $period$ $day$ $today$>>
+  </div>
+  <div style="margin-left: 15px;">
+    <$list filter="[[$day$]listed[$period$]]">
+      <div><$link><<currentTiddler>></$link></div>
     </$list>
   </div>
+\end
+
+\define displayTicklerItem(period day today)
+  <!-- doy and dom are short enough to display ticklers starting on the same line. For dow, start on a new line -->
+  <$list filter="[[$period$]regexp[^dow$]]"> <<displayTicklerItemNoFlex $period$ "$day$" "$today$">> </$list>
+  <$list filter="[[$period$]!regexp[^dow$]]"> <<displayTicklerItemFlex $period$ "$day$" "$today$">> </$list>
 \end
 
 \define displayTicklerList(period periodValues today)
@@ -69,16 +61,17 @@ title: $:/plugins/btheado/ticklers/tickler-list
 \end
 
 <$set name="tickledStateTiddler" value=<<currentTiddler>>>
-<div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
+<div style="display: flex">
+<div style="flex: 1;">
 <$set name=tickled value={{!!dow_tickled}} emptyValue=Monday>
   <$macrocall $name=displayTicklerList
      periodValues="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
      period=dow today=<<now DDD>>/>
 </$set>
 </div>
-<div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
+<div style="flex: 1;">
 <$set name="today" value=<<now 0DD>>>
-<$set name=tickled value={{!!dom_tickled}} emptyValue="''01''">
+<$set name=tickled value={{!!dom_tickled}} emptyValue="01">
 <$set
   name=value_list
   filter="[each:list-item[dom]insertbefore<tickled>insertbefore<today>sort[]]">
@@ -87,9 +80,9 @@ title: $:/plugins/btheado/ticklers/tickler-list
 </$set>
 </$set>
 </div>
-<div style="display:inline-block;width: 30%;vertical-align: text-top;word-wrap: break-word;}">
+<div style="flex: 1;">
 <$set name="today" value=<<now 0MM/0DD>>>
-<$set name=tickled value={{!!doy_tickled}} emptyValue="''01/01''">
+<$set name=tickled value={{!!doy_tickled}} emptyValue="01/01">
 <$set
   name=value_list
   filter="[each:list-item[doy]insertbefore<tickled>insertbefore<today>sort[]]">
@@ -97,5 +90,6 @@ title: $:/plugins/btheado/ticklers/tickler-list
 </$set>
 </$set>
 </$set>
+</div>
 </div>
 </$set>
