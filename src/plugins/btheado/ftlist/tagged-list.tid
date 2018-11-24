@@ -1,10 +1,10 @@
 created: 20180430181932157
-modified: 20181122022423015
+modified: 20181124163105050
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
 <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
-  {{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
+  {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
 
   <$set name="currentListTiddler" value=<<currentTiddler>>>
       <$list filter="[<currentTiddler>tagging[]reverse[]]" emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
