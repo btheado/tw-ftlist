@@ -1,6 +1,6 @@
 created: 20181122032456102
 creator: 0.0.0.0
-modified: 20181122032539815
+modified: 20181124221913792
 modifier: 0.0.0.0
 tags: 
 title: reverse ftlist
@@ -11,7 +11,7 @@ type: text/vnd.tiddlywiki
 ---
 
 <$set name="showItemTags" filter="[all[current]addprefix[$:/state/]addsuffix[/showItemTags]]">
-  {{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
+  {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
 
   <$set name="currentListTiddler" value=<<currentTiddler>>>
       <$list filter="[<currentTiddler>tagging[]]" emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">

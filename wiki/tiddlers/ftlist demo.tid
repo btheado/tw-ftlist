@@ -1,6 +1,6 @@
 created: 20181120023123129
 creator: 0.0.0.0
-modified: 20181121211250811
+modified: 20181124222517806
 modifier: 0.0.0.0
 tags: ftlist/example/9
 title: ftlist demo
@@ -78,13 +78,30 @@ The X next to a tagbar tag can be clicked to remove it from the tagbar again:
 {{ftlist/example/8}}
 <<<
 
+!Sublists
+
+Clicking on the right arrow button ({{$:/core/images/right-arrow}}) will 'drill down' and display a 'sublist'. If you click on the right arrow by the //''reclaim treasure...''// link then several sublist items will be displayed. Since the other items in the list are not tagging anything, clicking those right arrow buttons will display empty lists:
+
+<<<
+{{ftlist/example/4}}
+<<<
+
+The text entry box for these sublists is used to add new items to the sublist just as the text entry box for the main list is used to add new items to the main list.
+
+Only one list item can be expanded at a time. Expanding another sublist will cause the first sublist to collapse. It is straightforward to implement multi-expansion, but it causes confusion because all the text entry boxes are competing to grab the focus each time there is a refresh.
+
+!Using the tag drop target to apply tags
+
+Dropping links onto the add tag button ({{$:/core/images/new-here-button}}) causes the tiddler represented by that link to get the same tag added as if the text for that link had been typed into the text entry box next to it.
+
+This provides a way to copy list items from the main list to a sublist. Expand the sublist and then drag a link from the main list onto the add tag button. In a similar way, items can be copied from a sublist onto the main list.
+
+This funcionality overlaps with the tagbar functionality. In some cases, they each might require fewer clicks to achieve the same result.
 
 !Other features
 The items in the list are displayed as links to tiddlers. Clicking on the link will open that tiddler in view mode. If a tiddler has body text, then the link will be displayed with a bold font. This will give a hint on whether it is worthwhile to click through to the tiddler or not. The //''ftlist demo''// link below shows an example of the bold link display.
 
 Clicking on the edit button ({{$:/core/images/edit-button}}) will open the tiddler directly in edit mode.
-
-Clicking on the right arrow button ({{$:/core/images/right-arrow}}) will 'drill down' and display a 'sublist'. If you click on the right arrow by the //''reclaim treasure...''// link then several sublist items will be displayed. Since the other items in the list are not tagging anything, clicking those right arrow buttons will display empty lists:
 
 <<<
 {{ftlist/example/9}}

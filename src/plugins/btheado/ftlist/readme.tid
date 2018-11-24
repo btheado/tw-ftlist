@@ -18,9 +18,9 @@ The supported list operations are intentionally very few:
 
 Often the most recent entered items are the ones of the most interest. Any items which are still of interest and sink too far down the list can be re-sent to the top. Items which are not of interest will continue to sink out of sight, only to be seen during times of occasional list review.
 
-In addition to the list operations, ftlist provides a `tagbar` for easily applying tags to the list items via drag and drop. New tags can be added to the `tagbar` via drag and drop and then list items (any tiddly links) can be dropped onto these tags in order to apply them.
+Multiple lists are supported. The list functionality is implemented as a ~TiddlyWiki [[template|https://tiddlywiki.com/#TemplateTiddlers]]. Transcluding that template into any tiddler will make that tiddler into a container for a new list. This multiple list funcationality is used allow list items to themselves be displayed as sublists. Any level of nesting is supported.
 
-Multiple lists are supported. The list functionality is implemented as a ~TiddlyWiki [[template|https://tiddlywiki.com/#TemplateTiddlers]]. Transcluding that template into any tiddler will make that tiddler into a container for a new list.
+In addition to the list operations, ftlist provides a `tagbar` for easily applying tags to the list items via drag and drop. New tags can be added to the `tagbar` via drag and drop and then list items (any tiddly links) can be dropped onto these tags in order to apply them. Another way to quickly apply tags is to drag links onto the 'add tag' buttons next to the edit text fields. This allows items to be copied back and forth between lists and sublists.
 
 ! Getting started
 Install the plugin by draggin this [[ftlist plugin|$:/plugins/btheado/ftlist]] link into your own tiddlywiki instance. Then create a tiddler in which you want to have your list (). Add this text somewhere in the body of the tiddler:
