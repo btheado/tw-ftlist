@@ -1,12 +1,14 @@
 created: 20181124143934540
-modified: 20181124162959505
+modified: 20181124212719437
 tags: 
 title: $:/plugins/btheado/ftlist/drop-target-add-tag
 
 <$droppable actions="""<$action-listops $tiddler=<<actionTiddler>> $field=tags $subfilter='[title<currentTiddler>]'/>""">
   <!-- Using a button here because it makes the svg icon smaller, though I find
         it too small. Not sure how to get a size in the middle. Using a button also allows tooltip -->
-  <$button tooltip="drop links here to add tag" aria-label="drop links here to add tag" class="tc-btn-invisible">
-    {{$:/core/images/new-here-button}}
-  </$button>
+  <$wikify name=tooltip text="drop links here to add '<<currentTiddler>>' tag">
+    <$button tooltip=<<tooltip>> aria-label=<<tooltip>> class="tc-btn-invisible">
+      {{$:/core/images/new-here-button}}
+    </$button>
+  </$wikify>
 </$droppable>
