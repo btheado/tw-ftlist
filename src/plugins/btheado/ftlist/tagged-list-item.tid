@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181121183027232
+modified: 20181213015657641
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -53,7 +53,11 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
           tooltip="Expand sublist"
           aria-label="Expand sublist"
         >
-          {{$:/core/images/right-arrow}}
+          <!-- Items with "children" have arrow in different color to distinguish them. I hope this isn't slow. -->
+          <$list filter="[all[current]tagging[]first[]count[]] -0"
+            emptyMessage="{{$:/core/images/right-arrow}}">
+            <span style="fill:DarkOrchid;">{{$:/core/images/right-arrow}}</span>
+          </$list>
        </$button>
      </$reveal>
      <$reveal type="match" state=<<expandSublist>> text=<<currentTiddler>>>
