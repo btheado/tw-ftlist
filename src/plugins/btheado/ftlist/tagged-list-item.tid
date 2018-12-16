@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181213015657641
+modified: 20181216022808042
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -95,7 +95,7 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
 \end
 
 <$list filter="[all[current]!has[draft.of]]">
-  <$set name="expandSublist" filter="[title<currentListTiddler>addprefix[$:/state/]addsuffix[/expanded]]">
+  <$wikify name="expandSublist" text="<<qualify $:/state/btheado/ftlist/expanded>>">
     <<displayListItem>>
-  </$set>
+  </$wikify>
 </$list>
