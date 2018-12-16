@@ -1,0 +1,27 @@
+created: 20181216023744933
+modified: 20181216024445254
+tags: 
+title: $:/plugins/btheado/ftlist/toggle-body-display
+
+<$reveal type="match" state=<<showBodyText>> text="true">
+  <$button
+    set=<<showBodyText>>
+    setTo="false"
+    class="tc-btn-invisible tc-tiddlylink"
+    tooltip="Hide body text of current item"
+    aria-label="Hide body text of current item"
+  >
+  hide body
+  </$button>
+</$reveal>
+<$reveal type="nomatch" state=<<showBodyText>> text="true">
+  <$button
+    set=<<showBodyText>>
+    setTo="true"
+    class="tc-btn-invisible tc-tiddlylink"
+    tooltip="Show body text of current item"
+     aria-label="Show body text of current item"
+  >
+  show body
+  </$button>
+</$reveal>
