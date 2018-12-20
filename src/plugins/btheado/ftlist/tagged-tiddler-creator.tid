@@ -1,9 +1,9 @@
 created: 20181121003752734
-modified: 20181121185739954
+modified: 20181220133416962
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-tiddler-creator
 
-<$set name=tempTiddler filter="[all[current]addprefix[$:/temp/]addsuffix[/newitem]]">
+<$wikify name="tempTiddler" text="<<qualify $:/state/btheado/ftlist/newitem>>">
   <$keyboard key=enter actions="""
     <!-- Save the current ordering of the tiddlers with this tag -->
     <$list variable=actionTiddler filter="[<tempTiddler>get[draft.of]]">
@@ -22,4 +22,4 @@ title: $:/plugins/btheado/ftlist/tagged-tiddler-creator
     <!-- Using field=draft.of is crucial here. Without it there will be lag while typing -->
     <$edit-text tiddler=<<tempTiddler>> placeholder="new list item title" field="draft.of" tag="input" type="text" size="50" focus="true"/>
   </$keyboard>
-</$set>
+</$wikify>
