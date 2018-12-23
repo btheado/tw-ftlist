@@ -1,8 +1,9 @@
 created: 20180430181932157
-modified: 20181216024452726
+modified: 20181223202840321
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
+<$importvariables filter="$:/plugins/btheado/ftlist/action-macros">
 <$wikify name="showItemTags" text="<<qualify $:/state/btheado/ftlist/show-item-tags>>">
   <$list filter="[all[current]has[text]]">
     <$wikify name="showBodyText" text="<<qualify $:/state/btheado/ftlist/show-body-text>>">
@@ -16,8 +17,9 @@ title: $:/plugins/btheado/ftlist/tagged-list
   {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
 </$list>
   <$set name="currentListTiddler" value=<<currentTiddler>>>
-      <$list filter="[<currentTiddler>tagging[]reverse[]]" emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
+      <$list filter=<<childrenFilter>> emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
         {{||$:/plugins/btheado/ftlist/tagged-list-item}}
       </$list>
   </$set>
 </$wikify>
+</$importvariables>

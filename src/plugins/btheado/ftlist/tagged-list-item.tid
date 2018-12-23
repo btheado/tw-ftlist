@@ -1,19 +1,8 @@
 created: 20180429151224584
-modified: 20181216022808042
+modified: 20181223202804194
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
-\define markDoneActions()
-    <!-- Using this approach as found in the "new journal" button code. It allows for the
-          timestamp to be calculated at the time the button is pressed rather than the time
-          the button is rendered -->
-    <$wikify name=timestamp text="""<$macrocall $name="now" format="[UTC]YYYY0MM0DD0hh0mm0ssXXX"/>""">
-        <!-- Remove from list, remove the tag, and add a timestamp to ftlist_done field -->
-        <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="-[<currentTiddler>]"/>
-        <$action-listops $tiddler=<<currentTiddler>>  $tags="-[<currentListTiddler>]"/>
-        <$action-listops $tiddler=<<currentTiddler>>  $field=ftlist_done $subfilter="[<timestamp>]"/>
-     </$wikify>
-\end
 \define displayListItem()
  <div style="margin-left: 15px; white-space: normal; display: flex;">
   <!-- 
@@ -24,10 +13,10 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
      -->
   <div style="flex-shrink: 0;">
     <$button
+      actions=<<moveToTopActions>>
       tooltip="move to top"
       aria-label="move to top"
       class="tc-btn-invisible tc-btn-mini">
-      <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>]"/>
       {{$:/core/images/up-arrow}}
     </$button>
     <$button
@@ -54,7 +43,7 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
           aria-label="Expand sublist"
         >
           <!-- Items with "children" have arrow in different color to distinguish them. I hope this isn't slow. -->
-          <$list filter="[all[current]tagging[]first[]count[]] -0"
+          <$list filter=<<hasChildrenFilter>>
             emptyMessage="{{$:/core/images/right-arrow}}">
             <span style="fill:DarkOrchid;">{{$:/core/images/right-arrow}}</span>
           </$list>
