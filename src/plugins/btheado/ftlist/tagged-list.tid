@@ -1,9 +1,9 @@
 created: 20180430181932157
-modified: 20181223202840321
+modified: 20181224022616838
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list
 
-<$importvariables filter="$:/plugins/btheado/ftlist/action-macros">
+<$importvariables filter="$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]]">
 <$wikify name="showItemTags" text="<<qualify $:/state/btheado/ftlist/show-item-tags>>">
   <$list filter="[all[current]has[text]]">
     <$wikify name="showBodyText" text="<<qualify $:/state/btheado/ftlist/show-body-text>>">
