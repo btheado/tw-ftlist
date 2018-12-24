@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20181223202804194
+modified: 20181224024726121
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -83,8 +83,6 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
   </$reveal>
 \end
 
-<$list filter="[all[current]!has[draft.of]]">
-  <$wikify name="expandSublist" text="<<qualify $:/state/btheado/ftlist/expanded>>">
-    <<displayListItem>>
-  </$wikify>
-</$list>
+<$wikify name="expandSublist" text="<<qualify $:/state/btheado/ftlist/expanded>>">
+  <<displayListItem>>
+</$wikify>

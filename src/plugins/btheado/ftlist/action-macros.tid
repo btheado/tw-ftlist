@@ -1,5 +1,5 @@
 created: 20181223192941127
-modified: 20181223193318904
+modified: 20181224024734079
 tags: 
 title: $:/plugins/btheado/ftlist/action-macros
 
@@ -18,9 +18,9 @@ title: $:/plugins/btheado/ftlist/action-macros
 
 \define moveToTopActions() <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>]"/>
 
-\define hasChildrenFilter() [all[current]tagging[]first[]count[]] -0
+\define hasChildrenFilter() [all[current]tagging[]!has[draft.of]first[]count[]] -0
 
-\define childrenFilter() [<currentTiddler>tagging[]reverse[]]
+\define childrenFilter() [<currentTiddler>tagging[]!has[draft.of]reverse[]]
 
 \define addChildActions()
   <$set name="order" filter="[<currentTiddler>tagging[]!title<actionTiddler>] [title<actionTiddler>]">
