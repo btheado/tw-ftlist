@@ -1,5 +1,5 @@
 created: 20181223192941127
-modified: 20181226200410521
+modified: 20181226202807818
 tags: 
 title: $:/plugins/btheado/ftlist/action-macros
 
@@ -22,10 +22,8 @@ title: $:/plugins/btheado/ftlist/action-macros
 \define childrenFilter() [<currentTiddler>tagging[]!has[draft.of]reverse[]]
 
 \define addChildActions()
-  <$set name="order" filter="[<currentTiddler>tagging[]!title<actionTiddler>] [title<actionTiddler>]">
-    <!-- Assign the list field of the tag with the current ordering -->
-    <$action-setfield $tiddler=<<currentTiddler>> $field="list" $value=<<order>>/>
-    <!-- Make sure the newly added item has the right tag -->
-    <$action-listops $tiddler=<<actionTiddler>> $tags="[<currentTiddler>]"/>
-  </$set>
+  <!-- Assign the list field of the tag with the current ordering -->
+  <$action-listops $tiddler=<<currentTiddler>>  $filter="[<currentTiddler>tagging[]!title<actionTiddler>] [<actionTiddler>]"/>
+  <!-- Make sure the newly added item has the right tag -->
+  <$action-listops $tiddler=<<actionTiddler>> $tags="[<currentTiddler>]"/>
 \end
