@@ -1,5 +1,5 @@
 created: 20181223192941127
-modified: 20181226202807818
+modified: 20181226212350997
 tags: 
 title: $:/plugins/btheado/ftlist/action-macros
 
@@ -15,13 +15,22 @@ title: $:/plugins/btheado/ftlist/action-macros
      </$wikify>
 \end
 
-\define moveToTopActions() <$action-listops $tiddler=<<parentTiddler>>  $subfilter="[<currentTiddler>]"/>
+\define moveToTopActions()
+  <!-- Adding a child also moves it to the top, so just re-use that macro. Someone overriding these
+        macros can likely only override addChildActions and leave this one alone  -->
+  <$set name=actionTiddler value=<<currentTiddler>>>
+    <$tiddler tiddler=<<parentTiddler>>>
+      <<addChildActions>>
+    </$tiddler>
+  </$set>
+\end
 
 \define hasChildrenFilter() [all[current]tagging[]!has[draft.of]first[]count[]] -0
 
 \define childrenFilter() [<currentTiddler>tagging[]!has[draft.of]reverse[]]
 
 \define addChildActions()
+  <!-- actionTiddler is the child being added and currentTiddler is the parent -->
   <!-- Assign the list field of the tag with the current ordering -->
   <$action-listops $tiddler=<<currentTiddler>>  $filter="[<currentTiddler>tagging[]!title<actionTiddler>] [<actionTiddler>]"/>
   <!-- Make sure the newly added item has the right tag -->
