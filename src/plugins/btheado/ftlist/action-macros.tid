@@ -1,5 +1,5 @@
 created: 20181223192941127
-modified: 20181224024734079
+modified: 20181226200410521
 tags: 
 title: $:/plugins/btheado/ftlist/action-macros
 
@@ -9,14 +9,13 @@ title: $:/plugins/btheado/ftlist/action-macros
           the button is rendered -->
     <$wikify name=timestamp text="""<$macrocall $name="now" format="[UTC]YYYY0MM0DD0hh0mm0ssXXX"/>""">
         <!-- Remove from list, remove the tag, and add a timestamp to ftlist_done field -->
-<!-- TODO: rename currentListTiddler to parentTiddler? and pass it in as an argument?-->
-        <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="-[<currentTiddler>]"/>
-        <$action-listops $tiddler=<<currentTiddler>>  $tags="-[<currentListTiddler>]"/>
+        <$action-listops $tiddler=<<parentTiddler>>  $subfilter="-[<currentTiddler>]"/>
+        <$action-listops $tiddler=<<currentTiddler>>  $tags="-[<parentTiddler>]"/>
         <$action-listops $tiddler=<<currentTiddler>>  $field=ftlist_done $subfilter="[<timestamp>]"/>
      </$wikify>
 \end
 
-\define moveToTopActions() <$action-listops $tiddler=<<currentListTiddler>>  $subfilter="[<currentTiddler>]"/>
+\define moveToTopActions() <$action-listops $tiddler=<<parentTiddler>>  $subfilter="[<currentTiddler>]"/>
 
 \define hasChildrenFilter() [all[current]tagging[]!has[draft.of]first[]count[]] -0
 
