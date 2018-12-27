@@ -1,0 +1,6 @@
+created: 20181227170623514
+modified: 20181227174721363
+tags: 
+title: $:/plugins/btheado/ftlist/action-macros-reverse
+
+\define childrenFilter() [<currentTiddler>tagging[]!has[draft.of]]

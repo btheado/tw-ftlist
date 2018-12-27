@@ -1,0 +1,17 @@
+created: 20181227170237427
+modified: 20181227174712016
+tags: 
+title: $:/plugins/btheado/ftlist/action-macros-StoryList
+
+\define markDoneActions()
+  <!-- Remove from list -->
+  <$action-listops $tiddler="$:/StoryList"  $subfilter="-[<currentTiddler>]"/>
+\end
+
+\define hasChildrenFilter() [list[$:/StoryList]first[]count[]] -0
+
+\define childrenFilter() [list[$:/StoryList]]
+
+\define addChildActions()
+  <$action-listops $tiddler="$:/StoryList" $subfilter="[title<actionTiddler>] +[putfirst[]]"/>
+\end

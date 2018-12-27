@@ -1,0 +1,22 @@
+created: 20181224021236475
+modified: 20181227175145700
+title: $:/plugins/btheado/ftlist/action-macros-list-only
+
+\define markDoneActions()
+    <!-- Using this approach as found in the "new journal" button code. It allows for the
+          timestamp to be calculated at the time the button is pressed rather than the time
+          the button is rendered -->
+    <$wikify name=timestamp text="""<$macrocall $name="now" format="[UTC]YYYY0MM0DD0hh0mm0ssXXX"/>""">
+        <!-- Remove from list and add a timestamp to ftlist_done field -->
+        <$action-listops $tiddler=<<parentTiddler>>  $subfilter="-[<currentTiddler>]"/>
+        <$action-listops $tiddler=<<currentTiddler>>  $field=ftlist_done $subfilter="[<timestamp>]"/>
+     </$wikify>
+\end
+
+\define hasChildrenFilter() [list<currentTiddler>first[]count[]] -0
+
+\define childrenFilter() [list<currentTiddler>]
+
+\define addChildActions()
+  <$action-listops $tiddler=<<currentTiddler>> $subfilter="[title<actionTiddler>] +[putfirst[]]"/>
+\end
