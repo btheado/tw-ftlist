@@ -1,5 +1,5 @@
 created: 20181223192941127
-modified: 20181226212350997
+modified: 20181227040252089
 tags: 
 title: $:/plugins/btheado/ftlist/action-macros
 
@@ -31,8 +31,8 @@ title: $:/plugins/btheado/ftlist/action-macros
 
 \define addChildActions()
   <!-- actionTiddler is the child being added and currentTiddler is the parent -->
-  <!-- Assign the list field of the tag with the current ordering -->
-  <$action-listops $tiddler=<<currentTiddler>>  $filter="[<currentTiddler>tagging[]!title<actionTiddler>] [<actionTiddler>]"/>
+  <!-- Move or add the child to the end of the list -->
+  <$action-listops $tiddler=<<currentTiddler>>  $filter="[<currentTiddler>tagging[]] [<actionTiddler>]"/>
   <!-- Make sure the newly added item has the right tag -->
   <$action-listops $tiddler=<<actionTiddler>> $tags="[<currentTiddler>]"/>
 \end
