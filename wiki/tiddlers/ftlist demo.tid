@@ -1,6 +1,6 @@
 created: 20181120023123129
 creator: 0.0.0.0
-modified: 20181124222517806
+modified: 20181227193459889
 modifier: 0.0.0.0
 tags: ftlist/example/9
 title: ftlist demo
@@ -80,7 +80,7 @@ The X next to a tagbar tag can be clicked to remove it from the tagbar again:
 
 !Sublists
 
-Clicking on the right arrow button ({{$:/core/images/right-arrow}}) will 'drill down' and display a 'sublist'. If you click on the right arrow by the //''reclaim treasure...''// link then several sublist items will be displayed. Since the other items in the list are not tagging anything, clicking those right arrow buttons will display empty lists:
+Clicking on the right arrow button ({{$:/core/images/right-arrow}}) will 'drill down' and display a 'sublist'. If you click on the right arrow by the //''reclaim treasure...''// link then several sublist items will be displayed. Since the other items in the list are not tagging anything, clicking those right arrow buttons will display empty lists. The list items which have children have a different color for their right arrow button:
 
 <<<
 {{ftlist/example/4}}
@@ -113,3 +113,8 @@ Also:
 
 *entering titles of existing tiddlers will cause them to be added to the list and the existing tiddler fields will remain untouched
 *entering a title of a tiddler already on the list will move that item to the top of the list
+
+!Customizing the list functionality
+# [[reverse ftlist]] - example use of [[$:/plugins/btheado/ftlist/action-macros-reverse]]
+# [[list-only ftlist]] - example use of [[$:/plugins/btheado/ftlist/action-macros-list-only]] where only the list field and not tags are used to store children
+# StoryList - using ftlist with the [[$:/StoryList]]. Example use of [[$:/plugins/btheado/ftlist/action-macros-StoryList]]

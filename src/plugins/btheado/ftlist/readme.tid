@@ -1,9 +1,7 @@
 created: 20181120004009252
-creator: 0.0.0.0
-modified: 20181120014059849
-modifier: 0.0.0.0
+modified: 20181227183456825
+tags: 
 title: $:/plugins/btheado/ftlist/readme
-type: text/vnd.tiddlywiki
 
 !Overview
 The `ftlist` plugin provides a way to quickly create `f`ragments of `t`ext and manage them as items in a `list`. The emphasis is on providing a low-friction way to capture thoughts and ideas.
@@ -23,7 +21,7 @@ Multiple lists are supported. The list functionality is implemented as a ~Tiddly
 In addition to the list operations, ftlist provides a `tagbar` for easily applying tags to the list items via drag and drop. New tags can be added to the `tagbar` via drag and drop and then list items (any tiddly links) can be dropped onto these tags in order to apply them. Another way to quickly apply tags is to drag links onto the 'add tag' buttons next to the edit text fields. This allows items to be copied back and forth between lists and sublists.
 
 ! Getting started
-Install the plugin by draggin this [[ftlist plugin|$:/plugins/btheado/ftlist]] link into your own tiddlywiki instance. Then create a tiddler in which you want to have your list (). Add this text somewhere in the body of the tiddler:
+Install the plugin by dragging this [[ftlist plugin|$:/plugins/btheado/ftlist]] link into your own tiddlywiki instance. Then create a tiddler in which you want to have your list. Add this text somewhere in the body of the tiddler:
 
 ```
 {{||$:/plugins/btheado/ftlist/main}}
@@ -43,7 +41,7 @@ The tagbar can be used independent of the list like this:
 {{||$:/plugins/btheado/ftlist/tagbar}}
 ```
 
-!Under the covers
+!How it works
 
 *list items are stored as tiddler titles
 *the items in a given list are those which are tagged with the tiddler containing the list
@@ -51,3 +49,23 @@ The tagbar can be used independent of the list like this:
 *this means that tags applied through normal tiddlywiki tagging mechanism can also be used to add items to the list.
 *when items are marked 'done', the tag which keeps it in the list is removed and a timestamp is appended to a field named `ftlist_done`.
 *as a future feature enhancement, this ftlist_done field can be used for a per-day timeline of done items similar to the standard ~TiddlyWiki timeline
+
+---
+
+!Customizing the list functionality
+
+The list functionality is mainly implemented in 5 action and filter macros defined in [[$:/plugins/btheado/ftlist/action-macros]]. These macros can be overridden in order to change the way the lists behave:
+
+*`childrenFilter` - filter which should return list of child tiddlers for `currentTiddler`
+*`hasChildrenFilter` - filter which should return empty if there are no children for `currentTiddler`
+*`addChildActions` - actions to take in order to add `actionTiddler` as a child of `currentTiddler`
+*`moveToTopActions` - the default version of this macro is defined in terms of `addChildActions`. In most cases this will be sufficient to move the item to the top of the list, in which case this will not need to be overridden.
+*`markDoneActions` - take actions on `parentTiddler` and/or `currentTiddler` variables in order to remove the item from the list and optionally mark it as complete somehow.
+
+The default versions of these macros can be overridden by placing new versons of them in a tiddler tagged with [[$:/plugins/btheado/ftlist/action-macros]]. This will override the functionality for all lists and sublists. The macros can also be overridden for just a single tiddler's sublist by adding the name of a tiddler containing the override macros to the tiddlers field named `ftlist_macros`
+
+3 examples of macro overrides are provided in the plugin:
+
+#$:/plugins/btheado/ftlist/action-macros-reverse - same as the default behavior, except instead of new items coming at the top of the list, they come at the bottom of the list
+#$:/plugins/btheado/ftlist/action-macros-list-only - similar to the default behavior, except instead of using both tags and the list field, only the list field is used.
+#$:/plugins/btheado/ftlist/action-macros-StoryList - similar to the previous example, except the $:/StoryList is hard-coded. This is because the $:/StoryList tiddler seems to lose the `ftlist_macros` field everytime the wiki is closed and opened again. By hard-coding, a different tiddler can have this value in the `ftlist_macros` field and it will still operate using $:/StoryList

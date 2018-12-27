@@ -1,0 +1,10 @@
+created: 20181227193018831
+creator: 0.0.0.0
+ftlist_macros: $:/plugins/btheado/ftlist/action-macros-list-only
+list: 
+modified: 20181227193255362
+modifier: 0.0.0.0
+title: list-only ftlist
+type: text/vnd.tiddlywiki
+
+{{||$:/plugins/btheado/ftlist/main}}
