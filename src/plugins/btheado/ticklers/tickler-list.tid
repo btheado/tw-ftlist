@@ -1,95 +1,102 @@
 created: 20181104012246100
-modified: 20181123170950355
+modified: 20190106214242323
 tags: 
 title: $:/plugins/btheado/ticklers/tickler-list
 
-\define todayIndicator(period day today)
-  <!-- The regexp operator is the only one I found which could check input title for a particular value -->
-  <$list filter="[title[$day$]regexp[^$today$$]]">
+\define todayIndicator()
+  <$set name=period_tickled_field filter="[<period>suffix[_tickled]]">
+    <$reveal default=<<day>> text=<<today>> type=match>
           (''today''
          <$button
             class="tc-btn-invisible tc-tiddlylink"
           >
-           <$action-setfield $tiddler=<<tickledStateTiddler>> $field="$period$_tickled" $value="$today$"/>
+           <$action-setfield $tiddler=<<tickledStateTiddler>> $field=<<period_tickled_field>> $value=<<today>>/>
            {{$:/core/images/up-arrow}}
          </$button>)
-  </$list>
+    </$reveal>
+  </$set>
 \end
 
-\define displayTicklerItemFlex(period day today)
+\define displayTicklerItemFlex()
+  <!-- doy and dom are short enough to display ticklers starting on the same line as the date. -->
   <div  style="display: flex;">
-    <div style="flex-shrink: 0; margin-right: 2px;">$day$ - </div>
+    <div style="flex-shrink: 0; margin-right: 2px;"><<day>> - </div>
     <div>
-      <div><<todayIndicator $period$ $day$ $today$>></div>
+      <div><<todayIndicator>></div>
        <div>
-         <$list filter="[[$day$]listed[$period$]]">
+         <$list filter="[<day>listed<period>]">
            <div><$link><<currentTiddler>></$link></div>
          </$list>
        </div>
   </div>
 \end
 
-\define displayTicklerItemNoFlex(period day today)
-  <div>
-    $day$ <<todayIndicator $period$ $day$ $today$>>
-  </div>
+\define displayTicklerItemNoFlex()
+  <!--  For dow, put ticklers starting on separate line from the date -->
+  <div><<day>> <<todayIndicator>></div>
   <div style="margin-left: 15px;">
-    <$list filter="[[$day$]listed[$period$]]">
+    <$list filter="[<day>listed<period>]">
       <div><$link><<currentTiddler>></$link></div>
     </$list>
   </div>
 \end
 
-\define displayTicklerItem(period day today)
-  <!-- doy and dom are short enough to display ticklers starting on the same line. For dow, start on a new line -->
-  <$list filter="[[$period$]regexp[^dow$]]"> <<displayTicklerItemNoFlex $period$ "$day$" "$today$">> </$list>
-  <$list filter="[[$period$]!regexp[^dow$]]"> <<displayTicklerItemFlex $period$ "$day$" "$today$">> </$list>
+\define displayTicklerList()
+  <$list variable=day filter="[enlist<tickled>]">
+    <$macrocall $name=<<displayTicklerItem>>/>
+  </$list>
+  <$list variable=day filter="[enlist<periodValues>allafter<tickled>]">
+    <$macrocall $name=<<displayTicklerItem>>/>
+  </$list>
+  <$list variable=day filter="[enlist<periodValues>allbefore<tickled>]">
+    <$macrocall $name=<<displayTicklerItem>>/>
+  </$list>
 \end
 
-\define displayTicklerList(period periodValues today)
-<!-- For doy and dom, using tickled as a parameter didn't work for some reason,
-      so using variable replacement syntax for that one-->
-<$list filter="[enlist[$(tickled)$]]">
-<$macrocall $name=displayTicklerItem period=$period$ day=<<currentTiddler>> today="$today$"/>
-</$list>
-<$list filter="[enlist[$periodValues$]allafter[$(tickled)$]]">
-<$macrocall $name=displayTicklerItem period=$period$ day=<<currentTiddler>> today="$today$"/>
-</$list>
-<$list filter="[enlist[$periodValues$]allbefore[$(tickled)$]]">
-<$macrocall $name=displayTicklerItem period=$period$ day=<<currentTiddler>> today="$today$"/>
-</$list>
-\end
+\define todayDow() <<now DDD>>
+\define todayDom() <<now 0DD>>
+\define todayDoy() <<now 0MM/0DD>>
 
+<!-- Using import variables to allow the todayDow, etc. macros to be overridden for demo purposes -->
+<$importvariables filter="[tag[$:/plugins/btheado/ticklers/macros]!has[draft.of]] [title{!!tickler_macros}]">
 <$set name="tickledStateTiddler" value=<<currentTiddler>>>
 <div style="display: flex">
 <div style="flex: 1;">
-<$set name=tickled value={{!!dow_tickled}} emptyValue=Monday>
-  <$macrocall $name=displayTicklerList
-     periodValues="Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
-     period=dow today=<<now DDD>>/>
-</$set>
+  <$wikify name=today text=<<todayDow>>>
+    <$set name=tickled value={{!!dow_tickled}} emptyValue=Monday>
+      <$vars displayTicklerItem=displayTicklerItemNoFlex period=dow
+         periodValues="Monday Tuesday Wednesday Thursday Friday Saturday Sunday">
+        <<displayTicklerList>>
+      </$vars>
+    </$set>
+  </$wikify>
 </div>
 <div style="flex: 1;">
-<$set name="today" value=<<now 0DD>>>
-<$set name=tickled value={{!!dom_tickled}} emptyValue="01">
-<$set
-  name=value_list
-  filter="[each:list-item[dom]insertbefore<tickled>insertbefore<today>sort[]]">
-  <$macrocall $name=displayTicklerList periodValues=<<value_list>> period=dom today=<<today>>/>
-</$set>
-</$set>
-</$set>
+  <$vars displayTicklerItem=displayTicklerItemFlex period=dom>
+    <$wikify name=today text=<<todayDom>>>
+      <$set name=tickled value={{!!dom_tickled}} emptyValue="01">
+        <$set
+          name=periodValues
+          filter="[each:list-item<period>insertbefore<tickled>insertbefore<today>sort[]]">
+          <<displayTicklerList>>
+        </$set>
+      </$set>
+    </$wikify>
+  </$vars>
 </div>
 <div style="flex: 1;">
-<$set name="today" value=<<now 0MM/0DD>>>
-<$set name=tickled value={{!!doy_tickled}} emptyValue="01/01">
-<$set
-  name=value_list
-  filter="[each:list-item[doy]insertbefore<tickled>insertbefore<today>sort[]]">
-  <$macrocall $name=displayTicklerList periodValues=<<value_list>> period=doy today=<<today>>/>
-</$set>
-</$set>
-</$set>
+  <$vars displayTicklerItem=displayTicklerItemFlex period=doy>
+    <$wikify name=today text=<<todayDoy>>>
+      <$set name=tickled value={{!!doy_tickled}} emptyValue="01/01">
+        <$set
+          name=periodValues
+          filter="[each:list-item<period>insertbefore<tickled>insertbefore<today>sort[]]">
+          <<displayTicklerList>>
+        </$set>
+      </$set>
+    </$wikify>
+  </$vars>
 </div>
 </div>
 </$set>
+</$importvariables>
