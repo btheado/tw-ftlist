@@ -1,0 +1,21 @@
+created: 20190106221239836
+modified: 20190106223043381
+tags: 
+title: $:/plugins/btheado/ticklers/readme
+
+This plugin allows tiddlers to be tracked as repeating [[ticklers|https://en.wikipedia.org/wiki/Tickler_file]] (i.e. reminders). Three types of repetition are supported:
+
+|!what|!field name|![[format|https://tiddlywiki.com/#DateFormat]]|!note|
+|day of week|dow|DDD|i.e. Monday, Tuesday, etc.|
+|day of month|dom|0DD|i.e. 01 - 31|
+|day of year|doy|0MM/0DD|i.e. 01/01 - 12/31|
+
+Each of the 3 are displayed in their own column. Each column has a ''today'' marker showing where today is relative to the ticklers in the lists. The ''today'' marker automatically updates as days go by (as long as the tiddler is refreshed...refreshing is not automatic).
+
+The up arrow button ({{$:/core/images/up-arrow}}) next to the ''today'' marker is used to move the days which are currently above ''today'' to the bottom of the list. In other words today's date will be moved to the top of the list.
+
+The manual movement of the marker is used to keep track of which items are acknowledged as done (or if not done, at least moved to a todo list). If you skip checking the tickler list for a few days, the items above the ''today'' marker will be the ones which you missed on those days.
+
+If needed, a tiddler can have all 3 fields: dow, dom, and doy in order to appear in all 3 lists. Also, each field can specify more than one day (space separated) in order to appear more than one time per week (for dow) or more than one time per month (for dom), etc.
+
+There is no dedicated UI for adding tiddlers as new ticklers. Directly editing the tiddler fields (dow, dom, and doy) is the only way to do it. The values in these fields must match the date formats exactly or the resulting tickler display will likely not be as desired.
