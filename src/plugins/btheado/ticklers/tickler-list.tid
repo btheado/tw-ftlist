@@ -1,10 +1,10 @@
 created: 20181104012246100
-modified: 20190106214242323
+modified: 20190108002809552
 tags: 
 title: $:/plugins/btheado/ticklers/tickler-list
 
 \define todayIndicator()
-  <$set name=period_tickled_field filter="[<period>suffix[_tickled]]">
+  <$set name=period_tickled_field filter="[<period>addsuffix[_tickled]]">
     <$reveal default=<<day>> text=<<today>> type=match>
           (''today''
          <$button
