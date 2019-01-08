@@ -1,7 +1,9 @@
 created: 20190106221239836
-modified: 20190106223043381
+modified: 20190107025105425
 tags: 
 title: $:/plugins/btheado/ticklers/readme
+
+!Overview
 
 This plugin allows tiddlers to be tracked as repeating [[ticklers|https://en.wikipedia.org/wiki/Tickler_file]] (i.e. reminders). Three types of repetition are supported:
 
@@ -19,3 +21,12 @@ The manual movement of the marker is used to keep track of which items are ackno
 If needed, a tiddler can have all 3 fields: dow, dom, and doy in order to appear in all 3 lists. Also, each field can specify more than one day (space separated) in order to appear more than one time per week (for dow) or more than one time per month (for dom), etc.
 
 There is no dedicated UI for adding tiddlers as new ticklers. Directly editing the tiddler fields (dow, dom, and doy) is the only way to do it. The values in these fields must match the date formats exactly or the resulting tickler display will likely not be as desired.
+
+! Getting started
+Install the plugin by dragging this [[ticklers plugin|$:/plugins/btheado/ticklers]] link into your own tiddlywiki instance. Then create a tiddler in which you want to have your ticklers. Add this text somewhere in the body of the tiddler:
+
+```
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+```
+
+Then create a tiddler for each tickler. Add a fields named dow, dom, and/or doy with one or more values telling which day of week, day of month or day of you want to be reminded.
