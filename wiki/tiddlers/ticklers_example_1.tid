@@ -1,0 +1,21 @@
+created: 20190110030357252
+creator: 0.0.0.0
+dom_tickled: 08
+modified: 20190112213146938
+modifier: 0.0.0.0
+tags: 
+tickler_macros: ticklers/example/0
+title: ticklers/example/1
+type: text/vnd.tiddlywiki
+
+\define todayDow() Tuesday
+\define todayDom() 08
+\define todayDoy() 01/08
+
+The user pays their bills or adds [[pay bills]] to their todo list and then clicks the up arrow in the day of month column. The purpose of the [[pay bills]] reminder has been served and it is moved to the bottom of the list.
+
+Actually, the user probably already paid their bills a week ago, but since this is the first time using the tickler functionality, they still need to click the button to acknowledge that:
+
+<<<
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+<<<

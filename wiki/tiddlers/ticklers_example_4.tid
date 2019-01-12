@@ -1,0 +1,21 @@
+created: 20190110032952525
+creator: 0.0.0.0
+dom_tickled: 10
+dow_tickled: Thursday
+doy_tickled: 01/10
+modified: 20190112204617911
+modifier: 0.0.0.0
+tags: 
+tickler_macros: ticklers/example/4
+title: ticklers/example/4
+type: text/vnd.tiddlywiki
+
+\define todayDow() Thursday
+\define todayDom() 10
+\define todayDoy() 01/10
+
+After clicking the arrows in the day of week and day of year columns, days above the today markers again cycle to the bottom:
+
+<<<
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+<<<

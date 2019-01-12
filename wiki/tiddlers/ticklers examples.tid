@@ -1,0 +1,18 @@
+created: 20190107030416234
+creator: 0.0.0.0
+modified: 20190112213837108
+modifier: 0.0.0.0
+title: ticklers examples
+type: text/vnd.tiddlywiki
+
+Here are some live examples using a simulated current date for demonstration purposes. Since they are "live", the up arrow buttons are functional. If you click them it might make the accompanying text confusing :-).
+
+---
+
+<$list filter="[prefix[ticklers/example/]]">
+
+<$transclude/>
+
+---
+
+</$list>

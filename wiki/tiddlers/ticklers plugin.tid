@@ -1,0 +1,13 @@
+created: 20190107024451130
+creator: 0.0.0.0
+modified: 20190112214058253
+modifier: 0.0.0.0
+tags: 
+title: ticklers plugin
+type: text/vnd.tiddlywiki
+
+!Demo
+
+See the [[ticklers examples]] for an illustration of most of the functionality.
+
+{{$:/plugins/btheado/ticklers/readme}}

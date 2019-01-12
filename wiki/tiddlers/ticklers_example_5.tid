@@ -1,0 +1,21 @@
+created: 20190112204950620
+creator: 0.0.0.0
+dom_tickled: 13
+dow_tickled: Saturday
+doy_tickled: 04/13
+modified: 20190112205805359
+modifier: 0.0.0.0
+tags: 
+tickler_macros: ticklers/example/5
+title: ticklers/example/5
+type: text/vnd.tiddlywiki
+
+\define todayDow() Monday
+\define todayDom() 15
+\define todayDoy() 04/15
+
+Later in the year on <<todayDow>>, <<todayDoy>> when the up arrows were last hit on {{!!dow_tickled}}, {{!!doy_tickled}} it would look like this: 
+
+<<<
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+<<<

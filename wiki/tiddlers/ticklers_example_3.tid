@@ -1,0 +1,21 @@
+created: 20190110032742596
+creator: 0.0.0.0
+dom_tickled: 08
+modified: 20190112213920132
+modifier: 0.0.0.0
+tags: 
+tickler_macros: ticklers/example/3
+title: ticklers/example/3
+type: text/vnd.tiddlywiki
+
+\define todayDow() Thursday
+\define todayDom() 10
+\define todayDoy() 01/10
+
+After two days pass (now Thursday 01/10) without any interaction by the user, it will look like this. The today markers have moved down to indicate the passage of time.
+
+The user is reminded they should have washed their clothes yesterday and they can check if the bill Y payment cleared. Also, [[person X's birthday]] has passed:
+
+<<<
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+<<<
