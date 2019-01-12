@@ -153,7 +153,15 @@ Error message and password prompt
 
 <li>$:/themes/tiddlywiki/vanilla</li>
 
+<li>bill X due</li>
+
+<li>bill Y due</li>
+
+<li>bill Z due</li>
+
 <li>convince the dwarves Bilbo is a worthy companion</li>
+
+<li>Equinox</li>
 
 <li>escape from the trolls</li>
 
@@ -181,7 +189,17 @@ Error message and password prompt
 
 <li>ftlist/example/9</li>
 
+<li>laundry</li>
+
 <li>list-only ftlist</li>
+
+<li>pay bills</li>
+
+<li>person X's birthday</li>
+
+<li>person Y's birthday</li>
+
+<li>play soccer</li>
 
 <li>reclaim treasure from the dragon Smaug</li>
 
@@ -192,6 +210,20 @@ Error message and password prompt
 <li>reverse ftlist demo</li>
 
 <li>StoryList</li>
+
+<li>ticklers examples</li>
+
+<li>ticklers plugin</li>
+
+<li>ticklers/example/0</li>
+
+<li>ticklers/example/1</li>
+
+<li>ticklers/example/3</li>
+
+<li>ticklers/example/4</li>
+
+<li>ticklers/example/5</li>
 
 </ul>
 </p>
@@ -8805,9 +8837,9 @@ Error message and password prompt
         &quot;$:/plugins/btheado/ftlist/tagged-list-item&quot;: {
             &quot;title&quot;: &quot;$:/plugins/btheado/ftlist/tagged-list-item&quot;,
             &quot;created&quot;: &quot;20180429151224584&quot;,
-            &quot;modified&quot;: &quot;20181226200002893&quot;,
+            &quot;modified&quot;: &quot;20181229210351854&quot;,
             &quot;tags&quot;: &quot;&quot;,
-            &quot;text&quot;: &quot;\\define displayListItem()\n &lt;div style=\&quot;margin-left: 15px; white-space: normal; display: flex;\&quot;&gt;\n  &lt;!-- \n     Two side-by-side, flex-arranged divs. The one on the left with the icons will grow\n     so there is no wrapping. The one on the right will have wrapping if too long to fit, but\n     the text on the wrapped lines will line up with each other (rather than wrap around\n     under the icons).\n     --&gt;\n  &lt;div style=\&quot;flex-shrink: 0;\&quot;&gt;\n    &lt;$button\n      actions=&lt;&lt;moveToTopActions&gt;&gt;\n      tooltip=\&quot;move to top\&quot;\n      aria-label=\&quot;move to top\&quot;\n      class=\&quot;tc-btn-invisible tc-btn-mini\&quot;&gt;\n      {{$:/core/images/up-arrow}}\n    &lt;/$button&gt;\n    &lt;$button\n        tooltip=\&quot;mark done and remove from list\&quot;\n        aria-label=\&quot;mark done and remove from list\&quot;\n        class=\&quot;tc-btn-invisible tc-btn-mini\&quot;\n        actions=&lt;&lt;markDoneActions&gt;&gt;&gt;\n        {{$:/core/images/done-button}}\n    &lt;/$button&gt;\n    &lt;$button\n      message=\&quot;tm-edit-tiddler\&quot;\n      tooltip={{$:/language/Buttons/Edit/Hint}}\n      aria-label={{$:/language/Buttons/Edit/Caption}}\n      class=\&quot;tc-btn-invisible tc-btn-mini\&quot;&gt;\n      {{$:/core/images/edit-button}}\n     &lt;/$button&gt;\n\n     &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;expandSublist&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt;&gt;\n       &lt;$button\n          set=&lt;&lt;expandSublist&gt;&gt;\n          setTo=&lt;&lt;currentTiddler&gt;&gt;\n          class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n          tooltip=\&quot;Expand sublist\&quot;\n          aria-label=\&quot;Expand sublist\&quot;\n        &gt;\n          &lt;!-- Ensure the child's hasChildrenFilter macro is used rather than the parent --&gt;\n          &lt;$importvariables filter=\&quot;$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]] [title{!!ftlist_macros}]\&quot;&gt;\n            &lt;!-- Items with \&quot;children\&quot; have arrow in different color to distinguish them. I hope this isn't slow. --&gt;\n            &lt;$list filter=&lt;&lt;hasChildrenFilter&gt;&gt;\n              emptyMessage=\&quot;{{$:/core/images/right-arrow}}\&quot;&gt;\n              &lt;span style=\&quot;fill:DarkOrchid;\&quot;&gt;{{$:/core/images/right-arrow}}&lt;/span&gt;\n            &lt;/$list&gt;\n          &lt;/$importvariables&gt;\n       &lt;/$button&gt;\n     &lt;/$reveal&gt;\n     &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;expandSublist&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt;&gt;\n       &lt;$button\n          set=&lt;&lt;expandSublist&gt;&gt;\n          setTo=\&quot;\&quot;\n          class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n          tooltip=\&quot;Expand sublist\&quot;\n          aria-label=\&quot;Expand sublist\&quot;\n        &gt;\n          {{$:/core/images/down-arrow}}\n       &lt;/$button&gt;\n     &lt;/$reveal&gt;\n  &lt;/div&gt;\n  &lt;div&gt;\n    &lt;$list filter=\&quot;[all[current]!has[text]]\&quot;&gt;\n      &lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;\n    &lt;/$list&gt;\n    &lt;$list filter=\&quot;[all[current]has[text]]\&quot;&gt;\n      &lt;!-- Make tiddlers which have non-empty body text stand out --&gt;\n      &lt;$link&gt;&lt;b&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/b&gt;&lt;/$link&gt;\n    &lt;/$list&gt;\n    &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;showItemTags&gt;&gt; text=\&quot;true\&quot;&gt;\n      &lt;$list filter=\&quot;[all[current]tags[]!title&lt;parentTiddler&gt;]\&quot;&gt;\n        &lt;$macrocall $name=tag tag=&lt;&lt;currentTiddler&gt;&gt;/&gt;\n      &lt;/$list&gt;\n    &lt;/$reveal&gt;\n  &lt;/div&gt;\n &lt;/div&gt;\n &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;expandSublist&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt;&gt;\n    &lt;div style=\&quot;margin-left: 30px; white-space: normal;\&quot;&gt;\n      {{||$:/plugins/btheado/ftlist/tagged-list}}\n    &lt;/div&gt;\n  &lt;/$reveal&gt;\n\\end\n\n&lt;$wikify name=\&quot;expandSublist\&quot; text=\&quot;&lt;&lt;qualify $:/state/btheado/ftlist/expanded&gt;&gt;\&quot;&gt;\n  &lt;&lt;displayListItem&gt;&gt;\n&lt;/$wikify&gt;\n&quot;
+            &quot;text&quot;: &quot;\\define displayListItem()\n &lt;div style=\&quot;margin-left: 15px; white-space: normal; display: flex;\&quot;&gt;\n  &lt;!-- \n     Two side-by-side, flex-arranged divs. The one on the left with the icons will grow\n     so there is no wrapping. The one on the right will have wrapping if too long to fit, but\n     the text on the wrapped lines will line up with each other (rather than wrap around\n     under the icons).\n     --&gt;\n  &lt;div style=\&quot;flex-shrink: 0;\&quot;&gt;\n    &lt;$button\n      actions=&lt;&lt;moveToTopActions&gt;&gt;\n      tooltip=\&quot;move to top\&quot;\n      aria-label=\&quot;move to top\&quot;\n      class=\&quot;tc-btn-invisible tc-btn-mini\&quot;&gt;\n      {{$:/core/images/up-arrow}}\n    &lt;/$button&gt;\n    &lt;$button\n        tooltip=\&quot;mark done and remove from list\&quot;\n        aria-label=\&quot;mark done and remove from list\&quot;\n        class=\&quot;tc-btn-invisible tc-btn-mini\&quot;\n        actions=&lt;&lt;markDoneActions&gt;&gt;&gt;\n        {{$:/core/images/done-button}}\n    &lt;/$button&gt;\n    &lt;$button\n      message=\&quot;tm-edit-tiddler\&quot;\n      tooltip={{$:/language/Buttons/Edit/Hint}}\n      aria-label={{$:/language/Buttons/Edit/Caption}}\n      class=\&quot;tc-btn-invisible tc-btn-mini\&quot;&gt;\n      {{$:/core/images/edit-button}}\n     &lt;/$button&gt;\n\n     &lt;$reveal type=\&quot;nomatch\&quot; state=&lt;&lt;expandSublist&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt;&gt;\n       &lt;$button\n          set=&lt;&lt;expandSublist&gt;&gt;\n          setTo=&lt;&lt;currentTiddler&gt;&gt;\n          class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n          tooltip=\&quot;Expand sublist\&quot;\n          aria-label=\&quot;Expand sublist\&quot;\n        &gt;\n          &lt;!-- Ensure the child's hasChildrenFilter macro is used rather than the parent --&gt;\n          &lt;$importvariables filter=\&quot;$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]] [title{!!ftlist_macros}]\&quot;&gt;\n            &lt;!-- Items with \&quot;children\&quot; have arrow in different color to distinguish them. I hope this isn't slow. --&gt;\n            &lt;$list filter=&lt;&lt;hasChildrenFilter&gt;&gt;\n              emptyMessage=\&quot;{{$:/core/images/right-arrow}}\&quot;&gt;\n              &lt;span style=\&quot;fill:DarkOrchid;\&quot;&gt;{{$:/core/images/right-arrow}}&lt;/span&gt;\n            &lt;/$list&gt;\n          &lt;/$importvariables&gt;\n       &lt;/$button&gt;\n     &lt;/$reveal&gt;\n     &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;expandSublist&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt;&gt;\n       &lt;$button\n          set=&lt;&lt;expandSublist&gt;&gt;\n          setTo=\&quot;\&quot;\n          class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n          tooltip=\&quot;Expand sublist\&quot;\n          aria-label=\&quot;Expand sublist\&quot;\n        &gt;\n          {{$:/core/images/down-arrow}}\n       &lt;/$button&gt;\n     &lt;/$reveal&gt;\n  &lt;/div&gt;\n  &lt;div&gt;\n    &lt;$list filter=\&quot;[all[current]!has[text]]\&quot;&gt;\n      &lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;\n    &lt;/$list&gt;\n    &lt;$list filter=\&quot;[all[current]has[text]]\&quot;&gt;\n      &lt;!-- Make tiddlers which have non-empty body text stand out --&gt;\n      &lt;$link&gt;&lt;b&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/b&gt;&lt;/$link&gt;\n    &lt;/$list&gt;\n    &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;showItemTags&gt;&gt; text=\&quot;true\&quot;&gt;\n      &lt;!-- Using '!title&lt;parentTiddler&gt;' causes tags which don't yet exist as tiddlers to be filtered out,\n             so use '-[&lt;parentTiddler&gt;]' to ONLY filter out &lt;parentTiddler&gt; --&gt;\n      &lt;$list filter=\&quot;[all[current]tags[]] -[&lt;parentTiddler&gt;]\&quot;&gt;\n        &lt;$macrocall $name=tag tag=&lt;&lt;currentTiddler&gt;&gt;/&gt;\n      &lt;/$list&gt;\n    &lt;/$reveal&gt;\n  &lt;/div&gt;\n &lt;/div&gt;\n &lt;$reveal type=\&quot;match\&quot; state=&lt;&lt;expandSublist&gt;&gt; text=&lt;&lt;currentTiddler&gt;&gt;&gt;\n    &lt;div style=\&quot;margin-left: 30px; white-space: normal;\&quot;&gt;\n      {{||$:/plugins/btheado/ftlist/tagged-list}}\n    &lt;/div&gt;\n  &lt;/$reveal&gt;\n\\end\n\n&lt;$wikify name=\&quot;expandSublist\&quot; text=\&quot;&lt;&lt;qualify $:/state/btheado/ftlist/expanded&gt;&gt;\&quot;&gt;\n  &lt;&lt;displayListItem&gt;&gt;\n&lt;/$wikify&gt;\n&quot;
         },
         &quot;$:/plugins/btheado/ftlist/tagged-list&quot;: {
             &quot;title&quot;: &quot;$:/plugins/btheado/ftlist/tagged-list&quot;,
@@ -8843,12 +8875,19 @@ Error message and password prompt
 <div author="Brian Theado" core-version="&gt;=5.1.16" dependents="" description="Weekly, monthly, and yearly ticklers (reminders)" list="readme" plugin-type="plugin" title="$:/plugins/btheado/ticklers" type="application/json" version="0.2.0">
 <pre>{
     &quot;tiddlers&quot;: {
+        &quot;$:/plugins/btheado/ticklers/readme&quot;: {
+            &quot;title&quot;: &quot;$:/plugins/btheado/ticklers/readme&quot;,
+            &quot;created&quot;: &quot;20190106221239836&quot;,
+            &quot;modified&quot;: &quot;20190107025105425&quot;,
+            &quot;tags&quot;: &quot;&quot;,
+            &quot;text&quot;: &quot;!Overview\n\nThis plugin allows tiddlers to be tracked as repeating [[ticklers|https://en.wikipedia.org/wiki/Tickler_file]] (i.e. reminders). Three types of repetition are supported:\n\n|!what|!field name|![[format|https://tiddlywiki.com/#DateFormat]]|!note|\n|day of week|dow|DDD|i.e. Monday, Tuesday, etc.|\n|day of month|dom|0DD|i.e. 01 - 31|\n|day of year|doy|0MM/0DD|i.e. 01/01 - 12/31|\n\nEach of the 3 are displayed in their own column. Each column has a ''today'' marker showing where today is relative to the ticklers in the lists. The ''today'' marker automatically updates as days go by (as long as the tiddler is refreshed...refreshing is not automatic).\n\nThe up arrow button ({{$:/core/images/up-arrow}}) next to the ''today'' marker is used to move the days which are currently above ''today'' to the bottom of the list. In other words today's date will be moved to the top of the list.\n\nThe manual movement of the marker is used to keep track of which items are acknowledged as done (or if not done, at least moved to a todo list). If you skip checking the tickler list for a few days, the items above the ''today'' marker will be the ones which you missed on those days.\n\nIf needed, a tiddler can have all 3 fields: dow, dom, and doy in order to appear in all 3 lists. Also, each field can specify more than one day (space separated) in order to appear more than one time per week (for dow) or more than one time per month (for dom), etc.\n\nThere is no dedicated UI for adding tiddlers as new ticklers. Directly editing the tiddler fields (dow, dom, and doy) is the only way to do it. The values in these fields must match the date formats exactly or the resulting tickler display will likely not be as desired.\n\n! Getting started\nInstall the plugin by dragging this [[ticklers plugin|$:/plugins/btheado/ticklers]] link into your own tiddlywiki instance. Then create a tiddler in which you want to have your ticklers. Add this text somewhere in the body of the tiddler:\n\n```\n{{||$:/plugins/btheado/ticklers/tickler-list}}\n```\n\nThen create a tiddler for each tickler. Add a fields named dow, dom, and/or doy with one or more values telling which day of week, day of month or day of you want to be reminded.&quot;
+        },
         &quot;$:/plugins/btheado/ticklers/tickler-list&quot;: {
             &quot;title&quot;: &quot;$:/plugins/btheado/ticklers/tickler-list&quot;,
             &quot;created&quot;: &quot;20181104012246100&quot;,
-            &quot;modified&quot;: &quot;20181123170950355&quot;,
+            &quot;modified&quot;: &quot;20190112202053866&quot;,
             &quot;tags&quot;: &quot;&quot;,
-            &quot;text&quot;: &quot;\\define todayIndicator(period day today)\n  &lt;!-- The regexp operator is the only one I found which could check input title for a particular value --&gt;\n  &lt;$list filter=\&quot;[title[$day$]regexp[^$today$$]]\&quot;&gt;\n          (''today''\n         &lt;$button\n            class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n          &gt;\n           &lt;$action-setfield $tiddler=&lt;&lt;tickledStateTiddler&gt;&gt; $field=\&quot;$period$_tickled\&quot; $value=\&quot;$today$\&quot;/&gt;\n           {{$:/core/images/up-arrow}}\n         &lt;/$button&gt;)\n  &lt;/$list&gt;\n\\end\n\n\\define displayTicklerItemFlex(period day today)\n  &lt;div  style=\&quot;display: flex;\&quot;&gt;\n    &lt;div style=\&quot;flex-shrink: 0; margin-right: 2px;\&quot;&gt;$day$ - &lt;/div&gt;\n    &lt;div&gt;\n      &lt;div&gt;&lt;&lt;todayIndicator $period$ $day$ $today$&gt;&gt;&lt;/div&gt;\n       &lt;div&gt;\n         &lt;$list filter=\&quot;[[$day$]listed[$period$]]\&quot;&gt;\n           &lt;div&gt;&lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;&lt;/div&gt;\n         &lt;/$list&gt;\n       &lt;/div&gt;\n  &lt;/div&gt;\n\\end\n\n\\define displayTicklerItemNoFlex(period day today)\n  &lt;div&gt;\n    $day$ &lt;&lt;todayIndicator $period$ $day$ $today$&gt;&gt;\n  &lt;/div&gt;\n  &lt;div style=\&quot;margin-left: 15px;\&quot;&gt;\n    &lt;$list filter=\&quot;[[$day$]listed[$period$]]\&quot;&gt;\n      &lt;div&gt;&lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;&lt;/div&gt;\n    &lt;/$list&gt;\n  &lt;/div&gt;\n\\end\n\n\\define displayTicklerItem(period day today)\n  &lt;!-- doy and dom are short enough to display ticklers starting on the same line. For dow, start on a new line --&gt;\n  &lt;$list filter=\&quot;[[$period$]regexp[^dow$]]\&quot;&gt; &lt;&lt;displayTicklerItemNoFlex $period$ \&quot;$day$\&quot; \&quot;$today$\&quot;&gt;&gt; &lt;/$list&gt;\n  &lt;$list filter=\&quot;[[$period$]!regexp[^dow$]]\&quot;&gt; &lt;&lt;displayTicklerItemFlex $period$ \&quot;$day$\&quot; \&quot;$today$\&quot;&gt;&gt; &lt;/$list&gt;\n\\end\n\n\\define displayTicklerList(period periodValues today)\n&lt;!-- For doy and dom, using tickled as a parameter didn't work for some reason,\n      so using variable replacement syntax for that one--&gt;\n&lt;$list filter=\&quot;[enlist[$(tickled)$]]\&quot;&gt;\n&lt;$macrocall $name=displayTicklerItem period=$period$ day=&lt;&lt;currentTiddler&gt;&gt; today=\&quot;$today$\&quot;/&gt;\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[enlist[$periodValues$]allafter[$(tickled)$]]\&quot;&gt;\n&lt;$macrocall $name=displayTicklerItem period=$period$ day=&lt;&lt;currentTiddler&gt;&gt; today=\&quot;$today$\&quot;/&gt;\n&lt;/$list&gt;\n&lt;$list filter=\&quot;[enlist[$periodValues$]allbefore[$(tickled)$]]\&quot;&gt;\n&lt;$macrocall $name=displayTicklerItem period=$period$ day=&lt;&lt;currentTiddler&gt;&gt; today=\&quot;$today$\&quot;/&gt;\n&lt;/$list&gt;\n\\end\n\n&lt;$set name=\&quot;tickledStateTiddler\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n&lt;div style=\&quot;display: flex\&quot;&gt;\n&lt;div style=\&quot;flex: 1;\&quot;&gt;\n&lt;$set name=tickled value={{!!dow_tickled}} emptyValue=Monday&gt;\n  &lt;$macrocall $name=displayTicklerList\n     periodValues=\&quot;Monday Tuesday Wednesday Thursday Friday Saturday Sunday\&quot;\n     period=dow today=&lt;&lt;now DDD&gt;&gt;/&gt;\n&lt;/$set&gt;\n&lt;/div&gt;\n&lt;div style=\&quot;flex: 1;\&quot;&gt;\n&lt;$set name=\&quot;today\&quot; value=&lt;&lt;now 0DD&gt;&gt;&gt;\n&lt;$set name=tickled value={{!!dom_tickled}} emptyValue=\&quot;01\&quot;&gt;\n&lt;$set\n  name=value_list\n  filter=\&quot;[each:list-item[dom]insertbefore&lt;tickled&gt;insertbefore&lt;today&gt;sort[]]\&quot;&gt;\n  &lt;$macrocall $name=displayTicklerList periodValues=&lt;&lt;value_list&gt;&gt; period=dom today=&lt;&lt;today&gt;&gt;/&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/div&gt;\n&lt;div style=\&quot;flex: 1;\&quot;&gt;\n&lt;$set name=\&quot;today\&quot; value=&lt;&lt;now 0MM/0DD&gt;&gt;&gt;\n&lt;$set name=tickled value={{!!doy_tickled}} emptyValue=\&quot;01/01\&quot;&gt;\n&lt;$set\n  name=value_list\n  filter=\&quot;[each:list-item[doy]insertbefore&lt;tickled&gt;insertbefore&lt;today&gt;sort[]]\&quot;&gt;\n  &lt;$macrocall $name=displayTicklerList periodValues=&lt;&lt;value_list&gt;&gt; period=doy today=&lt;&lt;today&gt;&gt;/&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/$set&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/$set&gt;&quot;
+            &quot;text&quot;: &quot;\\define todayIndicator()\n  &lt;$set name=period_tickled_field filter=\&quot;[&lt;period&gt;addsuffix[_tickled]]\&quot;&gt;\n    &lt;$reveal default=&lt;&lt;day&gt;&gt; text=&lt;&lt;today&gt;&gt; type=match&gt;\n          (''today''\n         &lt;$button\n            class=\&quot;tc-btn-invisible tc-tiddlylink\&quot;\n          &gt;\n           &lt;$action-setfield $tiddler=&lt;&lt;tickledStateTiddler&gt;&gt; $field=&lt;&lt;period_tickled_field&gt;&gt; $value=&lt;&lt;today&gt;&gt;/&gt;\n           {{$:/core/images/up-arrow}}\n         &lt;/$button&gt;)\n    &lt;/$reveal&gt;\n  &lt;/$set&gt;\n\\end\n\n\\define displayTicklerItemFlex()\n  &lt;!-- doy and dom are short enough to display ticklers starting on the same line as the date. --&gt;\n  &lt;div  style=\&quot;display: flex;\&quot;&gt;\n    &lt;div style=\&quot;flex-shrink: 0; margin-right: 2px;\&quot;&gt;&lt;&lt;day&gt;&gt; - &lt;/div&gt;\n    &lt;div&gt;\n      &lt;div&gt;&lt;&lt;todayIndicator&gt;&gt;&lt;/div&gt;\n       &lt;div&gt;\n         &lt;$list filter=\&quot;[&lt;day&gt;listed&lt;period&gt;]\&quot;&gt;\n           &lt;div&gt;&lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;&lt;/div&gt;\n         &lt;/$list&gt;\n       &lt;/div&gt;\n  &lt;/div&gt;\n\\end\n\n\\define displayTicklerItemNoFlex()\n  &lt;!--  For dow, put ticklers starting on separate line from the date --&gt;\n  &lt;div&gt;&lt;&lt;day&gt;&gt; &lt;&lt;todayIndicator&gt;&gt;&lt;/div&gt;\n  &lt;div style=\&quot;margin-left: 15px;\&quot;&gt;\n    &lt;$list filter=\&quot;[&lt;day&gt;listed&lt;period&gt;]\&quot;&gt;\n      &lt;div&gt;&lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;&lt;/div&gt;\n    &lt;/$list&gt;\n  &lt;/div&gt;\n\\end\n\n\\define displayTicklerList()\n  &lt;$list variable=day filter=\&quot;[enlist&lt;tickled&gt;]\&quot;&gt;\n    &lt;!-- Don't display entry for the tickled date unless it is non-empty (i.e. equal to today or has tickler for that day ) --&gt;\n    &lt;$list variable=hasTicklers filter=\&quot;[&lt;day&gt;listed&lt;period&gt;count[]] -0\&quot;\n      emptyMessage=\&quot;\&quot;\&quot;\n          &lt;$reveal default=&lt;&lt;day&gt;&gt; text=&lt;&lt;today&gt;&gt; type=match&gt;\n            &lt;$macrocall $name=&lt;&lt;displayTicklerItem&gt;&gt;/&gt;\n          &lt;/$reveal&gt;\n      \&quot;\&quot;\&quot;&gt;\n      &lt;$macrocall $name=&lt;&lt;displayTicklerItem&gt;&gt;/&gt;\n    &lt;/$list&gt;\n  &lt;/$list&gt;\n  &lt;$list variable=day filter=\&quot;[enlist&lt;periodValues&gt;allafter&lt;tickled&gt;]\&quot;&gt;\n    &lt;$macrocall $name=&lt;&lt;displayTicklerItem&gt;&gt;/&gt;\n  &lt;/$list&gt;\n  &lt;$list variable=day filter=\&quot;[enlist&lt;periodValues&gt;allbefore&lt;tickled&gt;]\&quot;&gt;\n    &lt;$macrocall $name=&lt;&lt;displayTicklerItem&gt;&gt;/&gt;\n  &lt;/$list&gt;\n\\end\n\n\\define todayDow() &lt;&lt;now DDD&gt;&gt;\n\\define todayDom() &lt;&lt;now 0DD&gt;&gt;\n\\define todayDoy() &lt;&lt;now 0MM/0DD&gt;&gt;\n\n&lt;!-- Using import variables to allow the todayDow, etc. macros to be overridden for demo purposes --&gt;\n&lt;$importvariables filter=\&quot;[tag[$:/plugins/btheado/ticklers/macros]!has[draft.of]] [title{!!tickler_macros}]\&quot;&gt;\n&lt;$set name=\&quot;tickledStateTiddler\&quot; value=&lt;&lt;currentTiddler&gt;&gt;&gt;\n&lt;div style=\&quot;display: flex\&quot;&gt;\n&lt;div style=\&quot;flex: 1;\&quot;&gt;\n  &lt;$wikify name=today text=&lt;&lt;todayDow&gt;&gt;&gt;\n    &lt;$set name=tickled value={{!!dow_tickled}} emptyValue=Monday&gt;\n      &lt;$vars displayTicklerItem=displayTicklerItemNoFlex period=dow\n         periodValues=\&quot;Monday Tuesday Wednesday Thursday Friday Saturday Sunday\&quot;&gt;\n        &lt;&lt;displayTicklerList&gt;&gt;\n      &lt;/$vars&gt;\n    &lt;/$set&gt;\n  &lt;/$wikify&gt;\n&lt;/div&gt;\n&lt;div style=\&quot;flex: 1;\&quot;&gt;\n  &lt;$vars displayTicklerItem=displayTicklerItemFlex period=dom&gt;\n    &lt;$wikify name=today text=&lt;&lt;todayDom&gt;&gt;&gt;\n      &lt;$set name=tickled value={{!!dom_tickled}} emptyValue=\&quot;01\&quot;&gt;\n        &lt;$set\n          name=periodValues\n          filter=\&quot;[each:list-item&lt;period&gt;insertbefore&lt;tickled&gt;insertbefore&lt;today&gt;sort[]]\&quot;&gt;\n          &lt;&lt;displayTicklerList&gt;&gt;\n        &lt;/$set&gt;\n      &lt;/$set&gt;\n    &lt;/$wikify&gt;\n  &lt;/$vars&gt;\n&lt;/div&gt;\n&lt;div style=\&quot;flex: 1;\&quot;&gt;\n  &lt;$vars displayTicklerItem=displayTicklerItemFlex period=doy&gt;\n    &lt;$wikify name=today text=&lt;&lt;todayDoy&gt;&gt;&gt;\n      &lt;$set name=tickled value={{!!doy_tickled}} emptyValue=\&quot;01/01\&quot;&gt;\n        &lt;$set\n          name=periodValues\n          filter=\&quot;[each:list-item&lt;period&gt;insertbefore&lt;tickled&gt;insertbefore&lt;today&gt;sort[]]\&quot;&gt;\n          &lt;&lt;displayTicklerList&gt;&gt;\n        &lt;/$set&gt;\n      &lt;/$set&gt;\n    &lt;/$wikify&gt;\n  &lt;/$vars&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&lt;/$set&gt;\n&lt;/$importvariables&gt;&quot;
         }
     }
 }</pre>
@@ -8987,7 +9026,19 @@ Error message and password prompt
     }
 }</pre>
 </div>
+<div created="20190107025812340" creator="0.0.0.0" dom="16" modified="20190107025813400" modifier="0.0.0.0" title="bill X due" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20190107025859876" creator="0.0.0.0" dom="10" modified="20190107025900938" modifier="0.0.0.0" title="bill Y due" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20190110025141500" creator="0.0.0.0" dom="16" modified="20190110025150239" modifier="0.0.0.0" tags="" title="bill Z due" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
 <div created="20181120023730424" creator="0.0.0.0" modified="20181120023731518" modifier="0.0.0.0" tags="ftlist/example/3 ftlist/example/4 ftlist/example/5 ftlist/example/6 ftlist/example/7 ftlist/example/8 ftlist/example/9 [[reclaim treasure from the dragon Smaug]]" title="convince the dwarves Bilbo is a worthy companion" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20190110024125500" creator="0.0.0.0" doy="03/20 09/22" modified="20190110024447609" modifier="0.0.0.0" title="Equinox" type="text/vnd.tiddlywiki">
 <pre></pre>
 </div>
 <div created="20181120023730424" creator="0.0.0.0" modified="20181120023731514" modifier="0.0.0.0" tags="ftlist/example/3 ftlist/example/4 ftlist/example/5 ftlist/example/6 ftlist/example/7 ftlist/example/8 ftlist/example/9 [[reclaim treasure from the dragon Smaug]]" title="escape from the trolls" type="text/vnd.tiddlywiki">
@@ -9148,8 +9199,23 @@ Also:
 <div created="20181120023730427" creator="0.0.0.0" list="[[reclaim treasure from the dragon Smaug]] [[recruit the burglar Bilbo Baggins]] [[escape from the trolls]] [[convince the dwarves Bilbo is a worthy companion]] [[ftlist demo]]" modified="20181120023731494" modifier="0.0.0.0" title="ftlist/example/9" type="text/vnd.tiddlywiki">
 <pre>{{||$:/plugins/btheado/ftlist/tagged-list}}</pre>
 </div>
+<div created="20190110023152614" creator="0.0.0.0" dow="Wednesday" modified="20190110023153690" modifier="0.0.0.0" title="laundry" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
 <div created="20181227193018831" creator="0.0.0.0" ftlist_macros="$:/plugins/btheado/ftlist/action-macros-list-only" list="" modified="20181227193255362" modifier="0.0.0.0" title="list-only ftlist" type="text/vnd.tiddlywiki">
 <pre>{{||$:/plugins/btheado/ftlist/main}}</pre>
+</div>
+<div created="20190107030126102" creator="0.0.0.0" dom="01" modified="20190107030127162" modifier="0.0.0.0" title="pay bills" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20190107030333087" creator="0.0.0.0" doy="01/09" modified="20190107030334270" modifier="0.0.0.0" title="person X's birthday" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20190107030352888" creator="0.0.0.0" doy="04/14" modified="20190107030353944" modifier="0.0.0.0" title="person Y's birthday" type="text/vnd.tiddlywiki">
+<pre></pre>
+</div>
+<div created="20190107025708491" creator="0.0.0.0" dow="Tuesday Friday" modified="20190107025709549" modifier="0.0.0.0" title="play soccer" type="text/vnd.tiddlywiki">
+<pre></pre>
 </div>
 <div created="20181120023730422" creator="0.0.0.0" modified="20181120023731532" modifier="0.0.0.0" tags="ftlist/example/1 ftlist/example/2 ftlist/example/3 ftlist/example/4 ftlist/example/5 ftlist/example/6 ftlist/example/6/tagbar ftlist/example/7 ftlist/example/7/tagbar ftlist/example/8 ftlist/example/9" title="reclaim treasure from the dragon Smaug" type="text/vnd.tiddlywiki">
 <pre></pre>
@@ -9169,6 +9235,89 @@ Also:
 </div>
 <div created="20181227193310801" creator="0.0.0.0" ftlist_macros="$:/plugins/btheado/ftlist/action-macros-StoryList" list="" modified="20181227193326928" modifier="0.0.0.0" tags="" title="StoryList" type="text/vnd.tiddlywiki">
 <pre>{{||$:/plugins/btheado/ftlist/main}}</pre>
+</div>
+<div created="20190107030416234" creator="0.0.0.0" modified="20190112213837108" modifier="0.0.0.0" title="ticklers examples" type="text/vnd.tiddlywiki">
+<pre>Here are some live examples using a simulated current date for demonstration purposes. Since they are &quot;live&quot;, the up arrow buttons are functional. If you click them it might make the accompanying text confusing :-).
+
+---
+
+&lt;$list filter=&quot;[prefix[ticklers/example/]]&quot;&gt;
+
+&lt;$transclude/&gt;
+
+---
+
+&lt;/$list&gt;</pre>
+</div>
+<div created="20190107024451130" creator="0.0.0.0" modified="20190112214058253" modifier="0.0.0.0" tags="" title="ticklers plugin" type="text/vnd.tiddlywiki">
+<pre>!Demo
+
+See the [[ticklers examples]] for an illustration of most of the functionality.
+
+{{$:/plugins/btheado/ticklers/readme}}</pre>
+</div>
+<div created="20190110025320183" creator="0.0.0.0" modified="20190112213503947" modifier="0.0.0.0" tickler_macros="ticklers/example/0" title="ticklers/example/0" type="text/vnd.tiddlywiki">
+<pre>\define todayDow() Tuesday
+\define todayDom() 08
+\define todayDoy() 01/08
+
+If today were &lt;&lt;todayDow&gt;&gt;, &lt;&lt;todayDoy&gt;&gt;, the tickler list would look like this. Here, the user has created several tiddlers and has used the dow, dom, and doy fields to mark them as ticklers.
+
+The up arrow has never been clicked in any of the columns, so the display defaults to showing the list entries from earliest to latest. In this case, only the day of month column has any entries which fall before the current day.
+
+The user is reminded today they will [[play soccer]], a week ago they should have paid their bills and tomorrow is [[person X's birthday]]:
+
+&lt;&lt;&lt;
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+&lt;&lt;&lt;</pre>
+</div>
+<div created="20190110030357252" creator="0.0.0.0" dom_tickled="08" modified="20190112213146938" modifier="0.0.0.0" tags="" tickler_macros="ticklers/example/0" title="ticklers/example/1" type="text/vnd.tiddlywiki">
+<pre>\define todayDow() Tuesday
+\define todayDom() 08
+\define todayDoy() 01/08
+
+The user pays their bills or adds [[pay bills]] to their todo list and then clicks the up arrow in the day of month column. The purpose of the [[pay bills]] reminder has been served and it is moved to the bottom of the list.
+
+Actually, the user probably already paid their bills a week ago, but since this is the first time using the tickler functionality, they still need to click the button to acknowledge that:
+
+&lt;&lt;&lt;
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+&lt;&lt;&lt;</pre>
+</div>
+<div created="20190110032742596" creator="0.0.0.0" dom_tickled="08" modified="20190112213920132" modifier="0.0.0.0" tags="" tickler_macros="ticklers/example/3" title="ticklers/example/3" type="text/vnd.tiddlywiki">
+<pre>\define todayDow() Thursday
+\define todayDom() 10
+\define todayDoy() 01/10
+
+After two days pass (now Thursday 01/10) without any interaction by the user, it will look like this. The today markers have moved down to indicate the passage of time.
+
+The user is reminded they should have washed their clothes yesterday and they can check if the bill Y payment cleared. Also, [[person X's birthday]] has passed:
+
+&lt;&lt;&lt;
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+&lt;&lt;&lt;</pre>
+</div>
+<div created="20190110032952525" creator="0.0.0.0" dom_tickled="10" dow_tickled="Thursday" doy_tickled="01/10" modified="20190112204617911" modifier="0.0.0.0" tags="" tickler_macros="ticklers/example/4" title="ticklers/example/4" type="text/vnd.tiddlywiki">
+<pre>\define todayDow() Thursday
+\define todayDom() 10
+\define todayDoy() 01/10
+
+After clicking the arrows in the day of week and day of year columns, days above the today markers again cycle to the bottom:
+
+&lt;&lt;&lt;
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+&lt;&lt;&lt;</pre>
+</div>
+<div created="20190112204950620" creator="0.0.0.0" dom_tickled="13" dow_tickled="Saturday" doy_tickled="04/13" modified="20190112205805359" modifier="0.0.0.0" tags="" tickler_macros="ticklers/example/5" title="ticklers/example/5" type="text/vnd.tiddlywiki">
+<pre>\define todayDow() Monday
+\define todayDom() 15
+\define todayDoy() 04/15
+
+Later in the year on &lt;&lt;todayDow&gt;&gt;, &lt;&lt;todayDoy&gt;&gt; when the up arrows were last hit on {{!!dow_tickled}}, {{!!doy_tickled}} it would look like this: 
+
+&lt;&lt;&lt;
+{{||$:/plugins/btheado/ticklers/tickler-list}}
+&lt;&lt;&lt;</pre>
 </div>
 
 </div>
