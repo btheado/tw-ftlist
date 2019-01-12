@@ -1,5 +1,5 @@
 created: 20181104012246100
-modified: 20190108002809552
+modified: 20190112202053866
 tags: 
 title: $:/plugins/btheado/ticklers/tickler-list
 
@@ -43,7 +43,15 @@ title: $:/plugins/btheado/ticklers/tickler-list
 
 \define displayTicklerList()
   <$list variable=day filter="[enlist<tickled>]">
-    <$macrocall $name=<<displayTicklerItem>>/>
+    <!-- Don't display entry for the tickled date unless it is non-empty (i.e. equal to today or has tickler for that day ) -->
+    <$list variable=hasTicklers filter="[<day>listed<period>count[]] -0"
+      emptyMessage="""
+          <$reveal default=<<day>> text=<<today>> type=match>
+            <$macrocall $name=<<displayTicklerItem>>/>
+          </$reveal>
+      """>
+      <$macrocall $name=<<displayTicklerItem>>/>
+    </$list>
   </$list>
   <$list variable=day filter="[enlist<periodValues>allafter<tickled>]">
     <$macrocall $name=<<displayTicklerItem>>/>
