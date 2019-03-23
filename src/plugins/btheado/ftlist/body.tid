@@ -1,0 +1,11 @@
+created: 20190323194750453
+modified: 20190323194805372
+title: $:/plugins/btheado/ftlist/body
+
+<$list filter="[all[current]has[text]]">
+  <$reveal type="match" state=<<showBodyText>> text="true">
+    <div style="margin-left: 30px; white-space: normal; border:1px solid black; padding: 5px;">
+      <$transclude tiddler=<<curentTiddler>> mode=block/>
+    </div>
+  </$reveal>
+</$list>

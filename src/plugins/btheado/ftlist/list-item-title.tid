@@ -1,0 +1,39 @@
+created: 20190323185916626
+modified: 20190323194005005
+tags: 
+title: $:/plugins/btheado/ftlist/list-item-title
+
+    <$list filter="[all[current]!has[text]]">
+      <$link><<currentTiddler>></$link>
+    </$list>
+    <$list filter="[all[current]has[text]]">
+      <$reveal type="nomatch" state=<<showBodyText>> text=true>
+        <$button
+           set=<<showBodyText>>
+           setTo=true
+           class="tc-btn-invisible tc-tiddlylink"
+           tooltip="Show body"
+           aria-label="Show body"
+        >
+          <!-- Make tiddlers which have non-empty body text stand out -->
+          <b><<currentTiddler>></b>
+        </$button>
+      </$reveal>
+      <$reveal type="match" state=<<showBodyText>> text=true>
+        <$button
+           set=<<showBodyText>>
+           setTo=""
+           class="tc-btn-invisible tc-tiddlylink"
+           tooltip="Hide body"
+           aria-label="Hide body"
+        >
+          <<currentTiddler>>
+        </$button>
+        <$button
+          to=<<currentTiddler>>
+           class="tc-btn-invisible tc-tiddlylink"
+           tooltip="Open tiddler"
+           aria-label="Open tiddler"
+        >{{$:/core/images/open-window}}</$button>
+      </$reveal>
+    </$list>
