@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20190322213648087
+modified: 20190323012701649
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -91,6 +91,12 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
         >
           <<currentTiddler>>
         </$button>
+        <$button
+          to=<<currentTiddler>>
+           class="tc-btn-invisible tc-tiddlylink"
+           tooltip="Open tiddler"
+           aria-label="Open tiddler"
+        >{{$:/core/images/open-window}}</$button>
       </$reveal>
     </$list>
     <$reveal type="match" state=<<showItemTags>> text="true">
