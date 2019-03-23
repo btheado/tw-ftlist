@@ -1,5 +1,5 @@
 created: 20190323185916626
-modified: 20190323202148952
+modified: 20190323231724078
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
@@ -29,6 +29,27 @@ title: $:/plugins/btheado/ftlist/list-item-title
         >
           <<currentTiddler>>
         </$button>
+        <$reveal type="nomatch" state=<<editBodyText>> text=true>
+          <$button
+             set=<<editBodyText>>
+             setTo=true
+             tooltip={{$:/language/Buttons/Edit/Hint}}
+             aria-label={{$:/language/Buttons/Edit/Caption}}
+             class="tc-btn-invisible tc-btn-mini">
+            {{$:/core/images/edit-button}}
+          </$button>
+        </$reveal>
+        <$reveal type="match" state=<<editBodyText>> text=true>
+          <$button
+             set=<<editBodyText>>
+             setTo=""
+             tooltip="return to view mode"
+             aria-label="return to view mode"
+             class="tc-btn-invisible tc-btn-mini">
+            {{$:/core/images/close-button}}
+          </$button>
+        </$reveal>
+
         <$button
           to=<<currentTiddler>>
            class="tc-btn-invisible tc-tiddlylink"

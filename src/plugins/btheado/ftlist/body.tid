@@ -1,11 +1,21 @@
 created: 20190323194750453
-modified: 20190323194805372
+modified: 20190323234311340
 title: $:/plugins/btheado/ftlist/body
 
 <$list filter="[all[current]has[text]]">
   <$reveal type="match" state=<<showBodyText>> text="true">
-    <div style="margin-left: 30px; white-space: normal; border:1px solid black; padding: 5px;">
-      <$transclude tiddler=<<curentTiddler>> mode=block/>
-    </div>
+    <$reveal type="nomatch" state=<<editBodyText>> text="true">
+      <div style="margin-left: 30px; white-space: normal; border:1px solid black; padding: 5px;">
+        <$transclude tiddler=<<curentTiddler>> mode=block/>
+      </div>
+    </$reveal>
+    <$reveal type="match" state=<<editBodyText>> text="true">
+      <div style="margin-left: 30px; white-space: normal; ">
+        <$edit
+            tiddler=<<currentTiddler>>
+            class="tc-edit-texteditor"
+            placeholder={{$:/language/EditTemplate/Body/Placeholder}}/>
+      </div>
+    </$reveal>
   </$reveal>
 </$list>

@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20190323202922587
+modified: 20190323232555867
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -26,14 +26,6 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
         actions=<<markDoneActions>>>
         {{$:/core/images/done-button}}
     </$button>
-    <$button
-      message="tm-edit-tiddler"
-      tooltip={{$:/language/Buttons/Edit/Hint}}
-      aria-label={{$:/language/Buttons/Edit/Caption}}
-      class="tc-btn-invisible tc-btn-mini">
-      {{$:/core/images/edit-button}}
-    </$button>
-
     {{||$:/plugins/btheado/ftlist/toggle-sublist-display}}
   </div>
   <div>
@@ -57,6 +49,8 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
 
 <$wikify name="expandSublist" text="<<qualify $:/state/btheado/ftlist/expanded>>">
   <$wikify name="showBodyText" text="<<qualify $:/state/btheado/ftlist/show-body-text>>"> 
-    <<displayListItem>>
+    <$wikify name="editBodyText" text="<<qualify $:/state/btheado/ftlist/edit-body-text>>"> 
+      <<displayListItem>>
+    </$wikify>
   </$wikify>
 </$wikify>
