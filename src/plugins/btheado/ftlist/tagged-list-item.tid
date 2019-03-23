@@ -1,5 +1,5 @@
 created: 20180429151224584
-modified: 20190323194808224
+modified: 20190323202922587
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
@@ -32,37 +32,9 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
       aria-label={{$:/language/Buttons/Edit/Caption}}
       class="tc-btn-invisible tc-btn-mini">
       {{$:/core/images/edit-button}}
-     </$button>
+    </$button>
 
-     <$reveal type="nomatch" state=<<expandSublist>> text=<<currentTiddler>>>
-       <$button
-          set=<<expandSublist>>
-          setTo=<<currentTiddler>>
-          class="tc-btn-invisible tc-tiddlylink"
-          tooltip="Expand sublist"
-          aria-label="Expand sublist"
-        >
-          <!-- Ensure the child's hasChildrenFilter macro is used rather than the parent -->
-          <$importvariables filter="$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]] [title{!!ftlist_macros}]">
-            <!-- Items with "children" have arrow in different color to distinguish them. I hope this isn't slow. -->
-            <$list filter=<<hasChildrenFilter>>
-              emptyMessage="{{$:/core/images/right-arrow}}">
-              <span style="fill:DarkOrchid;">{{$:/core/images/right-arrow}}</span>
-            </$list>
-          </$importvariables>
-       </$button>
-     </$reveal>
-     <$reveal type="match" state=<<expandSublist>> text=<<currentTiddler>>>
-       <$button
-          set=<<expandSublist>>
-          setTo=""
-          class="tc-btn-invisible tc-tiddlylink"
-          tooltip="Expand sublist"
-          aria-label="Expand sublist"
-        >
-          {{$:/core/images/down-arrow}}
-       </$button>
-     </$reveal>
+    {{||$:/plugins/btheado/ftlist/toggle-sublist-display}}
   </div>
   <div>
     {{||$:/plugins/btheado/ftlist/list-item-title}}

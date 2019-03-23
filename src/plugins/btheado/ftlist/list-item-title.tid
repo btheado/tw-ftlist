@@ -1,5 +1,5 @@
 created: 20190323185916626
-modified: 20190323194005005
+modified: 20190323202148952
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
@@ -32,8 +32,8 @@ title: $:/plugins/btheado/ftlist/list-item-title
         <$button
           to=<<currentTiddler>>
            class="tc-btn-invisible tc-tiddlylink"
-           tooltip="Open tiddler"
-           aria-label="Open tiddler"
+           tooltip="Open tiddler in story river"
+           aria-label="Open tiddler in story river"
         >{{$:/core/images/open-window}}</$button>
       </$reveal>
     </$list>
