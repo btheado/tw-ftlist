@@ -1,5 +1,5 @@
 created: 20190323185916626
-modified: 20190324034609589
+modified: 20190324175512813
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
@@ -14,6 +14,7 @@ title: $:/plugins/btheado/ftlist/list-item-title
     >
       <$list filter="[all[current]!has[text]]">
         <<currentTiddler>>
+        <$action-setfield $tiddler=<<editBodyText>> $field=text $value=true/>
       </$list>
       <$list filter="[all[current]has[text]]">
         <!-- Make tiddlers which have non-empty body text stand out -->
