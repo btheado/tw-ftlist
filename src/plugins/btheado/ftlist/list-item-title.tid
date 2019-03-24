@@ -1,12 +1,8 @@
 created: 20190323185916626
-modified: 20190324032303572
+modified: 20190324033318404
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
-    <$list filter="[all[current]!has[text]]">
-      <$link><<currentTiddler>></$link>
-    </$list>
-    <$list filter="[all[current]has[text]]">
       <$reveal type="nomatch" state=<<showBodyText>> text=true>
         <$draggable tiddler=<<currentTiddler>>>
           <$button
@@ -16,8 +12,13 @@ title: $:/plugins/btheado/ftlist/list-item-title
              tooltip="Show body"
              aria-label="Show body"
           >
-            <!-- Make tiddlers which have non-empty body text stand out -->
-            <b><<currentTiddler>></b>
+            <$list filter="[all[current]!has[text]]">
+              <<currentTiddler>>
+            </$list>
+            <$list filter="[all[current]has[text]]">
+              <!-- Make tiddlers which have non-empty body text stand out -->
+              <b><<currentTiddler>></b>
+            </$list>
           </$button>
         </$draggable>
       </$reveal>
@@ -61,4 +62,3 @@ title: $:/plugins/btheado/ftlist/list-item-title
            aria-label="Open tiddler in story river"
         >{{$:/core/images/open-window}}</$button>
       </$reveal>
-    </$list>
