@@ -1,5 +1,5 @@
 created: 20190323185916626
-modified: 20190323231724078
+modified: 20190324032303572
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
@@ -8,27 +8,31 @@ title: $:/plugins/btheado/ftlist/list-item-title
     </$list>
     <$list filter="[all[current]has[text]]">
       <$reveal type="nomatch" state=<<showBodyText>> text=true>
-        <$button
-           set=<<showBodyText>>
-           setTo=true
-           class="tc-btn-invisible tc-tiddlylink"
-           tooltip="Show body"
-           aria-label="Show body"
-        >
-          <!-- Make tiddlers which have non-empty body text stand out -->
-          <b><<currentTiddler>></b>
-        </$button>
+        <$draggable tiddler=<<currentTiddler>>>
+          <$button
+             set=<<showBodyText>>
+             setTo=true
+             class="tc-btn-invisible tc-tiddlylink"
+             tooltip="Show body"
+             aria-label="Show body"
+          >
+            <!-- Make tiddlers which have non-empty body text stand out -->
+            <b><<currentTiddler>></b>
+          </$button>
+        </$draggable>
       </$reveal>
       <$reveal type="match" state=<<showBodyText>> text=true>
-        <$button
-           set=<<showBodyText>>
-           setTo=""
-           class="tc-btn-invisible tc-tiddlylink"
-           tooltip="Hide body"
-           aria-label="Hide body"
-        >
-          <<currentTiddler>>
-        </$button>
+        <$draggable tiddler=<<currentTiddler>> tag=span>
+          <$button
+             set=<<showBodyText>>
+             setTo=""
+             class="tc-btn-invisible tc-tiddlylink"
+             tooltip="Hide body"
+             aria-label="Hide body"
+          >
+            <<currentTiddler>>
+          </$button>
+        </$draggable>
         <$reveal type="nomatch" state=<<editBodyText>> text=true>
           <$button
              set=<<editBodyText>>
