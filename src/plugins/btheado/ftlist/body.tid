@@ -1,5 +1,5 @@
 created: 20190323194750453
-modified: 20190324034754521
+modified: 20190324195755791
 title: $:/plugins/btheado/ftlist/body
 
 <$reveal type="match" state=<<showBodyText>> text="true">
@@ -10,10 +10,15 @@ title: $:/plugins/btheado/ftlist/body
   </$reveal>
   <$reveal type="match" state=<<editBodyText>> text="true">
     <div style="margin-left: 30px; white-space: normal; ">
-      <$edit
-          tiddler=<<currentTiddler>>
-          class="tc-edit-texteditor"
-          placeholder={{$:/language/EditTemplate/Body/Placeholder}}/>
+      <$keyboard key=ctrl-enter actions="""
+        <$action-setfield $tiddler=<<editBodyText>> $field=text $value=""/>
+        <$action-sendmessage $message="tm-auto-save-wiki"/>
+      """>
+        <$edit
+            tiddler=<<currentTiddler>>
+            class="tc-edit-texteditor"
+            placeholder={{$:/language/EditTemplate/Body/Placeholder}}/>
+      </$keyboard>
     </div>
   </$reveal>
 </$reveal>
