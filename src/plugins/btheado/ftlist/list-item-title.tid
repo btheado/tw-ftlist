@@ -1,10 +1,10 @@
 created: 20190323185916626
-modified: 20190324033318404
+modified: 20190324034229286
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
       <$reveal type="nomatch" state=<<showBodyText>> text=true>
-        <$draggable tiddler=<<currentTiddler>>>
+        <$draggable tiddler=<<currentTiddler>> tag=span>
           <$button
              set=<<showBodyText>>
              setTo=true
