@@ -1,64 +1,63 @@
 created: 20190323185916626
-modified: 20190324034229286
+modified: 20190324034609589
 tags: 
 title: $:/plugins/btheado/ftlist/list-item-title
 
-      <$reveal type="nomatch" state=<<showBodyText>> text=true>
-        <$draggable tiddler=<<currentTiddler>> tag=span>
-          <$button
-             set=<<showBodyText>>
-             setTo=true
-             class="tc-btn-invisible tc-tiddlylink"
-             tooltip="Show body"
-             aria-label="Show body"
-          >
-            <$list filter="[all[current]!has[text]]">
-              <<currentTiddler>>
-            </$list>
-            <$list filter="[all[current]has[text]]">
-              <!-- Make tiddlers which have non-empty body text stand out -->
-              <b><<currentTiddler>></b>
-            </$list>
-          </$button>
-        </$draggable>
-      </$reveal>
-      <$reveal type="match" state=<<showBodyText>> text=true>
-        <$draggable tiddler=<<currentTiddler>> tag=span>
-          <$button
-             set=<<showBodyText>>
-             setTo=""
-             class="tc-btn-invisible tc-tiddlylink"
-             tooltip="Hide body"
-             aria-label="Hide body"
-          >
-            <<currentTiddler>>
-          </$button>
-        </$draggable>
-        <$reveal type="nomatch" state=<<editBodyText>> text=true>
-          <$button
-             set=<<editBodyText>>
-             setTo=true
-             tooltip={{$:/language/Buttons/Edit/Hint}}
-             aria-label={{$:/language/Buttons/Edit/Caption}}
-             class="tc-btn-invisible tc-btn-mini">
-            {{$:/core/images/edit-button}}
-          </$button>
-        </$reveal>
-        <$reveal type="match" state=<<editBodyText>> text=true>
-          <$button
-             set=<<editBodyText>>
-             setTo=""
-             tooltip="return to view mode"
-             aria-label="return to view mode"
-             class="tc-btn-invisible tc-btn-mini">
-            {{$:/core/images/close-button}}
-          </$button>
-        </$reveal>
-
-        <$button
-          to=<<currentTiddler>>
-           class="tc-btn-invisible tc-tiddlylink"
-           tooltip="Open tiddler in story river"
-           aria-label="Open tiddler in story river"
-        >{{$:/core/images/open-window}}</$button>
-      </$reveal>
+<$reveal type="nomatch" state=<<showBodyText>> text=true>
+  <$draggable tiddler=<<currentTiddler>> tag=span>
+    <$button
+       set=<<showBodyText>>
+       setTo=true
+       class="tc-btn-invisible tc-tiddlylink"
+       tooltip="Show body"
+       aria-label="Show body"
+    >
+      <$list filter="[all[current]!has[text]]">
+        <<currentTiddler>>
+      </$list>
+      <$list filter="[all[current]has[text]]">
+        <!-- Make tiddlers which have non-empty body text stand out -->
+        <b><<currentTiddler>></b>
+      </$list>
+    </$button>
+  </$draggable>
+</$reveal>
+<$reveal type="match" state=<<showBodyText>> text=true>
+  <$draggable tiddler=<<currentTiddler>> tag=span>
+    <$button
+       set=<<showBodyText>>
+       setTo=""
+       class="tc-btn-invisible tc-tiddlylink"
+       tooltip="Hide body"
+       aria-label="Hide body"
+    >
+      <<currentTiddler>>
+    </$button>
+  </$draggable>
+  <$reveal type="nomatch" state=<<editBodyText>> text=true>
+    <$button
+       set=<<editBodyText>>
+       setTo=true
+       tooltip={{$:/language/Buttons/Edit/Hint}}
+       aria-label={{$:/language/Buttons/Edit/Caption}}
+       class="tc-btn-invisible tc-btn-mini">
+      {{$:/core/images/edit-button}}
+    </$button>
+  </$reveal>
+  <$reveal type="match" state=<<editBodyText>> text=true>
+    <$button
+       set=<<editBodyText>>
+       setTo=""
+       tooltip="return to view mode"
+       aria-label="return to view mode"
+       class="tc-btn-invisible tc-btn-mini">
+      {{$:/core/images/close-button}}
+    </$button>
+  </$reveal>
+  <$button
+     to=<<currentTiddler>>
+     class="tc-btn-invisible tc-tiddlylink"
+     tooltip="Open tiddler in story river"
+     aria-label="Open tiddler in story river"
+  >{{$:/core/images/open-window}}</$button>
+</$reveal>
