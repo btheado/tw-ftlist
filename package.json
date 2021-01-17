@@ -18,11 +18,10 @@
     "wiki",
     "browser"
   ],
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "cross-env": "^4.0.0",
-    "tiddlywiki": "^5.1.*"
+    "tiddlywiki": "^5.1.23"
   },
   "scripts": {
     "build:index": "npm run tw -- --build index",

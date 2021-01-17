@@ -4,35 +4,37 @@ tags:
 title: $:/plugins/btheado/ftlist/action-macros
 
 \define markDoneActions()
-    <!-- Using this approach as found in the "new journal" button code. It allows for the
-          timestamp to be calculated at the time the button is pressed rather than the time
-          the button is rendered -->
-    <$wikify name=timestamp text="""<$macrocall $name="now" format="[UTC]YYYY0MM0DD0hh0mm0ssXXX"/>""">
-        <!-- Remove from list, remove the tag, and add a timestamp to ftlist_done field -->
-        <$action-listops $tiddler=<<parentTiddler>>  $subfilter="-[<currentTiddler>]"/>
-        <$action-listops $tiddler=<<currentTiddler>>  $tags="-[<parentTiddler>]"/>
-        <$action-listops $tiddler=<<currentTiddler>>  $field=ftlist_done $subfilter="[<timestamp>]"/>
-     </$wikify>
+  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[prepend[done]]"/>
 \end
 
 \define moveToTopActions()
   <!-- Adding a child also moves it to the top, so just re-use that macro. Someone overriding these
         macros can likely only override addChildActions and leave this one alone  -->
   <$set name=actionTiddler value=<<currentTiddler>>>
-    <$tiddler tiddler=<<parentTiddler>>>
-      <<addChildActions>>
-    </$tiddler>
+    <<addChildActions>>
   </$set>
 \end
 
-\define hasChildrenFilter() [all[current]tagging[]!has[draft.of]first[]count[]] -0
-
-\define childrenFilter() [<currentTiddler>tagging[]!has[draft.of]reverse[]]
+\define addChildActions_old()
+  <!-- actionTiddler is the child being added -->
+  <!-- Move or add the child to the end of the list -->
+  <$vars today=<<now YYYY-0MM-0DD>>>
+  <$action-listops $tiddler=<<today>> $field=ftlist $filter="[<actionTiddler>] [<today>get[ftlist]enlist-input[]]"/>
+  <!-- Also add today's day to  newly added item' ftlist_day field -->
+  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $filter="[<today>] [<actionTiddler>get[ftlist_day]enlist-input[]]"/>
+  </$vars>
+\end
 
 \define addChildActions()
-  <!-- actionTiddler is the child being added and currentTiddler is the parent -->
-  <!-- Move or add the child to the end of the list -->
-  <$action-listops $tiddler=<<currentTiddler>>  $filter="[<currentTiddler>tagging[]] [<actionTiddler>]"/>
-  <!-- Make sure the newly added item has the right tag -->
-  <$action-listops $tiddler=<<actionTiddler>> $tags="[<currentTiddler>]"/>
+  <!-- Using this approach as found in the "new journal" button code. It allows for the
+        timestamp to be calculated at the time the button is pressed rather than the time
+        the button is rendered -->
+  <$wikify name=today text="""<$macrocall $name="now" format="YYYY-0MM-0DD"/>""">
+    <!-- actionTiddler is the child being added -->
+    <!-- Move or add the child to the front of the list -->
+    <!-- Can't use prepend here because there might be spaces in the text typed by the user and each word would get added as a separate item and due to Dominant Append in TW lists, I have to do this dance with reverse -->
+    <$action-listops $tiddler=<<today>> $field=ftlist $subfilter="+[reverse[]] [<actionTiddler>] +[reverse[]]"/>
+    <!-- Also add today's day to newly added item' ftlist_day field -->
+    <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[prepend<today>]"/>
+  </$wikify>
 \end

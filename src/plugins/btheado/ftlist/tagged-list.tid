@@ -17,9 +17,18 @@ title: $:/plugins/btheado/ftlist/tagged-list
   {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
 </$list>
   <$set name="parentTiddler" value=<<currentTiddler>>>
-      <$list filter=<<childrenFilter>> emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
-        {{||$:/plugins/btheado/ftlist/tagged-list-item}}
+      <$list filter="[all[tiddlers]has[ftlist]!sort[]limit[40]]" variable=day emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
+        <!--div><$link to=<<day>>><<day>></$link></div-->
+        <div><<day>></div>
+        <$list filter="[title<day>get[ftlist]enlist-input[]]" variable=item>
+          <$list filter="[title<item>get[ftlist_day]prefix<day>]">
+            <$tiddler tiddler=<<item>>>
+              {{||$:/plugins/btheado/ftlist/tagged-list-item}}
+            </$tiddler>
+          </$list>
+        </$list>
       </$list>
+
   </$set>
 </$wikify>
 </$importvariables>
