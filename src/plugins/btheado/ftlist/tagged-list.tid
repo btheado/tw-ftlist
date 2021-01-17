@@ -6,10 +6,9 @@ title: $:/plugins/btheado/ftlist/tagged-list
 <$importvariables filter="$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]] [title{!!ftlist_macros}]">
 <$wikify name="showItemTags" text="<<qualify $:/state/btheado/ftlist/show-item-tags>>">
   {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
-</$list>
-  <$set name="parentTiddler" value=<<currentTiddler>>>
-      <$list filter="[all[tiddlers]has[ftlist]!sort[]limit[40]]" variable=day emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
-        <!--div><$link to=<<day>>><<day>></$link></div-->
+  <$set name="numDays" value={{!!ftlist_display_days}} emptyValue="15">
+      <$list filter="[all[tiddlers]has[ftlist]!sort[]limit<numDays>]" variable=day
+             emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
         <div><<day>></div>
         <$list filter="[title<day>get[ftlist]enlist-input[]]" variable=item>
           <$list filter="[title<item>get[ftlist_day]prefix<day>]">
