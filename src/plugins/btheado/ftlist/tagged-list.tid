@@ -5,15 +5,6 @@ title: $:/plugins/btheado/ftlist/tagged-list
 
 <$importvariables filter="$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]] [title{!!ftlist_macros}]">
 <$wikify name="showItemTags" text="<<qualify $:/state/btheado/ftlist/show-item-tags>>">
-  <$list filter="[all[current]has[text]]">
-    <$wikify name="showBodyText" text="<<qualify $:/state/btheado/ftlist/show-body-text>>">
-      <$reveal type="match" state=<<showBodyText>> text="true">
-        <$transclude tiddler=<<curentTiddler>> mode=block/>
-      </$reveal>
-      {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}} | {{$:/plugins/btheado/ftlist/toggle-body-display}}
-   </$wikify>
-  </$list>
-<$list filter="[all[current]!has[text]]">
   {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
 </$list>
   <$set name="parentTiddler" value=<<currentTiddler>>>

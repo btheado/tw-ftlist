@@ -44,9 +44,7 @@ title: $:/plugins/btheado/ftlist/tagged-list-item
       <$link><b><<currentTiddler>></b></$link>
     </$list>
     <$reveal type="match" state=<<showItemTags>> text="true">
-      <!-- Using '!title<parentTiddler>' causes tags which don't yet exist as tiddlers to be filtered out,
-             so use '-[<parentTiddler>]' to ONLY filter out <parentTiddler> -->
-      <$list filter="[all[current]tags[]] -[<parentTiddler>]">
+      <$list filter="[all[current]tags[]]">
         <$macrocall $name=tag tag=<<currentTiddler>>/>
       </$list>
     </$reveal>
