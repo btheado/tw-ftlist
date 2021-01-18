@@ -1,0 +1,19 @@
+created: 20180429151224584
+modified: 20181229210351854
+tags: 
+title: $:/plugins/btheado/ftlist/list-item-title-template
+
+<div>
+  <$list filter="[all[current]!has[text]]">
+    <$link><<currentTiddler>></$link>
+  </$list>
+  <$list filter="[all[current]has[text]]">
+    <!-- Make tiddlers which have non-empty body text stand out -->
+    <$link><b><<currentTiddler>></b></$link>
+  </$list>
+  <$reveal type="match" state=<<showItemTags>> text="true">
+    <$list filter="[all[current]tags[]]">
+      <$macrocall $name=tag tag=<<currentTiddler>>/>
+    </$list>
+  </$reveal>
+</div>

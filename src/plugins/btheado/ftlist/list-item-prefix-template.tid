@@ -1,0 +1,29 @@
+created: 20180429151224584
+modified: 20181229210351854
+tags: 
+title: $:/plugins/btheado/ftlist/list-item-prefix-template
+
+<div style="flex-shrink: 0;">
+  <$button
+    actions=<<moveToTopActions>>
+    tooltip="move to top"
+    aria-label="move to top"
+    class="tc-btn-invisible tc-btn-mini">
+    {{$:/core/images/up-arrow}}
+  </$button>
+  <$button
+      tooltip="mark done and remove from list"
+      aria-label="mark done and remove from list"
+      class="tc-btn-invisible tc-btn-mini"
+      actions=<<markDoneActions>>>
+      {{$:/core/images/done-button}}
+  </$button>
+  <$button
+    message="tm-edit-tiddler"
+    tooltip={{$:/language/Buttons/Edit/Hint}}
+    aria-label={{$:/language/Buttons/Edit/Caption}}
+    class="tc-btn-invisible tc-btn-mini">
+    {{$:/core/images/edit-button}}
+   </$button>
+
+</div>

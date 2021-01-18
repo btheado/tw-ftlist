@@ -3,52 +3,13 @@ modified: 20181229210351854
 tags: 
 title: $:/plugins/btheado/ftlist/tagged-list-item
 
-\define displayListItem()
- <div style="margin-left: 15px; white-space: normal; display: flex;">
-  <!-- 
-     Two side-by-side, flex-arranged divs. The one on the left with the icons will grow
-     so there is no wrapping. The one on the right will have wrapping if too long to fit, but
-     the text on the wrapped lines will line up with each other (rather than wrap around
-     under the icons).
-     -->
-  <div style="flex-shrink: 0;">
-    <$button
-      actions=<<moveToTopActions>>
-      tooltip="move to top"
-      aria-label="move to top"
-      class="tc-btn-invisible tc-btn-mini">
-      {{$:/core/images/up-arrow}}
-    </$button>
-    <$button
-        tooltip="mark done and remove from list"
-        aria-label="mark done and remove from list"
-        class="tc-btn-invisible tc-btn-mini"
-        actions=<<markDoneActions>>>
-        {{$:/core/images/done-button}}
-    </$button>
-    <$button
-      message="tm-edit-tiddler"
-      tooltip={{$:/language/Buttons/Edit/Hint}}
-      aria-label={{$:/language/Buttons/Edit/Caption}}
-      class="tc-btn-invisible tc-btn-mini">
-      {{$:/core/images/edit-button}}
-     </$button>
-
-  </div>
-  <div>
-    <$list filter="[all[current]!has[text]]">
-      <$link><<currentTiddler>></$link>
-    </$list>
-    <$list filter="[all[current]has[text]]">
-      <!-- Make tiddlers which have non-empty body text stand out -->
-      <$link><b><<currentTiddler>></b></$link>
-    </$list>
-    <$reveal type="match" state=<<showItemTags>> text="true">
-      <$list filter="[all[current]tags[]]">
-        <$macrocall $name=tag tag=<<currentTiddler>>/>
-      </$list>
-    </$reveal>
-  </div>
- </div>
-\end
-<<displayListItem>>
+<div style="margin-left: 15px; white-space: normal; display: flex;">
+ <!--
+    Two side-by-side, flex-arranged divs. The one on the left with the icons will grow
+    so there is no wrapping. The one on the right will have wrapping if too long to fit, but
+    the text on the wrapped lines will line up with each other (rather than wrap around
+    under the icons).
+    -->
+ {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
+ {{||$:/plugins/btheado/ftlist/list-item-title-template}}
+</div>

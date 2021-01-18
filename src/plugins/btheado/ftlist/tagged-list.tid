@@ -10,12 +10,27 @@ title: $:/plugins/btheado/ftlist/tagged-list
       <$list filter="[all[tiddlers]has[ftlist]!sort[]limit<numDays>]" variable=day
              emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
         <div><<day>></div>
-        <$list filter="[title<day>get[ftlist]enlist-input[]]" variable=item>
-          <$list filter="[title<item>get[ftlist_day]prefix<day>]">
-            <$tiddler tiddler=<<item>>>
-              {{||$:/plugins/btheado/ftlist/tagged-list-item}}
-            </$tiddler>
+        <$list filter="[title<day>get[ftlist]enlist-input[]]">
+          <$list filter="[all[current]get[ftlist_day]prefix<day>]" variable=ignore>
+          <!--$list filter="[all[current]contains:ftlist_day<day>]" variable=ignore-->
+            {{||$:/plugins/btheado/ftlist/tagged-list-item}}
           </$list>
+          <$list filter="[all[current]get[ftlist_day]!prefix<day>]" variable=ignore>
+            <div style="margin-left: 15px; white-space: normal; display: flex;">
+             <!--
+                Two side-by-side, flex-arranged divs. The one on the left with the icons will grow
+                so there is no wrapping. The one on the right will have wrapping if too long to fit, but
+                the text on the wrapped lines will line up with each other (rather than wrap around
+                under the icons).
+                -->
+             {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
+             <div><<currentTiddler>></div>
+            </div>
+          </$list>
+          <!--$list filter="[title<item>get[ftlist_day]enlist-input[]first[2]] -done"-->
+          <!-- else if first item is done and show done is true and 2nd item matches the day, then display it as strikethrough-->
+          <!-- I'm thinking there might be multiple done entries in the list for recurring items. Handling that might be challenging -->
+          <!-- Another variation is to display even all duplicates. Display the old instances in a different style (faded?) -->
         </$list>
       </$list>
 
