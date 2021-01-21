@@ -4,7 +4,11 @@ tags:
 title: $:/plugins/btheado/ftlist/action-macros
 
 \define markDoneActions()
-  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[prepend[done]]"/>
+  <!-- Mark with today's date and prepend 'done' entry -->
+  <$set name=actionTiddler value=<<currentTiddler>>>
+    <<addChildActions>>
+  </$set>
+  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[reverse[]] done +[reverse[]]"/>
 \end
 
 \define moveToTopActions()
@@ -32,9 +36,9 @@ title: $:/plugins/btheado/ftlist/action-macros
   <$wikify name=today text="""<$macrocall $name="now" format="YYYY-0MM-0DD"/>""">
     <!-- actionTiddler is the child being added -->
     <!-- Move or add the child to the front of the list -->
-    <!-- Can't use prepend here because there might be spaces in the text typed by the user and each word would get added as a separate item and due to Dominant Append in TW lists, I have to do this dance with reverse -->
+    <!-- Can't use prepend here because there might be spaces in the text typed by the user and each word would get added as a separate item and due to Dominant Append in TW lists, I have to do this dance with reverse (without the dance, existing item in the list will not be moved to the front) -->
     <$action-listops $tiddler=<<today>> $field=ftlist $subfilter="+[reverse[]] [<actionTiddler>] +[reverse[]]"/>
     <!-- Also add today's day to newly added item' ftlist_day field -->
-    <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[prepend<today>]"/>
+    <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[reverse[]] [<today>] +[reverse[]]"/>
   </$wikify>
 \end
