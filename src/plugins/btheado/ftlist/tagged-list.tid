@@ -22,19 +22,18 @@ title: $:/plugins/btheado/ftlist/tagged-list
             <$list filter="[all[current]get[ftlist_day]prefix<day>]" variable=ignore>
               {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
               {{||$:/plugins/btheado/ftlist/list-item-title-template}}
-            | {{!!ftlist_day}}
             </$list>
             <$list filter="[all[current]get[ftlist_day]!prefix<day>]" variable=ftlist_day>
               <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<ftlistTiddler>> stateField="ftlist_display_done" text="true">
                 <$list filter="[title<ftlist_day>prefix[done]enlist-input[]nth[2]]" variable=done_day>
                   <$list filter="[title<done_day>match<day>]" variable=ignore>
                     {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-                    <strike>{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike> | {{!!ftlist_day}}
+                    <strike>{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike>
                   </$list>
                   <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<ftlistTiddler>> stateField="ftlist_display_old_instances" text="true">
                     <$list filter="[title<done_day>!match<day>]" variable=ignore>
                       {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-                      <strike class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike> | {{!!ftlist_day}}
+                      <strike class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike>
                     </$list>
                   </$reveal>
                 </$list>
@@ -46,7 +45,7 @@ title: $:/plugins/btheado/ftlist/tagged-list
               <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<ftlistTiddler>> stateField="ftlist_display_old_instances" text="true">
                 <$list filter="[title<ftlist_day>!prefix[done]]" variable=ignore>
                   {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-                  <div class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</div> | {{!!ftlist_day}}
+                  <div class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</div>
                 </$list>
               </$reveal>
             </$list>
