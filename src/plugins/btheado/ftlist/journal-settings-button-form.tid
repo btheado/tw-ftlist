@@ -1,0 +1,20 @@
+created: 20210121003752734
+modified: 20210121003752734
+tags: 
+title: $:/plugins/btheado/ftlist/journal-settings-button-form
+
+<$reveal type="nomatch" state=<<qualify "$:/state/btheado/ftlist/settingsForm">> text="true">
+  <$button setTitle=<<qualify "$:/state/btheado/ftlist/settingsForm">> setTo="true" class="tc-btn-invisible">
+    {{$:/core/images/options-button}}
+  </$button>
+</$reveal>
+
+<$reveal type="match" state=<<qualify "$:/state/btheado/ftlist/settingsForm">> text="true">
+  <$button setTitle=<<qualify "$:/state/btheado/ftlist/settingsForm">> setTo="false" class="tc-btn-invisible">
+    {{$:/core/images/options-button}}
+  </$button>
+  <div><$checkbox tiddler=<<stateTiddler>> field="ftlist_show_item_tags" checked="true" unchecked="false" default="false">show item tags</$checkbox></div>
+  <div><$checkbox tiddler=<<stateTiddler>> field="ftlist_display_done" checked="true" unchecked="false" default="false">show done items</$checkbox></div>
+  <div><$checkbox tiddler=<<stateTiddler>> field="ftlist_display_old_instances" checked="true" unchecked="false" default="false">show old item instances</$checkbox></div>
+  <div><$edit-text tiddler=<<stateTiddler>> field="ftlist_display_days" tag="input" type="number" step="10" size="3"/>show this many days (-1 to show all)</div>
+</$reveal>
