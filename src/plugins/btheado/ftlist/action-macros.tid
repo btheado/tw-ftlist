@@ -8,7 +8,7 @@ title: $:/plugins/btheado/ftlist/action-macros
   <$set name=actionTiddler value=<<currentTiddler>>>
     <<addChildActions>>
   </$set>
-  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[reverse[]] done +[reverse[]]"/>
+  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="done +[putfirst[]]"/>
 \end
 
 \define moveToTopActions()
@@ -19,16 +19,6 @@ title: $:/plugins/btheado/ftlist/action-macros
   </$set>
 \end
 
-\define addChildActions_old()
-  <!-- actionTiddler is the child being added -->
-  <!-- Move or add the child to the end of the list -->
-  <$vars today=<<now YYYY-0MM-0DD>>>
-  <$action-listops $tiddler=<<today>> $field=ftlist $filter="[<actionTiddler>] [<today>get[ftlist]enlist-input[]]"/>
-  <!-- Also add today's day to  newly added item' ftlist_day field -->
-  <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $filter="[<today>] [<actionTiddler>get[ftlist_day]enlist-input[]]"/>
-  </$vars>
-\end
-
 \define addChildActions()
   <!-- Using this approach as found in the "new journal" button code. It allows for the
         timestamp to be calculated at the time the button is pressed rather than the time
@@ -36,9 +26,8 @@ title: $:/plugins/btheado/ftlist/action-macros
   <$wikify name=today text="""<$macrocall $name="now" format="YYYY-0MM-0DD"/>""">
     <!-- actionTiddler is the child being added -->
     <!-- Move or add the child to the front of the list -->
-    <!-- Can't use prepend here because there might be spaces in the text typed by the user and each word would get added as a separate item and due to Dominant Append in TW lists, I have to do this dance with reverse (without the dance, existing item in the list will not be moved to the front) -->
-    <$action-listops $tiddler=<<today>> $field=ftlist $subfilter="+[reverse[]] [<actionTiddler>] +[reverse[]]"/>
+    <$action-listops $tiddler=<<today>> $field=ftlist $subfilter="[<actionTiddler>] +[putfirst[]]"/>
     <!-- Also add today's day to newly added item' ftlist_day field -->
-    <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="+[reverse[]] [<today>] +[reverse[]]"/>
+    <$action-listops $tiddler=<<actionTiddler>> $field=ftlist_day $subfilter="[<today>] +[putfirst[]]"/>
   </$wikify>
 \end
