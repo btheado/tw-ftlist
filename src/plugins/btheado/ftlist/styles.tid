@@ -1,0 +1,8 @@
+created: 20210121003752734
+modified: 20210121003752734
+tags: $:/tags/Stylesheet 
+title: $:/plugins/btheado/ftlist/styles
+type: text/css
+
+div.ftlist-old a.tc-tiddlylink { color: #cccccc; }
+strike.ftlist-old a.tc-tiddlylink { color: #adbceb; }

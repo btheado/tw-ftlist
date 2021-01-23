@@ -38,10 +38,6 @@ title: $:/plugins/btheado/ftlist/tagged-list
                   </$reveal>
                 </$list>
               </$reveal>
-              <!--
-              div.ftlist-old a.tc-tiddlylink { color: #cccccc; }
-              strike.ftlist-old a.tc-tiddlylink { color: #adbceb; }
-              -->
               <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_old_instances" text="true">
                 <$list filter="[title<ftlist_day>!prefix[done]]" variable=ignore>
                   {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
@@ -50,13 +46,7 @@ title: $:/plugins/btheado/ftlist/tagged-list
               </$reveal>
             </$list>
           </div>
-          <!-- settings icon for popup window to control which display mode and how many days to display -->
-          <!-- keyin + button on the plugin page for easy creation of new ftlist tiddler of each type -->
-          <!-- maybe I should have done:date entries in the items and I can filter out all the non-done and remove the 'done:` prefix and check the current day being considered for being earlier. If it is earlier then it should be crossed off. If it is later than all the done or there is no done and it isn't the current day entry, then it should be shown as faded opacity or faded color. Only if the day matches the current list entry should it be displayed completely normal. Idea on backlink...I could have special backlinks mode which displays the ftlist, but only for the days which are linked. Not sure if that would be useful or not -->
-          <!--$list filter="[title<item>get[ftlist_day]enlist-input[]first[2]] -done"-->
-          <!-- else if first item is done and show done is true and 2nd item matches the day, then display it as strikethrough-->
-          <!-- I'm thinking there might be multiple done entries in the list for recurring items. Handling that might be challenging -->
-          <!-- Another variation is to display even all duplicates. Display the old instances in a different style (faded?) -->
+          <!-- TODO: keyin + button on the plugin page for easy creation of new ftlist tiddler of each type -->
         </$list>
       </$list>
     </$set>
