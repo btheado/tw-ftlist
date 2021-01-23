@@ -4,10 +4,9 @@ tags:
 title: $:/plugins/btheado/ftlist/tagged-list
 
 <$importvariables filter="$:/plugins/btheado/ftlist/action-macros [tag[$:/plugins/btheado/ftlist/action-macros]!has[draft.of]] [title{!!ftlist_macros}]">
-<$wikify name="showItemTags" text="<<qualify $:/state/btheado/ftlist/show-item-tags>>">
-  {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
   <$set name="numDays" value={{!!ftlist_display_days}} emptyValue="15">
-    <$set name="ftlistTiddler" value=<<currentTiddler>>>
+    <$vars stateTiddler=<<currentTiddler>>>
+      {{||$:/plugins/btheado/ftlist/drop-target-add-tag}}{{||$:/plugins/btheado/ftlist/tagged-tiddler-creator}} {{$:/plugins/btheado/ftlist/toggle-tag-display}}
       <$list filter="[all[tiddlers]has[ftlist]!sort[]limit<numDays>]" variable=day
              emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
         <div><<day>></div>
@@ -24,13 +23,13 @@ title: $:/plugins/btheado/ftlist/tagged-list
               {{||$:/plugins/btheado/ftlist/list-item-title-template}}
             </$list>
             <$list filter="[all[current]get[ftlist_day]!prefix<day>]" variable=ftlist_day>
-              <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<ftlistTiddler>> stateField="ftlist_display_done" text="true">
+              <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_done" text="true">
                 <$list filter="[title<ftlist_day>prefix[done]enlist-input[]nth[2]]" variable=done_day>
                   <$list filter="[title<done_day>match<day>]" variable=ignore>
                     {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
                     <strike>{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike>
                   </$list>
-                  <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<ftlistTiddler>> stateField="ftlist_display_old_instances" text="true">
+                  <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_old_instances" text="true">
                     <$list filter="[title<done_day>!match<day>]" variable=ignore>
                       {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
                       <strike class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike>
@@ -42,7 +41,7 @@ title: $:/plugins/btheado/ftlist/tagged-list
               div.ftlist-old a.tc-tiddlylink { color: #cccccc; }
               strike.ftlist-old a.tc-tiddlylink { color: #adbceb; }
               -->
-              <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<ftlistTiddler>> stateField="ftlist_display_old_instances" text="true">
+              <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_old_instances" text="true">
                 <$list filter="[title<ftlist_day>!prefix[done]]" variable=ignore>
                   {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
                   <div class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</div>
@@ -59,7 +58,6 @@ title: $:/plugins/btheado/ftlist/tagged-list
           <!-- Another variation is to display even all duplicates. Display the old instances in a different style (faded?) -->
         </$list>
       </$list>
-   </$set>
+   </$vars>
   </$set>
-</$wikify>
 </$importvariables>

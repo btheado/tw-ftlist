@@ -3,9 +3,10 @@ modified: 20181216015647513
 tags: 
 title: $:/plugins/btheado/ftlist/toggle-tag-display
 
-<$reveal type="match" state=<<showItemTags>> text="true">
+<$reveal type="match" stateTitle=<<stateTiddler>> stateField="ftlist_show_item_tags" text="true">
   <$button
-    set=<<showItemTags>>
+    setTitle=<<stateTiddler>>
+    setField="ftlist_show_item_tags"
     setTo="false"
     class="tc-btn-invisible tc-tiddlylink"
     tooltip="Hide tags for each item in the list"
@@ -14,9 +15,10 @@ title: $:/plugins/btheado/ftlist/toggle-tag-display
   hide tags
   </$button>
 </$reveal>
-<$reveal type="nomatch" state=<<showItemTags>> text="true">
+<$reveal type="nomatch" stateTitle=<<stateTiddler>> stateField="ftlist_show_item_tags" text="true">
   <$button
-    set=<<showItemTags>>
+    setTitle=<<stateTiddler>>
+    setField="ftlist_show_item_tags"
     setTo="true"
     class="tc-btn-invisible tc-tiddlylink"
     tooltip="Show tags for each item in the list"

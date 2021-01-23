@@ -11,7 +11,7 @@ title: $:/plugins/btheado/ftlist/list-item-title-template
     <!-- Make tiddlers which have non-empty body text stand out -->
     <$link><b><<currentTiddler>></b></$link>
   </$list>
-  <$reveal type="match" state=<<showItemTags>> text="true">
+  <$reveal type="match" stateTitle=<<stateTiddler>> stateField="ftlist_show_item_tags" text="true">
     <$list filter="[all[current]tags[]]">
       <$macrocall $name=tag tag=<<currentTiddler>>/>
     </$list>
