@@ -10,44 +10,7 @@ title: $:/plugins/btheado/ftlist/tagged-list
 
       <$list filter="[all[tiddlers]has[ftlist]!sort[]limit<numDays>]" variable=day
              emptyMessage="<div>No items in the list. New items entered above will be displayed here.</div>">
-        <div><<day>></div>
-        <$list filter="[title<day>get[ftlist]enlist-input[]]">
-          <div style="margin-left: 15px; white-space: normal; display: flex;">
-            <!--
-              Two side-by-side, flex-arranged divs. The one on the left with the icons will grow
-              so there is no wrapping. The one on the right will have wrapping if too long to fit, but
-              the text on the wrapped lines will line up with each other (rather than wrap around
-              under the icons).
-              -->
-            <$list filter="[all[current]get[ftlist_day]prefix<day>]" variable=ignore>
-              {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-              {{||$:/plugins/btheado/ftlist/list-item-title-template}}
-            </$list>
-            <$list filter="[all[current]get[ftlist_day]!prefix<day>]" variable=ftlist_day>
-              <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_done" text="true">
-                <$list filter="[title<ftlist_day>prefix[done]enlist-input[]nth[2]]" variable=done_day>
-                  <$list filter="[title<done_day>match<day>]" variable=ignore>
-                    {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-                    <strike>{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike>
-                  </$list>
-                  <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_old_instances" text="true">
-                    <$list filter="[title<done_day>!match<day>]" variable=ignore>
-                      {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-                      <strike class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</strike>
-                    </$list>
-                  </$reveal>
-                </$list>
-              </$reveal>
-              <$reveal type="match" style="display: flex;" tag="div" stateTitle=<<stateTiddler>> stateField="ftlist_display_old_instances" text="true">
-                <$list filter="[title<ftlist_day>!prefix[done]]" variable=ignore>
-                  {{||$:/plugins/btheado/ftlist/list-item-prefix-template}}
-                  <div class="ftlist-old">{{||$:/plugins/btheado/ftlist/list-item-title-template}}</div>
-                </$list>
-              </$reveal>
-            </$list>
-          </div>
-          <!-- TODO: keyin + button on the plugin page for easy creation of new ftlist tiddler of each type -->
-        </$list>
+        {{||$:/plugins/btheado/ftlist/day-template}}
       </$list>
     </$set>
   </$vars>
